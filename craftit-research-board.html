@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Craftit AI — Research & Strategy Board</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --surface-hover: #22222e;
+    --text: #e8e8ed;
+    --text-secondary: #9ca3b4;
+    --text-muted: #6b7280;
+    --border: #2a2a38;
+    --border-light: #1f1f2c;
+    --accent: #818cf8;
+    --accent-light: rgba(129,140,248,0.1);
+    --red: #f87171;
+    --red-light: rgba(248,113,113,0.08);
+    --red-border: rgba(248,113,113,0.2);
+    --green: #34d399;
+    --green-light: rgba(52,211,153,0.08);
+    --green-border: rgba(52,211,153,0.2);
+    --yellow: #fbbf24;
+    --yellow-light: rgba(251,191,36,0.08);
+    --yellow-border: rgba(251,191,36,0.2);
+    --purple: #a78bfa;
+    --purple-light: rgba(167,139,250,0.08);
+    --purple-border: rgba(167,139,250,0.2);
+    --orange: #fb923c;
+    --orange-light: rgba(251,146,60,0.08);
+    --orange-border: rgba(251,146,60,0.2);
+    --blue: #60a5fa;
+    --blue-light: rgba(96,165,250,0.08);
+    --blue-border: rgba(96,165,250,0.2);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+    --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body { 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+    background: var(--bg); 
+    color: var(--text); 
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Header */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 40px 40px;
+    text-align: center;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .header h1 { 
+    font-size: 2.2em; 
+    font-weight: 800; 
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .header p { 
+    font-size: 1em; 
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+  .header .date {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* Sidebar Nav */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 240px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    z-index: 200;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-logo {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+  .sidebar-logo span {
+    font-size: 0.85em;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .sidebar-logo .sub {
+    display: block;
+    font-size: 0.7em;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+  .sidebar-section {
+    padding: 8px 16px 4px;
+    font-size: 0.65em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 9px 20px;
+    font-weight: 500;
+    font-size: 0.82em;
+    transition: all 0.15s ease;
+    border-left: 2px solid transparent;
+    margin: 1px 0;
+  }
+  .sidebar a:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+  .sidebar a.active {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+  .sidebar a .nav-icon {
+    font-size: 1em;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .sidebar-spacer { flex: 1; }
+  .sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.7em;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  
+  /* Main content offset */
+  .main-content {
+    margin-left: 240px;
+  }
+
+  /* Mobile hamburger bar */
+  .mobile-topbar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 250;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+    box-shadow: var(--shadow);
+  }
+  .mobile-topbar .hamburger {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid rgba(129,140,248,0.2);
+    font-size: 1.1em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+  }
+  .mobile-topbar .hamburger:hover {
+    background: var(--accent);
+    color: white;
+  }
+  .mobile-topbar .topbar-title {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .mobile-topbar .topbar-sub {
+    font-size: 0.7em;
+    color: var(--text-muted);
+  }
+
+  /* Sidebar overlay */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 190;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .sidebar-overlay.open { display: block; }
+
+  /* Hide old stuff */
+  .sidebar-toggle { display: none; }
+  .nav { display: none; }
+
+  /* Section */
+  .section { 
+    padding: 48px 40px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+  }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-title { 
+    font-size: 1.5em; 
+    font-weight: 700; 
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    margin-bottom: 32px;
+    max-width: 640px;
+  }
+  .section + .section {
+    border-top: 1px solid var(--border-light);
+  }
+
+  /* Insight Box */
+  .insight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .insight-box .icon { font-size: 2em; margin-bottom: 12px; }
+  .insight-box h2 { 
+    font-size: 1.3em; 
+    font-weight: 700; 
+    color: var(--text);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .insight-box p { 
+    font-size: 1em; 
+    line-height: 1.7; 
+    color: var(--text-secondary);
+  }
+  .insight-box strong { color: var(--text); }
+
+  /* Card Grid */
+  .card-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 16px; 
+    margin-bottom: 32px; 
+  }
+  .card-grid.cols-2 { grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid.cols-6 { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--border);
+    transition: all 0.15s ease;
+    box-shadow: var(--shadow-sm);
+  }
+  .card:hover { 
+    box-shadow: var(--shadow-md); 
+    border-color: #3a3a4a;
+  }
+  .card .card-icon { font-size: 1.4em; margin-bottom: 10px; }
+  .card h3 { 
+    font-size: 0.9em; 
+    font-weight: 600; 
+    margin-bottom: 8px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .card p { 
+    font-size: 0.85em; 
+    line-height: 1.6; 
+    color: var(--text-secondary); 
+  }
+  .tag { 
+    display: inline-block; 
+    padding: 3px 10px; 
+    border-radius: 6px; 
+    font-size: 0.7em; 
+    font-weight: 600; 
+    margin-top: 10px; 
+    margin-right: 4px;
+    letter-spacing: 0.02em;
+  }
+  .tag.accent { background: var(--accent-light); color: var(--accent); }
+  .tag.green { background: var(--green-light); color: var(--green); }
+  .tag.red { background: var(--red-light); color: var(--red); }
+
+  /* Themed cards */
+  .card.themed-red { background: var(--red-light); border-color: var(--red-border); }
+  .card.themed-red h3 { color: var(--red); }
+  .card.themed-green { background: var(--green-light); border-color: var(--green-border); }
+  .card.themed-green h3 { color: var(--green); }
+  .card.themed-yellow { background: var(--yellow-light); border-color: var(--yellow-border); }
+  .card.themed-yellow h3 { color: var(--yellow); }
+  .card.themed-purple { background: var(--purple-light); border-color: var(--purple-border); }
+  .card.themed-purple h3 { color: var(--purple); }
+  .card.themed-blue { background: var(--blue-light); border-color: var(--blue-border); }
+  .card.themed-blue h3 { color: var(--blue); }
+  .card.themed-orange { background: var(--orange-light); border-color: var(--orange-border); }
+  .card.themed-orange h3 { color: var(--orange); }
+
+  /* Stat Cards */
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .stat-card .number { 
+    font-size: 1.8em; 
+    font-weight: 800; 
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+  }
+  .stat-card .label { 
+    color: var(--text-muted); 
+    font-size: 0.78em; 
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* Pain Points */
+  .pain-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
+  }
+  .pain-item:hover { box-shadow: var(--shadow-md); }
+  .pain-rank {
+    background: var(--red);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85em;
+    flex-shrink: 0;
+  }
+  .pain-content h4 { 
+    font-size: 0.9em; 
+    font-weight: 600; 
+    color: var(--text);
+    margin-bottom: 4px; 
+  }
+  .pain-content p { font-size: 0.82em; color: var(--text-secondary); }
+  .quote { 
+    font-style: italic; 
+    color: var(--text-muted); 
+    margin-top: 8px; 
+    padding-left: 12px; 
+    border-left: 2px solid var(--border);
+    font-size: 0.82em;
+    line-height: 1.5;
+  }
+  .intensity {
+    display: inline-block;
+    background: var(--red-light);
+    color: var(--red);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7em;
+    font-weight: 600;
+    margin-left: 8px;
+  }
+
+  /* Competitor Table */
+  .table-wrap { 
+    overflow-x: auto; 
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    background: var(--surface);
+  }
+  .comp-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    font-size: 0.82em; 
+  }
+  .comp-table th { 
+    background: #13131a; 
+    padding: 12px 10px; 
+    text-align: left; 
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.85em;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+  }
+  .comp-table td { 
+    padding: 11px 10px; 
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text);
+  }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr:hover td { background: var(--surface-hover); }
+  .comp-table .stars { color: var(--yellow); }
+  .comp-table .highlight td { 
+    background: var(--accent-light); 
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* Personas */
+  .persona-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+    gap: 14px; 
+  }
+  .persona {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
+  }
+  .persona:hover { box-shadow: var(--shadow-md); }
+  .persona .segment-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.7em;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .persona .segment-badge.beginner { background: var(--green-light); color: var(--green); }
+  .persona .segment-badge.casual { background: var(--accent-light); color: var(--accent); }
+  .persona .segment-badge.creator { background: var(--red-light); color: var(--red); }
+  .persona .segment-badge.smb { background: var(--orange-light); color: var(--orange); }
+  .persona .segment-badge.pro { background: var(--purple-light); color: var(--purple); }
+  .persona .segment-badge.kid { background: var(--yellow-light); color: var(--yellow); }
+  .persona .emoji { font-size: 1.6em; margin-bottom: 8px; }
+  .persona h4 { font-size: 0.9em; font-weight: 600; letter-spacing: -0.01em; }
+  .persona .role { font-size: 0.78em; color: var(--text-muted); margin-bottom: 8px; }
+  .persona .desc { font-size: 0.8em; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.5; }
+  .persona .magic { 
+    background: var(--yellow-light); 
+    border: 1px solid var(--yellow-border);
+    padding: 10px 12px; 
+    border-radius: 8px; 
+    font-size: 0.78em; 
+    color: var(--yellow);
+    line-height: 1.4;
+  }
+  .persona .wtp { 
+    font-size: 0.75em; 
+    color: var(--green); 
+    margin-top: 8px;
+    font-weight: 600;
+  }
+
+  /* Opportunity Cards */
+  .opp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
+  }
+  .opp-card:hover { box-shadow: var(--shadow-md); }
+  .opp-card .opp-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.7em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0.03em;
+  }
+  .opp-card .opp-badge.critical { background: var(--red-light); color: var(--red); }
+  .opp-card .opp-badge.high { background: var(--orange-light); color: var(--orange); }
+  .opp-card .opp-badge.medium { background: var(--blue-light); color: var(--blue); }
+  .opp-card h3 { font-size: 1.05em; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .opp-card > p { font-size: 0.88em; color: var(--text-secondary); line-height: 1.6; }
+  .opp-card .evidence {
+    font-size: 0.8em;
+    color: var(--text-muted);
+    margin-top: 14px;
+    padding: 14px;
+    background: var(--bg);
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    line-height: 1.5;
+  }
+
+  /* Strategy Phases */
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+  }
+  .phase h3 { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 16px;
+    font-size: 1em;
+    font-weight: 700;
+  }
+  .phase .phase-badge {
+    display: inline-flex;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .phase .phase-badge.now { background: var(--red-light); color: var(--red); }
+  .phase .phase-badge.next { background: var(--orange-light); color: var(--orange); }
+  .phase .phase-badge.later { background: var(--blue-light); color: var(--blue); }
+  .phase .phase-badge.pricing { background: var(--green-light); color: var(--green); }
+  .phase ul { padding-left: 20px; }
+  .phase li { 
+    margin-bottom: 10px; 
+    color: var(--text-secondary); 
+    font-size: 0.88em;
+    line-height: 1.5;
+  }
+  .phase li strong { color: var(--text); }
+
+  /* Matrix Table */
+  .matrix-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    font-size: 0.78em; 
+  }
+  .matrix-table th { 
+    background: #13131a; 
+    padding: 10px 8px; 
+    text-align: center; 
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .matrix-table td { 
+    padding: 9px 8px; 
+    border-bottom: 1px solid var(--border-light); 
+    text-align: center;
+    color: var(--text);
+  }
+  .matrix-table td:first-child { text-align: left; font-weight: 600; }
+
+  /* Timing Box */
+  .timing-box {
+    background: var(--accent-light);
+    border: 1px solid rgba(129,140,248,0.25);
+    border-radius: var(--radius-xl);
+    padding: 36px;
+    text-align: center;
+    margin-top: 32px;
+  }
+  .timing-box h2 { color: var(--accent); font-size: 1.2em; margin-bottom: 8px; }
+  .timing-box p { color: var(--text-secondary); font-size: 0.95em; }
+
+  /* Footer */
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    text-align: center;
+  }
+  .footer p { color: var(--text-muted); font-size: 0.82em; }
+
+  /* Divider */
+  .divider { 
+    height: 1px; 
+    background: var(--border-light); 
+    margin: 32px 0;
+  }
+
+  @media (max-width: 900px) {
+    .sidebar { 
+      transform: translateX(-100%); 
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: none;
+    }
+    .sidebar.open { 
+      transform: translateX(0); 
+      box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+    }
+    .mobile-topbar { display: flex; }
+    .main-content { 
+      margin-left: 0; 
+      padding-top: 56px; 
+    }
+    .card-grid { grid-template-columns: 1fr; }
+    .card-grid.cols-6 { grid-template-columns: repeat(2, 1fr); }
+    .card-grid.cols-3 { grid-template-columns: 1fr; }
+    .persona-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.6em; }
+    .section { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span>🐙 Craftit AI</span>
+    <span class="sub">Research & Strategy Board</span>
+  </div>
+  
+  <div class="sidebar-section">Overview</div>
+  <a href="#insight" onclick="closeSidebar()"><span class="nav-icon">💡</span> Big Insight</a>
+  <a href="#market" onclick="closeSidebar()"><span class="nav-icon">📊</span> Market Landscape</a>
+  
+  <div class="sidebar-section">Research</div>
+  <a href="#competitors" onclick="closeSidebar()"><span class="nav-icon">🔍</span> Competitors</a>
+  <a href="#pain-points" onclick="closeSidebar()"><span class="nav-icon">🔴</span> Pain Points</a>
+  <a href="#needs" onclick="closeSidebar()"><span class="nav-icon">🟢</span> Unmet Needs</a>
+  <a href="#personas" onclick="closeSidebar()"><span class="nav-icon">🧪</span> Personas</a>
+  
+  <div class="sidebar-section">Strategy</div>
+  <a href="#opportunities" onclick="closeSidebar()"><span class="nav-icon">🎯</span> Opportunities</a>
+  <a href="#features" onclick="closeSidebar()"><span class="nav-icon">📋</span> Feature Backlog</a>
+  <a href="#strategy" onclick="closeSidebar()"><span class="nav-icon">🚀</span> Roadmap</a>
+  
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-footer">
+    Compiled by Pixel 🐙<br>
+    February 24, 2026
+  </div>
+</nav>
+
+<!-- Mobile Toggle -->
+<button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">🐙 Pixel · Product & Design Partner</div>
+  <h1>Craftit AI Research & Strategy</h1>
+  <p>Competitor Analysis · Market Research · User Insights · Strategy</p>
+  <p class="date">February 24, 2026</p>
+</div>
+
+<!-- old nav removed, using sidebar -->
+
+<!-- BIG INSIGHT -->
+<div class="section" id="insight">
+  <div class="insight-box">
+    <div class="icon">💡</div>
+    <h2>The One Big Insight</h2>
+    <p>The market is screaming for an <strong>"AI-first Canva"</strong> — a tool that combines <strong>Canva's simplicity</strong> with <strong>Midjourney's quality</strong> and <strong>Runway's video capability</strong>.</p>
+    <p style="margin-top: 12px; font-weight: 600; color: var(--accent);">Nobody has built it yet. Craftit AI has the feature set to be that product.</p>
+  </div>
+</div>
+
+<!-- MARKET -->
+<div class="section" id="market">
+  <div class="section-label">📊 Research</div>
+  <div class="section-title">Market Landscape</div>
+  <div class="section-desc">Key numbers and trends shaping the AI content creation space.</div>
+
+  <div class="card-grid cols-6">
+    <div class="stat-card">
+      <div class="number">$50-80B</div>
+      <div class="label">AI Creative Tools TAM by 2028</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">45-55%</div>
+      <div class="label">AI Video Gen CAGR (fastest)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">260M</div>
+      <div class="label">Canva MAU — "design for everyone" works</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$500M</div>
+      <div class="label">Midjourney revenue (image only)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">~0</div>
+      <div class="label">AI tools for kids — massive gap</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">3-5</div>
+      <div class="label">Tools per project — users hate this</div>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card themed-green">
+      <div class="card-icon">🚀</div>
+      <h3>AI Video at Inflection Point</h3>
+      <p>Quality now good enough for social content but tools still complex. A simplified tool wins NOW. Video is 18-24 months behind image gen.</p>
+    </div>
+    <div class="card themed-green">
+      <div class="card-icon">📱</div>
+      <h3>Mobile is Blue Ocean</h3>
+      <p>SEA, India, LatAm = mobile-only markets. 3B+ smartphones. Runway & Midjourney have NO mobile apps.</p>
+    </div>
+    <div class="card themed-green">
+      <div class="card-icon">👶</div>
+      <h3>Kids = Zero Competition</h3>
+      <p>~50-100M kids interested in digital creation. Zero purpose-built AI tools for under-13. COPPA deters competitors.</p>
+    </div>
+    <div class="card themed-yellow">
+      <div class="card-icon">🔄</div>
+      <h3>Consolidation Coming</h3>
+      <p>Hundreds of tools launched 2023-2025. "Middle squeeze" starting — mega-platforms and niche specialists survive. Generic tools die.</p>
+    </div>
+  </div>
+</div>
+
+<!-- COMPETITORS -->
+<div class="section" id="competitors">
+  <div class="section-label">🔍 Analysis</div>
+  <div class="section-title">Competitive Landscape</div>
+  <div class="section-desc">16 competitors analyzed across features, pricing, UX, and positioning.</div>
+
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Competitor</th>
+          <th>Image</th>
+          <th>Video</th>
+          <th>Editing</th>
+          <th>Canvas</th>
+          <th>Long Video</th>
+          <th>Community</th>
+          <th>Mobile</th>
+          <th>Auto Story</th>
+          <th>Pricing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Midjourney</strong></td><td class="stars">★★★★★</td><td>—</td><td class="stars">★★★</td><td>—</td><td>—</td><td class="stars">★★★★</td><td>—</td><td>—</td><td>$10-120/mo</td></tr>
+        <tr><td><strong>Runway</strong></td><td class="stars">★★★</td><td class="stars">★★★★★</td><td class="stars">★★★</td><td>—</td><td>—</td><td class="stars">★★</td><td>—</td><td>—</td><td>$12-76/mo</td></tr>
+        <tr><td><strong>Pika</strong></td><td>—</td><td class="stars">★★★★</td><td class="stars">★★</td><td>—</td><td>—</td><td class="stars">★★</td><td class="stars">★★★</td><td>—</td><td>~$8-58/mo</td></tr>
+        <tr><td><strong>Canva AI</strong></td><td class="stars">★★</td><td class="stars">★★</td><td class="stars">★★★★</td><td class="stars">★★★★★</td><td>—</td><td>—</td><td class="stars">★★★★★</td><td>—</td><td>$0-13/mo</td></tr>
+        <tr><td><strong>Adobe Firefly</strong></td><td class="stars">★★★</td><td class="stars">★★</td><td class="stars">★★★★★</td><td class="stars">★★★★</td><td>—</td><td class="stars">★★</td><td class="stars">★★★</td><td>—</td><td>$10-55/mo</td></tr>
+        <tr><td><strong>Higgsfield</strong></td><td class="stars">★★★</td><td class="stars">★★★★</td><td class="stars">★</td><td>—</td><td class="stars">★★★</td><td class="stars">★★★★★</td><td class="stars">★★</td><td class="stars">★★</td><td>Freemium</td></tr>
+        <tr><td><strong>Freepik</strong></td><td class="stars">★★★</td><td class="stars">★★</td><td class="stars">★★★</td><td class="stars">★★★</td><td>—</td><td>—</td><td class="stars">★★</td><td>—</td><td>~$9-25/mo</td></tr>
+        <tr><td><strong>OpenArt</strong></td><td class="stars">★★★★</td><td class="stars">★★★</td><td class="stars">★★★</td><td>—</td><td>—</td><td class="stars">★★★</td><td class="stars">★★</td><td class="stars">★★★</td><td>$7-28/mo</td></tr>
+        <tr><td><strong>Luma AI</strong></td><td class="stars">★★★</td><td class="stars">★★★★★</td><td class="stars">★</td><td>—</td><td>—</td><td class="stars">★</td><td class="stars">★★★★</td><td>—</td><td>$8-76/mo</td></tr>
+        <tr><td><strong>Kling AI</strong></td><td class="stars">★★★</td><td class="stars">★★★★</td><td class="stars">★</td><td>—</td><td>—</td><td class="stars">★★</td><td class="stars">★★★</td><td>—</td><td>~$8/mo</td></tr>
+        <tr><td><strong>PixVerse</strong></td><td>—</td><td class="stars">★★★★</td><td class="stars">★</td><td>—</td><td class="stars">★★</td><td class="stars">★★</td><td class="stars">★★</td><td class="stars">★★★</td><td>Freemium</td></tr>
+        <tr><td><strong>Leonardo</strong></td><td class="stars">★★★★</td><td class="stars">★★</td><td class="stars">★★★★</td><td class="stars">★★★</td><td>—</td><td class="stars">★★★</td><td class="stars">★★★</td><td>—</td><td>$10-48/mo</td></tr>
+        <tr class="highlight"><td>🐙 Craftit AI</td><td class="stars">★★★★</td><td class="stars">★★★★</td><td class="stars">★★★★ 🔜</td><td class="stars">★★★★ 🔜</td><td class="stars">★★★★ 🔜</td><td class="stars">★★★</td><td>?</td><td class="stars">★★★★★ 🔜</td><td>TBD</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="card-grid cols-2">
+    <div class="card themed-red">
+      <div class="card-icon">⚠️</div>
+      <h3>Watch Closest</h3>
+      <p><strong>Canva AI</strong> — if they improve AI quality, biggest threat (260M users + canvas)<br><br>
+      <strong>Pika</strong> — closest in simplicity + video<br><br>
+      <strong>PixVerse</strong> — auto storytelling + native audio<br><br>
+      <strong>Higgsfield</strong> — community model + Cinema Studio</p>
+    </div>
+    <div class="card themed-green">
+      <div class="card-icon">✨</div>
+      <h3>Where Nobody Competes</h3>
+      <p>• Full pipeline: image → canvas → video in ONE tool<br>
+      • Auto long video with editorial control at every step<br>
+      • Quality AI generation + design canvas combined<br>
+      • Mobile-first AI creation at quality<br>
+      • AI creation for kids</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 8px;">Editing Capabilities — Who Leads</h3>
+  <p style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 16px;">Editing is the bridge between generation and design. Adobe leads (35/40) but is locked behind expensive Creative Cloud. Most AI-first tools have near-zero editing.</p>
+
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead>
+        <tr><th>Competitor</th><th>Inpaint</th><th>Outpaint</th><th>BG Remove</th><th>Obj Remove</th><th>Upscale</th><th>Relight</th><th>Style Ref</th><th>Score</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Adobe Firefly</strong></td><td class="stars">★★★★★</td><td class="stars">★★★★★</td><td class="stars">★★★★★</td><td class="stars">★★★★★</td><td class="stars">★★★★</td><td class="stars">★★</td><td class="stars">★★★</td><td style="color: var(--green); font-weight: 700;">35/40</td></tr>
+        <tr><td><strong>Clipdrop</strong></td><td class="stars">★★★</td><td class="stars">★★★</td><td class="stars">★★★★</td><td class="stars">★★★★</td><td class="stars">★★★★</td><td class="stars">★★★</td><td class="stars">★★★</td><td style="font-weight: 600;">24/40</td></tr>
+        <tr><td><strong>Leonardo AI</strong></td><td class="stars">★★★★</td><td class="stars">★★★</td><td class="stars">★★★</td><td class="stars">★★★</td><td class="stars">★★★</td><td>—</td><td class="stars">★★★★</td><td style="font-weight: 600;">20/40</td></tr>
+        <tr><td><strong>Midjourney</strong></td><td class="stars">★★★★</td><td class="stars">★★★★</td><td>—</td><td>—</td><td class="stars">★★★★</td><td>—</td><td class="stars">★★★★</td><td style="font-weight: 600;">16/40</td></tr>
+        <tr><td><strong>Canva AI</strong></td><td class="stars">★★★</td><td class="stars">★★★</td><td class="stars">★★★★</td><td class="stars">★★★</td><td>—</td><td>—</td><td>—</td><td style="font-weight: 600;">13/40</td></tr>
+        <tr><td><strong>Runway</strong></td><td class="stars">★★★</td><td>—</td><td class="stars">★★★</td><td class="stars">★★★</td><td class="stars">★★★</td><td>—</td><td>—</td><td style="font-weight: 600;">12/40</td></tr>
+        <tr><td><strong>Pika / Luma / Kling</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td class="stars">★</td><td>—</td><td>—</td><td style="color: var(--red);">0-6/40</td></tr>
+        <tr class="highlight"><td>🐙 Craftit AI Goal</td><td class="stars">★★★★</td><td class="stars">★★★★</td><td class="stars">★★★★★</td><td class="stars">★★★★</td><td class="stars">★★★★</td><td class="stars">★★★★</td><td class="stars">★★★★</td><td style="color: var(--accent); font-weight: 700;">29/40</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-grid">
+    <div class="card themed-green">
+      <div class="card-icon">💰</div>
+      <h3>Editing = Massive Value Prop</h3>
+      <p>Users pay $92-163/mo across Remove.bg, Cleanup.pictures, Magnific, Clipdrop, Topaz, Canva. <strong>Craftit at $20-30/mo with all editing built in = obvious switch.</strong></p>
+    </div>
+    <div class="card themed-purple">
+      <div class="card-icon">⚡</div>
+      <h3>3 Signature Editing Features</h3>
+      <p><strong>One-Click Fix</strong> — auto-detect and fix AI artifacts (hands, faces)<br>
+      <strong>AI Relighting</strong> — change lighting post-generation (IC-Light, few competitors have this)<br>
+      <strong>Click-to-Select</strong> — SAM 2 powered, no brush masking needed</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAIN POINTS -->
+<div class="section" id="pain-points">
+  <div class="section-label">🔴 Reddit & Community</div>
+  <div class="section-title">Top User Pain Points</div>
+  <div class="section-desc">Ranked by frequency and intensity across Reddit communities, app reviews, and forums.</div>
+
+  <div class="pain-item">
+    <div class="pain-rank">1</div>
+    <div class="pain-content">
+      <h4>Pricing & Credit Systems Feel Predatory <span class="intensity">10/10</span></h4>
+      <p>Credits burn fast, failed outputs still consume credits. Users feel punished for experimenting.</p>
+      <div class="quote">"Charging credits during beta is unacceptable." — r/RunwayML</div>
+    </div>
+  </div>
+  <div class="pain-item">
+    <div class="pain-rank">2</div>
+    <div class="pain-content">
+      <h4>Poor Prompt Adherence <span class="intensity">9/10</span></h4>
+      <p>Outputs feel random. Getting exact results requires dozens of regenerations.</p>
+      <div class="quote">"RANDOM generations, terrible prompt adherence, constantly changing face..." — r/RunwayML</div>
+    </div>
+  </div>
+  <div class="pain-item">
+    <div class="pain-rank">3</div>
+    <div class="pain-content">
+      <h4>Steep Learning Curve <span class="intensity">9/10</span></h4>
+      <p>Even "simple" tools require prompt engineering. ComfyUI needs Python knowledge.</p>
+    </div>
+  </div>
+  <div class="pain-item">
+    <div class="pain-rank">4</div>
+    <div class="pain-content">
+      <h4>Anatomical Artifacts <span class="intensity">8/10</span></h4>
+      <p>Hands, fingers, limbs mangled across all tools. Bodies warp in video.</p>
+      <div class="quote">"The hands and legs are utterly insanely mangled 99% of the gens" — r/RunwayML</div>
+    </div>
+  </div>
+  <div class="pain-item">
+    <div class="pain-rank">5</div>
+    <div class="pain-content">
+      <h4>AI Video Quality Below Expectations <span class="intensity">8/10</span></h4>
+      <p>Warped features, inconsistent characters, unrealistic motion, low resolution.</p>
+    </div>
+  </div>
+  <div class="pain-item">
+    <div class="pain-rank">6</div>
+    <div class="pain-content">
+      <h4>Content Filters Too Aggressive <span class="intensity">8/10</span></h4>
+      <p>Legitimate creative projects blocked. Reasonable prompts rejected.</p>
+      <div class="quote">"At the price we're paying, why are they restricting us on BASIC creative needs?" — r/midjourney</div>
+    </div>
+  </div>
+  <div class="pain-item">
+    <div class="pain-rank">7</div>
+    <div class="pain-content">
+      <h4>Multi-Tool Fragmentation <span class="intensity">7/10</span></h4>
+      <p>Users combine 3-5+ tools per project. MJ → Topaz → Runway → Premiere → ElevenLabs.</p>
+    </div>
+  </div>
+  <div class="pain-item">
+    <div class="pain-rank">8</div>
+    <div class="pain-content">
+      <h4>Subscription Fatigue <span class="intensity">7/10</span></h4>
+      <p>$10-50/each across multiple platforms. 3-5 subscriptions for serious creators.</p>
+    </div>
+  </div>
+  <div class="pain-item">
+    <div class="pain-rank">9</div>
+    <div class="pain-content">
+      <h4>Character Inconsistency <span class="intensity">7/10</span></h4>
+      <p>Can't maintain same character across images or video frames. Critical for storytelling.</p>
+    </div>
+  </div>
+  <div class="pain-item">
+    <div class="pain-rank">10</div>
+    <div class="pain-content">
+      <h4>Lack of Fine Control <span class="intensity">7/10</span></h4>
+      <p>Can't direct camera angles, poses, lighting with precision.</p>
+    </div>
+  </div>
+</div>
+
+<!-- UNMET NEEDS -->
+<div class="section" id="needs">
+  <div class="section-label">🟢 Opportunities</div>
+  <div class="section-title">Top 10 Unmet Needs</div>
+  <div class="section-desc">What users desperately want but no tool delivers well.</div>
+
+  <div class="card-grid">
+    <div class="card themed-green">
+      <h3>#1 All-in-One Creator Studio</h3>
+      <p>Image → video → audio → editing in ONE tool. Eliminate multi-tool workflows.</p>
+      <span class="tag green">HIGHEST DEMAND</span>
+    </div>
+    <div class="card themed-green">
+      <h3>#2 Consistent Characters</h3>
+      <p>Persistent identity across images, clips, and scenes. #1 feature request everywhere.</p>
+      <span class="tag green">#1 REQUEST</span>
+    </div>
+    <div class="card themed-green">
+      <h3>#3 No Prompt Engineering</h3>
+      <p>Plain language in → beautiful output. AI handles technical details behind the scenes.</p>
+    </div>
+    <div class="card themed-green">
+      <h3>#4 Pay-Per-Success</h3>
+      <p>Don't charge for failed generations. Credit anxiety is a major churn driver.</p>
+    </div>
+    <div class="card themed-green">
+      <h3>#5 One-Click Image-to-Video</h3>
+      <p>Reliably animate any image into coherent video with minimal effort.</p>
+    </div>
+    <div class="card themed-green">
+      <h3>#6 Template-Based Creation</h3>
+      <p>Pre-built templates for product ads, social posts, thumbnails, marketing videos.</p>
+    </div>
+    <div class="card themed-green">
+      <h3>#7 Real-Time Preview</h3>
+      <p>See generation progress. Course-correct before full render completes.</p>
+    </div>
+    <div class="card themed-green">
+      <h3>#8 AI Creator Community</h3>
+      <p>Dedicated space for sharing AI content. Stigmatized on mainstream platforms.</p>
+    </div>
+    <div class="card themed-green">
+      <h3>#9 Editing + Generation Combined</h3>
+      <p>Generate → trim → combine → text → transitions all in one tool.</p>
+    </div>
+    <div class="card themed-green">
+      <h3>#10 Auto Translation</h3>
+      <p>Create once → automatically adapt to multiple languages and cultures.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PERSONAS -->
+<div class="section" id="personas">
+  <div class="section-label">🧪 Synthetic Research</div>
+  <div class="section-title">User Personas</div>
+  <div class="section-desc">15 simulated personas across 6 segments. ⚠️ Synthetic research — not real user data.</div>
+
+  <div class="persona-grid">
+    <div class="persona">
+      <span class="segment-badge beginner">Beginner</span>
+      <div class="emoji">👩‍👧</div>
+      <h4>Linda Chen, 42</h4>
+      <div class="role">Birthday Party Mom</div>
+      <div class="desc">Never used a design tool. Wants birthday invitations. Needs templates, not blank canvas.</div>
+      <div class="magic">✨ "I made THIS?!" — first professional creation</div>
+      <div class="wtp">💰 $3-5/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge beginner">Beginner</span>
+      <div class="emoji">👨‍🔧</div>
+      <h4>Rajesh Patel, 55</h4>
+      <div class="role">Local Shop Owner</div>
+      <div class="desc">Needs social media ads. Zero design skills. Needs Hindi support.</div>
+      <div class="magic">✨ First post with more likes than usual</div>
+      <div class="wtp">💰 $2-4/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge beginner">Beginner</span>
+      <div class="emoji">🧑‍🎤</div>
+      <h4>Aisha, 16</h4>
+      <div class="role">TikTok Teen</div>
+      <div class="desc">Lives on TikTok. Wants fast, fun, shareable AI art. Zero patience.</div>
+      <div class="magic">✨ Friends ask "HOW did you make that?"</div>
+      <div class="wtp">💰 $0 (ads for credits)</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge casual">Casual</span>
+      <div class="emoji">💼</div>
+      <h4>Sophie Müller, 29</h4>
+      <div class="role">Canva Regular · Marketing</div>
+      <div class="desc">Uses Canva daily. Needs brand kit, faster campaign visuals.</div>
+      <div class="magic">✨ 10 variations in 5 min vs hours in Canva</div>
+      <div class="wtp">💰 $10-15/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge casual">Casual</span>
+      <div class="emoji">🎥</div>
+      <h4>Marcus Johnson, 34</h4>
+      <div class="role">Travel Vlogger</div>
+      <div class="desc">Needs AI B-roll good enough to cut into real footage.</div>
+      <div class="magic">✨ AI B-roll seamless in real footage</div>
+      <div class="wtp">💰 $15-20/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge casual">Casual</span>
+      <div class="emoji">📸</div>
+      <h4>Priya Sharma, 26</h4>
+      <div class="role">IG Aesthetic Curator · 12K</div>
+      <div class="desc">Needs consistent aesthetic across sessions. Values uniqueness.</div>
+      <div class="magic">✨ Full week of cohesive grid in one session</div>
+      <div class="wtp">💰 $8-12/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge creator">Creator</span>
+      <div class="emoji">🎬</div>
+      <h4>Jake Torres, 27</h4>
+      <div class="role">YouTuber · 180K subs</div>
+      <div class="desc">Spends 30 min per thumbnail. Needs face consistency + text overlays.</div>
+      <div class="magic">✨ 5 thumbnail variations in 2 minutes</div>
+      <div class="wtp">💰 $20-30/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge creator">Creator</span>
+      <div class="emoji">📱</div>
+      <h4>Mia Zhang, 24</h4>
+      <div class="role">TikTok · 500K followers</div>
+      <div class="desc">Posts 2-3x daily. Needs SPEED, volume, bulk generation.</div>
+      <div class="magic">✨ Full day's content in 20 minutes</div>
+      <div class="wtp">💰 $30-50/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge creator">Creator</span>
+      <div class="emoji">🎙️</div>
+      <h4>David Okafor, 31</h4>
+      <div class="role">Multi-Platform Brand</div>
+      <div class="desc">LinkedIn + IG + YouTube. Needs consistent branding across all.</div>
+      <div class="magic">✨ One prompt → 3 platforms, correct formats</div>
+      <div class="wtp">💰 $25-40/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge smb">Business</span>
+      <div class="emoji">💎</div>
+      <h4>Emma Larsson, 38</h4>
+      <div class="role">Etsy Jewelry Seller</div>
+      <div class="desc">Needs product photos that keep her actual jewelry accurate.</div>
+      <div class="magic">✨ Video ad that looks professional</div>
+      <div class="wtp">💰 $10-20/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge smb">Business</span>
+      <div class="emoji">🌮</div>
+      <h4>Carlos Mendez, 45</h4>
+      <div class="role">Restaurant Owner</div>
+      <div class="desc">5 min max per post. Needs reference images of his actual food.</div>
+      <div class="magic">✨ His tacos in professional food photography</div>
+      <div class="wtp">💰 $5-10/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge pro">Professional</span>
+      <div class="emoji">🎨</div>
+      <h4>Alex Kim, 30</h4>
+      <div class="role">Freelance Designer</div>
+      <div class="desc">Figma/PS daily. Wants rapid ideation. Needs advanced controls.</div>
+      <div class="magic">✨ 20 concept directions in 10 minutes</div>
+      <div class="wtp">💰 $20-30/mo</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge pro">Professional</span>
+      <div class="emoji">🎬</div>
+      <h4>Nina Volkov, 35</h4>
+      <div class="role">Video Production Lead</div>
+      <div class="desc">5-person team. Needs storyboarding, pre-vis, character consistency.</div>
+      <div class="magic">✨ Storyboard in 30 min vs 2 days</div>
+      <div class="wtp">💰 $50-100/mo team</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge kid">Student</span>
+      <div class="emoji">🦖</div>
+      <h4>Tommy, 11</h4>
+      <div class="role">School Project Kid</div>
+      <div class="desc">Cool visuals for presentations. Parents need content safety.</div>
+      <div class="magic">✨ "Everyone wants to know how I made it"</div>
+      <div class="wtp">💰 $3-5/mo (parents)</div>
+    </div>
+    <div class="persona">
+      <span class="segment-badge kid">Student</span>
+      <div class="emoji">🎨</div>
+      <h4>Zara, 19</h4>
+      <div class="role">Art School Student</div>
+      <div class="desc">Wants AI as collaborator, not replacement. Cares about ethics.</div>
+      <div class="magic">✨ AI keeps her style while expanding it</div>
+      <div class="wtp">💰 $5-8/mo (student)</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Segment Needs Matrix</h3>
+  <div class="table-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr><th>Need</th><th>Beginners</th><th>Casual</th><th>Creators</th><th>SMB</th><th>Pro</th><th>Kids</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Templates</td><td>★★★</td><td>★★</td><td>★</td><td>★★★</td><td>☆</td><td>★★</td></tr>
+        <tr><td>Text on images</td><td>★★★</td><td>★★★</td><td>★★★</td><td>★★★</td><td>★★</td><td>★</td></tr>
+        <tr><td>Brand consistency</td><td>☆</td><td>★★</td><td>★★★</td><td>★★</td><td>★★★</td><td>☆</td></tr>
+        <tr><td>Reference image</td><td>★</td><td>★★</td><td>★★</td><td>★★★</td><td>★★★</td><td>★</td></tr>
+        <tr><td>Video generation</td><td>★</td><td>★★</td><td>★★★</td><td>★★</td><td>★★★</td><td>★★</td></tr>
+        <tr><td>Simple/fast UX</td><td>★★★</td><td>★★</td><td>★★</td><td>★★★</td><td>★</td><td>★★★</td></tr>
+        <tr><td>Advanced controls</td><td>☆</td><td>★</td><td>★★</td><td>☆</td><td>★★★</td><td>☆</td></tr>
+        <tr><td>Auto-mode video</td><td>★</td><td>★</td><td>★★★</td><td>★★</td><td>★★★</td><td>★</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- OPPORTUNITIES -->
+<div class="section" id="opportunities">
+  <div class="section-label">🎯 Strategy</div>
+  <div class="section-title">Strategic Opportunities</div>
+  <div class="section-desc">Ranked by impact and evidence from all research streams.</div>
+
+  <div class="opp-card">
+    <span class="opp-badge critical">🥇 CRITICAL</span>
+    <h3>Own the "Full Pipeline" Position</h3>
+    <p>First all-in-one AI creative platform: image → canvas → short video → long video. <strong>No competitor does this.</strong></p>
+    <div class="evidence"><strong>Evidence:</strong> Zero tools with full pipeline. Reddit #1 unmet need = all-in-one. All synthetic personas want fewer tools.</div>
+  </div>
+  <div class="opp-card">
+    <span class="opp-badge critical">🥇 CRITICAL</span>
+    <h3>Auto-Mode Long Video = Category-Defining</h3>
+    <p>Idea → script → scenes → storyboard → final video with edit-at-every-step. <strong>Genuine first-mover.</strong></p>
+    <div class="evidence"><strong>Evidence:</strong> No competitor has full vision. Nina (pro persona): "game-changing." Creators pay $30-50/mo for this alone.</div>
+  </div>
+  <div class="opp-card">
+    <span class="opp-badge critical">🥇 CRITICAL</span>
+    <h3>Simplicity + Quality = Unoccupied</h3>
+    <p>Runway-quality output with Pika-level simplicity. "Even a kid can do it" at high quality.</p>
+    <div class="evidence"><strong>Evidence:</strong> Reddit #3 pain = learning curve. 30-second rule across all personas. Canva proved at 260M MAU.</div>
+  </div>
+  <div class="opp-card">
+    <span class="opp-badge high">🥈 HIGH</span>
+    <h3>Canvas + AI = Canva Killer</h3>
+    <p>Canva has canvas with weak AI. AI tools have strong gen with no canvas. <strong>Combine both.</strong></p>
+    <div class="evidence"><strong>Evidence:</strong> Text on images = universal need across ALL segments. Canvas is "essential, not nice-to-have."</div>
+  </div>
+  <div class="opp-card">
+    <span class="opp-badge high">🥈 HIGH</span>
+    <h3>Mobile-First = Blue Ocean</h3>
+    <p>3B+ smartphone users. SEA, India, LatAm = mobile-only. Killer mobile AI creation nearly alone in market.</p>
+    <div class="evidence"><strong>Evidence:</strong> Runway, MJ = no mobile. Asia-Pacific 27.6% CAGR. Target audience is mobile-first.</div>
+  </div>
+  <div class="opp-card">
+    <span class="opp-badge high">🥈 HIGH</span>
+    <h3>Fair, Transparent Pricing</h3>
+    <p>Flat monthly. Never charge for failures. This alone is a massive differentiator.</p>
+    <div class="evidence"><strong>Evidence:</strong> Reddit #1 pain point. Credit anxiety = churn. Users afraid to experiment = worse outcomes.</div>
+  </div>
+  <div class="opp-card">
+    <span class="opp-badge medium">🥉 STRATEGIC</span>
+    <h3>Kids & Family</h3>
+    <p>50-100M kids. Zero competition. COPPA = barrier others won't cross.</p>
+    <div class="evidence"><strong>Evidence:</strong> Zero tools exist. Canva Education 60M+ students. Parents pay $3-15/mo.</div>
+  </div>
+  <div class="opp-card">
+    <span class="opp-badge medium">🥉 STRATEGIC</span>
+    <h3>Community as Growth Engine</h3>
+    <p>Contests, remixing, galleries. Creation → sharing → inspiration flywheel.</p>
+    <div class="evidence"><strong>Evidence:</strong> MJ built on Discord (19M). Higgsfield $500K contests. Creators want dedicated community.</div>
+  </div>
+</div>
+
+<!-- FEATURE BACKLOG -->
+<div class="section" id="features">
+  <div class="section-label">📋 Product</div>
+  <div class="section-title">Feature Backlog</div>
+  <div class="section-desc">Every feature derived from research — prioritized with evidence. Existing features included for completeness.</div>
+
+  <!-- EXISTING FEATURES -->
+  <h3 style="font-size: 1.1em; font-weight: 800; margin-bottom: 8px; color: var(--green);">✅ What We Have Today</h3>
+  <p style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 16px;">Current Craftit AI feature set — the foundation we're building on.</p>
+
+  <div class="table-wrap" style="margin-bottom: 40px;">
+    <table class="comp-table">
+      <thead><tr><th>Feature</th><th>Category</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AI text-to-image generation</strong></td><td>Image Generation</td><td>Core feature</td></tr>
+        <tr><td><strong>Short video generation (4-12 seconds)</strong></td><td>Video Generation</td><td>Core feature</td></tr>
+        <tr><td><strong>Video gen with reference image</strong></td><td>Video Generation</td><td>Killer for personalization — synthetic research calls this the bridge between "cool toy" and "useful for MY life"</td></tr>
+        <tr><td><strong>Video gen with first frame + last frame</strong></td><td>Video Generation</td><td>Great for transitions and scene continuity</td></tr>
+        <tr><td><strong>Long video generation (timeline, manual)</strong></td><td>Video Generation</td><td>Timeline editor with manual scene arrangement</td></tr>
+        <tr><td><strong>Voiceover on timeline</strong></td><td>Video Editing</td><td>Audio layer for long videos</td></tr>
+        <tr><td><strong>Add soundtrack / music</strong></td><td>Video Editing</td><td>Background audio for long videos</td></tr>
+        <tr><td><strong>Text overlays on video</strong></td><td>Video Editing</td><td>Text layer on timeline</td></tr>
+        <tr><td><strong>Add shapes</strong></td><td>Video Editing</td><td>Shape elements on timeline</td></tr>
+        <tr><td><strong>Transitions between clips</strong></td><td>Video Editing</td><td>Clip transition effects</td></tr>
+        <tr><td><strong>Motion design</strong></td><td>Video Editing</td><td>Animation/motion graphics on timeline</td></tr>
+        <tr><td><strong>Community gallery / feed</strong></td><td>Community</td><td>Share creations. Planned to become full-fledged community</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size: 1.1em; font-weight: 800; margin-bottom: 8px; color: var(--accent);">🔜 Upcoming (In Development)</h3>
+  <p style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 16px;">Features already planned and in progress.</p>
+
+  <div class="table-wrap" style="margin-bottom: 40px;">
+    <table class="comp-table">
+      <thead><tr><th>Feature</th><th>Category</th><th>Strategic Value</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Content creation canvas</strong></td><td>Canvas & Design</td><td>🔴 CRITICAL — bridges generation and design. Will replace image generation. Every persona needs text on images</td></tr>
+        <tr><td><strong>Text / typography tools on canvas</strong></td><td>Canvas & Design</td><td>🔴 CRITICAL — #2 cross-segment insight: universal need</td></tr>
+        <tr><td><strong>Auto-mode long video: idea → script</strong></td><td>Auto-Mode Video</td><td>🔴 CATEGORY-DEFINING — no competitor has full pipeline</td></tr>
+        <tr><td><strong>Auto-mode: script → scene breakdown</strong></td><td>Auto-Mode Video</td><td>Part of auto-mode core flow</td></tr>
+        <tr><td><strong>Auto-mode: scene → camera actions</strong></td><td>Auto-Mode Video</td><td>Part of auto-mode core flow</td></tr>
+        <tr><td><strong>Auto-mode: storyboard generation</strong></td><td>Auto-Mode Video</td><td>Persona: Nina — "storyboard in 30 min vs 2 days"</td></tr>
+        <tr><td><strong>Auto-mode: storyboard → final video</strong></td><td>Auto-Mode Video</td><td>Completes the pipeline</td></tr>
+        <tr><td><strong>Auto-mode: edit at every step</strong></td><td>Auto-Mode Video</td><td>Key differentiator vs fully-auto competitors with no control</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- NEW FEATURES NEEDED -->
+  <h3 style="font-size: 1.1em; font-weight: 800; margin-bottom: 8px; color: var(--red);">🆕 Features to Add</h3>
+  <p style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 16px;">New features derived from research — prioritized with evidence.</p>
+
+  <!-- Legend -->
+  <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; font-size: 0.78em;">
+    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: var(--red); display: inline-block;"></span> P0 — Ship now</span>
+    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: var(--orange); display: inline-block;"></span> P1 — Next 3 months</span>
+    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: var(--blue); display: inline-block;"></span> P2 — 3-6 months</span>
+    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 3px; background: var(--purple); display: inline-block;"></span> P3 — Future</span>
+  </div>
+
+  <!-- P0 -->
+  <h3 style="font-size: 0.95em; font-weight: 700; margin-bottom: 12px; color: var(--red);">🔴 P0 — Ship Now</h3>
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Feature</th><th>Category</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>AI-assisted prompting</strong> (simple words → AI enhances prompt)</td><td>Image Gen</td><td>Reddit #3: steep learning curve. Synthetic: 30-second rule</td></tr>
+        <tr><td><strong>Template-first entry</strong> ("Birthday Card" not "Image Generation")</td><td>Canvas & Design</td><td>Synthetic: templates > blank canvas for 80% of users</td></tr>
+        <tr><td><strong>Template library</strong> (by use case: poster, card, ad, social)</td><td>Canvas & Design</td><td>Canva's #1 strength. Every beginner/SMB persona needs this</td></tr>
+        <tr><td><strong>Inpainting</strong> (edit regions with prompt)</td><td>Image Editing</td><td>Core editing. Adobe leads, most AI tools lack it</td></tr>
+        <tr><td><strong>Outpainting / generative expand</strong></td><td>Image Editing</td><td>Essential for social media reformatting (portrait → landscape)</td></tr>
+        <tr><td><strong>Background removal</strong></td><td>Image Editing</td><td>Table stakes. Replaces Remove.bg ($9-20/mo). Use SAM 2</td></tr>
+        <tr><td><strong>Object removal / cleanup</strong></td><td>Image Editing</td><td>Replaces Cleanup.pictures ($5/mo). Use LaMa model</td></tr>
+        <tr><td><strong>Upscaling (2x/4x)</strong></td><td>Image Editing</td><td>Essential for print. Replaces Topaz ($17/mo). Use Real-ESRGAN</td></tr>
+        <tr><td><strong>One-click AI fix</strong> (hands, faces, artifacts)</td><td>Image Editing</td><td>Reddit #4: mangled hands. No competitor does this as one-click</td></tr>
+        <tr><td><strong>One-tap share</strong> (WhatsApp, Instagram, TikTok)</td><td>Sharing</td><td>Make-or-break UX moment. Every share = free marketing</td></tr>
+        <tr><td><strong>Download in multiple formats</strong> (PNG, JPG, MP4, GIF)</td><td>Sharing</td><td>Expected basic functionality</td></tr>
+        <tr><td><strong>Transparent flat pricing</strong> (no credit anxiety)</td><td>Platform</td><td>Reddit #1 pain point. Biggest trust differentiator</td></tr>
+        <tr><td><strong>Generous free tier</strong> (no embarrassing watermarks)</td><td>Platform</td><td>Sign-up wall + watermarks kill conversion</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- P1 -->
+  <h3 style="font-size: 0.95em; font-weight: 700; margin-bottom: 12px; color: var(--orange);">🟠 P1 — Next 3 Months</h3>
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Feature</th><th>Category</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Image variations</strong></td><td>Image Gen</td><td>Midjourney Vary is highly used. Reduces prompt anxiety</td></tr>
+        <tr><td><strong>Click-to-select</strong> (SAM 2 smart selection)</td><td>Image Editing</td><td>More intuitive than brush masking. Adobe-level UX</td></tr>
+        <tr><td><strong>Face enhancement / correction</strong></td><td>Image Editing</td><td>AI faces need fixing. CodeFormer open-source</td></tr>
+        <tr><td><strong>Style transfer / reference</strong></td><td>Image Editing</td><td>Brand consistency. IP-Adapter. Persona: Priya, David</td></tr>
+        <tr><td><strong>Sketch to image</strong></td><td>Image Editing</td><td>Persona: Zara (art student). ControlNet Scribble</td></tr>
+        <tr><td><strong>Camera movement control</strong> (pan, zoom, dolly)</td><td>Video Gen</td><td>Reddit #10: lack of control. Persona: Marcus, Nina</td></tr>
+        <tr><td><strong>Character consistency across video clips</strong></td><td>Video Gen</td><td>Reddit #9, #1 feature request. Critical for storytelling</td></tr>
+        <tr><td><strong>One-click image-to-video</strong></td><td>Video Gen</td><td>Unmet need #5. None do it reliably</td></tr>
+        <tr><td><strong>Video resolution upgrade</strong> (1080p, 4K)</td><td>Video Gen</td><td>Reddit #13: resolution limits. Pros need 4K</td></tr>
+        <tr><td><strong>Export in social formats</strong> (Reels, TikTok, Shorts)</td><td>Video Editing</td><td>Persona: Mia, Aisha. One-click format</td></tr>
+        <tr><td><strong>Drag-and-drop elements</strong></td><td>Canvas</td><td>Expected canvas feature. Canva-level</td></tr>
+        <tr><td><strong>Multi-format resize</strong> (one design → IG, LinkedIn, YT)</td><td>Canvas</td><td>Persona: David — one prompt → 3 platforms</td></tr>
+        <tr><td><strong>Logo upload & placement</strong></td><td>Canvas</td><td>Persona: Rajesh, Carlos, Emma — business branding</td></tr>
+        <tr><td><strong>Character consistency across auto-mode scenes</strong></td><td>Auto-Mode</td><td>Reddit #9. Essential for stories</td></tr>
+        <tr><td><strong>Auto audio/music selection</strong></td><td>Auto-Mode</td><td>Complete video needs sound. PixVerse has native audio</td></tr>
+        <tr><td><strong>Style saving</strong> (save & reuse visual styles)</td><td>Brand</td><td>Synthetic #3: consistency = #1 professional barrier</td></tr>
+        <tr><td><strong>Brand kit</strong> (colors, fonts, logo)</td><td>Brand</td><td>Persona: Sophie, David, Emma. Canva's strength</td></tr>
+        <tr><td><strong>Character library</strong> (persistent characters)</td><td>Brand</td><td>Reddit #9: #1 feature request</td></tr>
+        <tr><td><strong>Reference image as style guide</strong></td><td>Brand</td><td>Synthetic #4: killer feature. IP-Adapter</td></tr>
+        <tr><td><strong>Like / comment on creations</strong></td><td>Community</td><td>Engagement loop. Persona: Aisha, Tommy</td></tr>
+        <tr><td><strong>Trending / discovery feed</strong></td><td>Community</td><td>Higgsfield does this well. Drives inspiration</td></tr>
+        <tr><td><strong>Social media size presets on export</strong></td><td>Sharing</td><td>IG Story, TikTok, LinkedIn, YT thumbnail sizes</td></tr>
+        <tr><td><strong>Project / folder organization</strong></td><td>Collaboration</td><td>Persona: Sophie, Nina. Expected by Canva users</td></tr>
+        <tr><td><strong>Mobile-optimized web app</strong></td><td>Mobile</td><td>Persona: Aisha, Rajesh are phone-only</td></tr>
+        <tr><td><strong>Multi-language UI</strong></td><td>Platform</td><td>Persona: Rajesh (Hindi), Carlos (Spanish)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- P2 -->
+  <h3 style="font-size: 0.95em; font-weight: 700; margin-bottom: 12px; color: var(--blue);">🔵 P2 — 3-6 Months</h3>
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Feature</th><th>Category</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Negative prompting / exclusion controls</strong></td><td>Image Gen</td><td>Pro users need fine control (persona: Alex Kim)</td></tr>
+        <tr><td><strong>Multi-model selection</strong> (FLUX, SD3, etc.)</td><td>Image Gen</td><td>OpenArt offers 100+ models. Power user differentiator</td></tr>
+        <tr><td><strong>Batch generation</strong></td><td>Image Gen</td><td>Creator personas: Mia, Jake need volume</td></tr>
+        <tr><td><strong>AI relighting</strong></td><td>Image Editing</td><td>Almost no competitor has this. IC-Light. Differentiator</td></tr>
+        <tr><td><strong>Creative upscaling</strong> (Magnific-style)</td><td>Image Editing</td><td>Replaces Magnific ($39-99/mo). Premium feature</td></tr>
+        <tr><td><strong>Batch editing</strong> (bulk BG swap, resize)</td><td>Image Editing</td><td>E-commerce (persona: Emma). Photoroom does this</td></tr>
+        <tr><td><strong>Longer video clips (30s+)</strong></td><td>Video Gen</td><td>4-12s is limiting for some use cases</td></tr>
+        <tr><td><strong>AI audio generation</strong> (SFX, music, VO)</td><td>Video Gen</td><td>Reddit #15: silent clips. PixVerse differentiator</td></tr>
+        <tr><td><strong>Video speed control</strong></td><td>Video Editing</td><td>Standard editing. CapCut has this</td></tr>
+        <tr><td><strong>Video color grading / filters</strong></td><td>Video Editing</td><td>Persona: Marcus — match existing footage</td></tr>
+        <tr><td><strong>Auto-subtitles / captions</strong></td><td>Video Editing</td><td>CapCut made this mainstream</td></tr>
+        <tr><td><strong>Layers panel</strong></td><td>Canvas</td><td>Pro users (Alex, Nina) expect layer control</td></tr>
+        <tr><td><strong>Auto voiceover from script (TTS)</strong></td><td>Auto-Mode</td><td>HeyGen, Synthesia do this</td></tr>
+        <tr><td><strong>Auto translation / localization</strong></td><td>Auto-Mode</td><td>Unmet need #10. HeyGen's standout feature</td></tr>
+        <tr><td><strong>Brand-locked generation</strong></td><td>Brand</td><td>Persona: David — months of consistent branding</td></tr>
+        <tr><td><strong>Remix / build on others' creations</strong></td><td>Community</td><td>Creation → sharing → remixing flywheel</td></tr>
+        <tr><td><strong>Contests / challenges</strong></td><td>Community</td><td>Higgsfield runs $500K contests</td></tr>
+        <tr><td><strong>Creator profiles / portfolios</strong></td><td>Community</td><td>Builds creator identity. Retention</td></tr>
+        <tr><td><strong>Direct posting to social platforms</strong></td><td>Sharing</td><td>Persona: Carlos — "one-tap post to IG"</td></tr>
+        <tr><td><strong>Shared team workspace</strong></td><td>Collaboration</td><td>Opens team tier ($35-49/mo)</td></tr>
+        <tr><td><strong>Shared brand kit across team</strong></td><td>Collaboration</td><td>SMB need. Canva Teams does this</td></tr>
+        <tr><td><strong>Comments / feedback on creations</strong></td><td>Collaboration</td><td>Persona: Nina's team needs review flow</td></tr>
+        <tr><td><strong>Native iOS app</strong></td><td>Mobile</td><td>Blue ocean. Runway, MJ have no mobile apps</td></tr>
+        <tr><td><strong>Native Android app</strong></td><td>Mobile</td><td>SEA, India, LatAm = Android dominant</td></tr>
+        <tr><td><strong>Camera integration</strong></td><td>Mobile</td><td>Photo → instant AI-enhanced content</td></tr>
+        <tr><td><strong>API access</strong></td><td>Platform</td><td>Power users and developers</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- P3 -->
+  <h3 style="font-size: 0.95em; font-weight: 700; margin-bottom: 12px; color: var(--purple);">🟣 P3 — Future</h3>
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Feature</th><th>Category</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Color grading presets</strong> (images)</td><td>Image Editing</td><td>Instagram-style filters for AI images</td></tr>
+        <tr><td><strong>Video lip sync</strong></td><td>Video Gen</td><td>Pika & HeyGen offer this. Avatar content</td></tr>
+        <tr><td><strong>Print-ready export</strong> (CMYK, bleed, PDF)</td><td>Canvas</td><td>Unlocks print-on-demand partnerships</td></tr>
+        <tr><td><strong>User-created templates marketplace</strong></td><td>Community</td><td>Canva's model. Supply flywheel</td></tr>
+        <tr><td><strong>Scheduling / content calendar</strong></td><td>Sharing</td><td>Power user feature (David, Mia)</td></tr>
+        <tr><td><strong>Role-based permissions</strong></td><td>Collaboration</td><td>Enterprise need</td></tr>
+        <tr><td><strong>Offline generation</strong> (on-device)</td><td>Mobile</td><td>Apple Intelligence, Qualcomm NPU</td></tr>
+        <tr><td><strong>Webhook / integrations</strong> (Zapier, Shopify)</td><td>Platform</td><td>E-commerce & enterprise partnerships</td></tr>
+        <tr><td><strong>Kids/Education mode</strong> (COPPA)</td><td>Platform</td><td>50-100M kids, zero competition</td></tr>
+        <tr><td><strong>Content credentials / AI labeling</strong></td><td>Platform</td><td>EU AI Act. Turn compliance into feature</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="insight-box">
+    <div class="icon">📊</div>
+    <h2>Feature Count Summary</h2>
+    <p>
+      <strong style="color: var(--green);">✅ 12 exist</strong> · 
+      <strong style="color: var(--accent);">🔜 8 upcoming</strong> · 
+      <strong style="color: var(--red);">P0: 13 new</strong> · 
+      <strong style="color: var(--orange);">P1: 25 new</strong> · 
+      <strong style="color: var(--blue);">P2: 26 new</strong> · 
+      <strong style="color: var(--purple);">P3: 10 new</strong>
+      <br><br>Total: <strong>94 features</strong> — 12 live, 8 upcoming, 74 new across 11 categories.
+    </p>
+  </div>
+</div>
+
+<!-- STRATEGY -->
+<div class="section" id="strategy">
+  <div class="section-label">🚀 Roadmap</div>
+  <div class="section-title">Strategy & Roadmap</div>
+  <div class="section-desc">From research to action — phased execution plan.</div>
+
+  <div class="insight-box" style="margin-bottom: 32px;">
+    <div class="icon">🎯</div>
+    <h2>Positioning</h2>
+    <p>"The AI creation tool for everyone — especially those who've never created before."</p>
+    <p style="margin-top: 8px; font-weight: 600; color: var(--accent);">The AI-first Canva. Not the simplified Runway.</p>
+  </div>
+
+  <div class="phase">
+    <h3><span class="phase-badge now">NOW</span> Quick Wins (0-4 weeks)</h3>
+    <ul>
+      <li><strong>Template-first entry points</strong> — "Birthday Card," "Product Ad," "Social Post" — not "Image Generation"</li>
+      <li><strong>AI-assisted prompting</strong> — simple words in, enhanced prompt behind the scenes</li>
+      <li><strong>Transparent pricing</strong> — flat monthly, no credit anxiety, generous free tier</li>
+      <li><strong>One-tap sharing</strong> — Done → WhatsApp / Instagram / TikTok</li>
+      <li><strong>Reframe the product</strong> — "AI Creative Platform" not "AI Image Generator"</li>
+    </ul>
+  </div>
+  <div class="phase">
+    <h3><span class="phase-badge next">NEXT</span> Ship the Moat (1-3 months)</h3>
+    <ul>
+      <li><strong>Content Creation Canvas</strong> — AI gen + design tools combined. THE differentiator. 🔴 CRITICAL</li>
+      <li><strong>Auto-mode long video</strong> — idea → script → storyboard → video. Category-defining. 🔴 CRITICAL</li>
+      <li><strong>Style/brand saving</strong> — consistent output across sessions. Converts casual → paid.</li>
+      <li><strong>Character persistence</strong> — save characters, maintain identity. Unlocks storytelling.</li>
+      <li><strong>Reference image improvements</strong> — bridge "cool toy" to "useful for MY life"</li>
+    </ul>
+  </div>
+  <div class="phase">
+    <h3><span class="phase-badge later">LATER</span> Scale (3-6 months)</h3>
+    <ul>
+      <li><strong>Mobile-first app</strong> — blue ocean for SEA/India/LatAm</li>
+      <li><strong>Community 2.0</strong> — contests, remixing, galleries, growth flywheel</li>
+      <li><strong>Batch/bulk generation</strong> — unlocks high-volume creators</li>
+      <li><strong>Team/collaboration</strong> — shared brand kits, multi-seat</li>
+      <li><strong>Kids/Education tier</strong> — safe, moderated, school partnerships</li>
+    </ul>
+  </div>
+  <div class="phase">
+    <h3><span class="phase-badge pricing">PRICING</span> Recommended Tiers</h3>
+    <ul>
+      <li><strong>Free ($0)</strong> — generous generations, no watermarks. Hook them.</li>
+      <li><strong>Starter ($7-9/mo)</strong> — beginners, students. More gens, HD export.</li>
+      <li><strong>Pro ($15-19/mo)</strong> — creators, SMBs. Unlimited gen, brand kit, auto-mode video.</li>
+      <li><strong>Team ($35-49/mo)</strong> — multi-seat, shared brand, collaboration.</li>
+      <li>Undercut Runway ($76). Match Pika ($8-28). Beat Canva Pro ($13) on AI. <strong>Never charge for failures.</strong></li>
+    </ul>
+  </div>
+
+  <div class="timing-box">
+    <h2>⏰ Timing Advantage</h2>
+    <p>Ship Canvas + Auto-mode Long Video in 2026 and own the <strong>"complete AI creative suite for everyone"</strong> position before Canva catches up on AI quality or Runway simplifies their UX.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>🐙 Compiled by Pixel — Craftit AI Product & Design Partner</p>
+  <p style="margin-top: 4px;">Reddit communities · Public competitor data · Market reports · Synthetic simulation</p>
+  <p style="margin-top: 4px;">February 24, 2026 · Synthetic research clearly labeled</p>
+</div>
+
+</div><!-- end main-content -->
+
+<script>
+  // Sidebar toggle for mobile
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+  }
+
+  // Active nav highlighting on scroll
+  const sections = document.querySelectorAll('.section[id]');
+  const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(section => observer.observe(section));
+
+  // Smooth scroll
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      closeSidebar();
+    });
+  });
+</script>
+</body>
+</html>
