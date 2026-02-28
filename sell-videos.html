@@ -601,6 +601,11 @@
   <a href="#stats" onclick="closeSidebar()"><span class="nav-icon">📊</span> Research Stats</a>
   <a href="#video-types" onclick="closeSidebar()"><span class="nav-icon">🎬</span> 13 Video Types</a>
 
+  <div class="sidebar-section">Product Design</div>
+  <a href="#examples" onclick="closeSidebar()"><span class="nav-icon">🎯</span> 3 Video Examples</a>
+  <a href="#template" onclick="closeSidebar()"><span class="nav-icon">📐</span> Universal Template</a>
+  <a href="#user-vs-ai" onclick="closeSidebar()"><span class="nav-icon">⚡</span> User vs AI Split</a>
+
   <div class="sidebar-section">Deep Dive</div>
   <a href="#ugc-guide" onclick="closeSidebar()"><span class="nav-icon">📖</span> UGC Creation Guide</a>
   <a href="#videos" onclick="closeSidebar()"><span class="nav-icon">🎞️</span> Videos Analyzed</a>
@@ -774,6 +779,373 @@
       <p>Side-by-side comparison positioning your product as the better choice.</p>
       <div class="structure">Challenge → Side-by-side → Winner → CTA</div>
       <span class="tag purple">30-45s</span>
+    </div>
+  </div>
+</div>
+
+<!-- 3 VIDEO EXAMPLES -->
+<div class="section" id="examples">
+  <div class="section-label">🎯 Product Design</div>
+  <div class="section-title">3 Real-World Video Examples</div>
+  <div class="section-desc">How Craftit would handle three completely different products — same 3 user inputs, wildly different outputs.</div>
+
+  <!-- EXAMPLE 1: JORDANS -->
+  <div class="opp-card" style="border-left: 3px solid var(--orange);">
+    <div class="opp-badge" style="background: var(--orange-light); color: var(--orange);">EXAMPLE 1</div>
+    <h3>👟 Air Jordan 1 High OG "Chicago"</h3>
+    
+    <div class="card-grid cols-3" style="margin-top: 16px; margin-bottom: 0;">
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--green);">
+        <h3 style="color: var(--green);">📎 User Input 1: Product</h3>
+        <p>Pastes Nike.com URL → Craftit auto-extracts:</p>
+        <ul style="padding-left: 16px; margin-top: 8px; font-size: 0.82em; color: var(--text-secondary);">
+          <li>Name: Air Jordan 1 High OG "Chicago"</li>
+          <li>Price: $180</li>
+          <li>Images: 6 product photos</li>
+          <li>Category: <span class="tag orange" style="margin: 0;">Sneakers / Fashion</span></li>
+        </ul>
+      </div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--accent);">
+        <h3 style="color: var(--accent);">💬 User Input 2: What You Love</h3>
+        <p style="font-style: italic; color: var(--text-muted);">"The leather quality is insane, the Chicago colorway is iconic — been wanting these forever. Super comfortable even for all-day wear."</p>
+      </div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--purple);">
+        <h3 style="color: var(--purple);">👤 User Input 3: Who It's For</h3>
+        <p style="font-style: italic; color: var(--text-muted);">"Sneakerheads and streetwear guys, 18-30"</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 16px; padding: 20px; background: var(--bg); border: 1px solid var(--border-light); border-radius: 10px;">
+      <h3 style="font-size: 0.88em; margin-bottom: 12px; color: var(--orange);">🤖 What Craftit Auto-Generates</h3>
+      <table class="comp-table" style="font-size: 0.78em;">
+        <tr><td style="width: 90px;"><span class="tag red" style="margin:0;">HOOK</span></td><td style="width: 40px;">2s</td><td>"These might be the best Jordans ever made"</td><td style="color: var(--text-muted);">Actor: Young male in streetwear, holding box</td></tr>
+        <tr><td><span class="tag orange" style="margin:0;">CONTEXT</span></td><td>4s</td><td>"I've been collecting kicks for years and these just hit different"</td><td style="color: var(--text-muted);">B-roll: Shoe collection shelf, box opening</td></tr>
+        <tr><td><span class="tag accent" style="margin:0;">THE GOOD</span></td><td>12s</td><td>"The leather quality is premium... the Chicago colorway is iconic... and honestly? Comfortable all day"</td><td style="color: var(--text-muted);">B-roll: Leather close-up, on-feet walking, styling</td></tr>
+        <tr><td><span class="tag purple" style="margin:0;">SHOW IT</span></td><td>6s</td><td><em>(B-roll only, music swells)</em></td><td style="color: var(--text-muted);">On-feet slow-mo, detail stitching, full outfit mirror</td></tr>
+        <tr><td><span class="tag green" style="margin:0;">CTA</span></td><td>3s</td><td>"If you're into streetwear, these are a must. Link below."</td><td style="color: var(--text-muted);">Actor pointing down + price overlay</td></tr>
+      </table>
+      <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag orange">Tone: Hype / Casual</span>
+        <span class="tag accent">Music: Upbeat trap</span>
+        <span class="tag purple">Actor: Male 20s, streetwear</span>
+        <span class="tag green">Length: 27s</span>
+        <span class="tag blue">Format: 9:16</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 2: SKINCARE -->
+  <div class="opp-card" style="border-left: 3px solid var(--pink);">
+    <div class="opp-badge" style="background: var(--pink-light); color: var(--pink);">EXAMPLE 2</div>
+    <h3>🧴 CeraVe Moisturizing Cream</h3>
+    
+    <div class="card-grid cols-3" style="margin-top: 16px; margin-bottom: 0;">
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--green);">
+        <h3 style="color: var(--green);">📎 User Input 1: Product</h3>
+        <p>Pastes Amazon URL → Craftit auto-extracts:</p>
+        <ul style="padding-left: 16px; margin-top: 8px; font-size: 0.82em; color: var(--text-secondary);">
+          <li>Name: CeraVe Moisturizing Cream</li>
+          <li>Price: $16.99</li>
+          <li>Images: 4 product photos</li>
+          <li>Category: <span class="tag pink" style="margin: 0;">Skincare / Beauty</span></li>
+        </ul>
+      </div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--accent);">
+        <h3 style="color: var(--accent);">💬 User Input 2: What You Love</h3>
+        <p style="font-style: italic; color: var(--text-muted);">"Fixed my dry skin in 2 weeks, zero irritation. My dermatologist recommended it and it's only $16 — cheaper than all the fancy stuff I tried."</p>
+      </div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--purple);">
+        <h3 style="color: var(--purple);">👤 User Input 3: Who It's For</h3>
+        <p style="font-style: italic; color: var(--text-muted);">"Women 25-40 with dry or sensitive skin"</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 16px; padding: 20px; background: var(--bg); border: 1px solid var(--border-light); border-radius: 10px;">
+      <h3 style="font-size: 0.88em; margin-bottom: 12px; color: var(--pink);">🤖 What Craftit Auto-Generates</h3>
+      <table class="comp-table" style="font-size: 0.78em;">
+        <tr><td style="width: 90px;"><span class="tag red" style="margin:0;">HOOK</span></td><td style="width: 40px;">2s</td><td>"I've tried 50 moisturizers and this $16 one beat them all"</td><td style="color: var(--text-muted);">Actor: Woman in bathroom, holding product</td></tr>
+        <tr><td><span class="tag orange" style="margin:0;">CONTEXT</span></td><td>4s</td><td>"I have super dry, sensitive skin — everything either burned or did nothing"</td><td style="color: var(--text-muted);">B-roll: Bathroom shelf of products, frustrated face</td></tr>
+        <tr><td><span class="tag accent" style="margin:0;">THE GOOD</span></td><td>12s</td><td>"My derm recommended CeraVe and honestly? 2 weeks in, my skin is completely different. Zero irritation, deeply hydrated"</td><td style="color: var(--text-muted);">B-roll: Applying to face, texture on hand, skin close-up</td></tr>
+        <tr><td><span class="tag purple" style="margin:0;">SHOW IT</span></td><td>5s</td><td><em>(B-roll only, gentle music)</em></td><td style="color: var(--text-muted);">Glowing skin result, morning routine, product on shelf</td></tr>
+        <tr><td><span class="tag green" style="margin:0;">CTA</span></td><td>3s</td><td>"If you have dry skin, just try it. Link in bio."</td><td style="color: var(--text-muted);">Actor smiling + price overlay "$16.99"</td></tr>
+      </table>
+      <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag pink">Tone: Warm / Trustworthy</span>
+        <span class="tag accent">Music: Calm lo-fi</span>
+        <span class="tag purple">Actor: Female 28, natural look</span>
+        <span class="tag green">Length: 26s</span>
+        <span class="tag blue">Format: 9:16</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 3: CAR -->
+  <div class="opp-card" style="border-left: 3px solid var(--blue);">
+    <div class="opp-badge" style="background: var(--blue-light); color: var(--blue);">EXAMPLE 3</div>
+    <h3>🚗 2025 BMW M3 Competition</h3>
+    
+    <div class="card-grid cols-3" style="margin-top: 16px; margin-bottom: 0;">
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--green);">
+        <h3 style="color: var(--green);">📎 User Input 1: Product</h3>
+        <p>Pastes BMW.com URL → Craftit auto-extracts:</p>
+        <ul style="padding-left: 16px; margin-top: 8px; font-size: 0.82em; color: var(--text-secondary);">
+          <li>Name: 2025 BMW M3 Competition</li>
+          <li>Price: From $76,900</li>
+          <li>Images: 8 product photos</li>
+          <li>Category: <span class="tag blue" style="margin: 0;">Automotive / Luxury</span></li>
+        </ul>
+      </div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--accent);">
+        <h3 style="color: var(--accent);">💬 User Input 2: What You Love</h3>
+        <p style="font-style: italic; color: var(--text-muted);">"The engine sound is addictive, the handling is razor sharp through corners, and the cabin tech is next level. This car ruined every other car for me."</p>
+      </div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--purple);">
+        <h3 style="color: var(--purple);">👤 User Input 3: Who It's For</h3>
+        <p style="font-style: italic; color: var(--text-muted);">"Car enthusiasts and professionals 30-50 who want performance + luxury"</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 16px; padding: 20px; background: var(--bg); border: 1px solid var(--border-light); border-radius: 10px;">
+      <h3 style="font-size: 0.88em; margin-bottom: 12px; color: var(--blue);">🤖 What Craftit Auto-Generates</h3>
+      <table class="comp-table" style="font-size: 0.78em;">
+        <tr><td style="width: 90px;"><span class="tag red" style="margin:0;">HOOK</span></td><td style="width: 40px;">3s</td><td>"This car ruined every other car for me"</td><td style="color: var(--text-muted);">Actor: Man in jacket, standing by M3, dramatic lighting</td></tr>
+        <tr><td><span class="tag orange" style="margin:0;">CONTEXT</span></td><td>4s</td><td>"I've driven sports cars my whole life but nothing comes close to this"</td><td style="color: var(--text-muted);">B-roll: Exterior walk-around, key fob unlock</td></tr>
+        <tr><td><span class="tag accent" style="margin:0;">THE GOOD</span></td><td>14s</td><td>"That engine sound is addictive... the handling through corners is razor sharp... and this cabin? Next level tech"</td><td style="color: var(--text-muted);">B-roll: Engine start, driving cornering, interior screens</td></tr>
+        <tr><td><span class="tag purple" style="margin:0;">SHOW IT</span></td><td>6s</td><td><em>(B-roll only, engine sounds)</em></td><td style="color: var(--text-muted);">Cinematic driving shots, exhaust close-up, sunset pull-away</td></tr>
+        <tr><td><span class="tag green" style="margin:0;">CTA</span></td><td>3s</td><td>"If you want performance and luxury, go drive one. You'll understand."</td><td style="color: var(--text-muted);">Actor + car hero shot, dealer link overlay</td></tr>
+      </table>
+      <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag blue">Tone: Confident / Cinematic</span>
+        <span class="tag accent">Music: Dramatic / powerful</span>
+        <span class="tag purple">Actor: Male 35, well-dressed</span>
+        <span class="tag green">Length: 30s</span>
+        <span class="tag blue">Format: 9:16</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block" style="margin-top: 24px;">
+    <p><strong>Same 3 inputs. Same template. Three completely different videos.</strong> The product category detection is the intelligence layer that makes this work — it determines scenes, tone, actors, music, and pacing automatically.</p>
+  </div>
+</div>
+
+<!-- UNIVERSAL TEMPLATE -->
+<div class="section" id="template">
+  <div class="section-label">📐 Product Design</div>
+  <div class="section-title">The Universal UGC Review Template</div>
+  <div class="section-desc">One template that works for any product. The structure stays the same — only the visuals, tone, and language adapt based on product category.</div>
+
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Section</th><th>Duration</th><th>Purpose</th><th>👟 Sneakers</th><th>🧴 Skincare</th><th>🚗 Car</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color: var(--red);">HOOK</strong></td><td>2-3s</td><td>Bold opinion, stop the scroll</td><td>"Best Jordans ever made"</td><td>"This $16 cream beat them all"</td><td>"This car ruined every other car"</td></tr>
+        <tr><td><strong style="color: var(--orange);">CONTEXT</strong></td><td>3-5s</td><td>Who you are, why you're credible</td><td>"Collecting kicks for years"</td><td>"I have super dry skin"</td><td>"Driven sports cars my whole life"</td></tr>
+        <tr><td><strong style="color: var(--accent);">THE GOOD</strong></td><td>10-15s</td><td>2-3 things you love (user input)</td><td>Leather, colorway, comfort</td><td>Results, no irritation, price</td><td>Engine, handling, cabin tech</td></tr>
+        <tr><td><strong style="color: var(--purple);">SHOW IT</strong></td><td>5-8s</td><td>Product in action, B-roll only</td><td>On-feet, detail, outfit</td><td>Applying, texture, skin result</td><td>Driving, interior, exhaust</td></tr>
+        <tr><td><strong style="color: var(--green);">VERDICT + CTA</strong></td><td>3-5s</td><td>Who it's for + where to get</td><td>"Must cop. Link below."</td><td>"Just try it. Link in bio."</td><td>"Go drive one."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Scene Templates by Product Category</h3>
+  <div class="section-desc" style="margin-bottom: 16px;">The AI loads different scene types based on auto-detected product category. Same structure, different visuals.</div>
+
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Scene Type</th><th>👟 Fashion / Shoes</th><th>🧴 Skincare / Beauty</th><th>🚗 Automotive</th><th>🍽️ Food / Drink</th><th>💻 Tech / Gadgets</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Unboxing</strong></td><td>Open shoebox, tissue paper</td><td>Unwrap packaging</td><td>Key fob, door open</td><td>Delivery open, arrange</td><td>Unbox, peel plastic</td></tr>
+        <tr><td><strong>First Look</strong></td><td>Hold up, rotate shoe</td><td>Pour/squeeze onto hand</td><td>Walk-around exterior</td><td>Plating, pouring</td><td>Power on, first screen</td></tr>
+        <tr><td><strong>In Use</strong></td><td>On-feet walking</td><td>Applying to face</td><td>Driving POV</td><td>Eating, tasting</td><td>Using the feature</td></tr>
+        <tr><td><strong>Detail Close-up</strong></td><td>Stitching, sole, material</td><td>Texture, ingredients</td><td>Interior tech, badges</td><td>Ingredients, texture</td><td>Ports, build quality</td></tr>
+        <tr><td><strong>Lifestyle</strong></td><td>Mirror outfit check</td><td>Bathroom shelf, routine</td><td>Parked at destination</td><td>Dinner setting</td><td>Desk setup, workspace</td></tr>
+        <tr><td><strong>Result</strong></td><td>Full outfit shot</td><td>Glowing skin (after)</td><td>Pull away, engine sound</td><td>Satisfied reaction</td><td>Task completed faster</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Tone & Style Auto-Matching</h3>
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Category Signal</th><th>Tone</th><th>Actor Style</th><th>Music</th><th>Pacing</th><th>CTA Style</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Fashion / Streetwear</strong></td><td>Hype, casual, slang OK</td><td>Young, trendy outfit</td><td>Upbeat trap / hip-hop</td><td>Fast cuts, energetic</td><td>"Cop these" / "Link below"</td></tr>
+        <tr><td><strong>Skincare / Beauty</strong></td><td>Warm, trustworthy, bestie</td><td>Natural look, bathroom</td><td>Calm lo-fi / ambient</td><td>Medium, smooth</td><td>"Try it" / "Link in bio"</td></tr>
+        <tr><td><strong>Automotive</strong></td><td>Confident, authoritative</td><td>Well-dressed, aspirational</td><td>Cinematic / dramatic</td><td>Mix slow + quick</td><td>"Go see it" / "Test drive"</td></tr>
+        <tr><td><strong>Food / Drink</strong></td><td>Enthusiastic, sensory</td><td>Home/kitchen setting</td><td>Upbeat / feel-good</td><td>Medium, satisfying</td><td>"You need to try this"</td></tr>
+        <tr><td><strong>Tech / Gadgets</strong></td><td>Geeky-excited, factual</td><td>Desk/workspace setup</td><td>Electronic / modern</td><td>Quick demos, snappy</td><td>"Check it out" / "Worth it"</td></tr>
+        <tr><td><strong>Fitness / Health</strong></td><td>Motivational, real</td><td>Active wear, gym/outdoor</td><td>Energetic / motivational</td><td>Fast, powerful</td><td>"Get yours" / "Game changer"</td></tr>
+        <tr><td><strong>Home / Lifestyle</strong></td><td>Cozy, relatable</td><td>Casual, home setting</td><td>Warm acoustic / indie</td><td>Relaxed, natural</td><td>"You'll love it" / "Link"</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- USER vs AI SPLIT -->
+<div class="section" id="user-vs-ai">
+  <div class="section-label">⚡ Product Design</div>
+  <div class="section-title">User Input vs. AI Automation</div>
+  <div class="section-desc">A clear separation of what the user provides (30 seconds) and what Craftit handles automatically.</div>
+
+  <div class="card-grid cols-2" style="margin-bottom: 24px;">
+    <!-- USER SIDE -->
+    <div class="card" style="border-top: 3px solid var(--green); padding: 28px;">
+      <h3 style="color: var(--green); font-size: 1.05em; margin-bottom: 16px;">👤 What the User Does (30 seconds)</h3>
+      
+      <div style="margin-bottom: 20px; padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border-light);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+          <span style="background: var(--green); color: var(--bg); width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75em;">1</span>
+          <strong style="font-size: 0.9em;">Paste product URL or upload photos</strong>
+        </div>
+        <p style="font-size: 0.82em; color: var(--text-muted); padding-left: 34px;">Any e-commerce URL (Amazon, Shopify, Nike, etc.) or 3+ product images + name</p>
+      </div>
+
+      <div style="margin-bottom: 20px; padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border-light);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+          <span style="background: var(--green); color: var(--bg); width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75em;">2</span>
+          <strong style="font-size: 0.9em;">"What do you love about this product?"</strong>
+        </div>
+        <p style="font-size: 0.82em; color: var(--text-muted); padding-left: 34px;">2-3 sentences in their own words. Free text or voice note. This is the heart of the review — it cannot be AI-guessed.</p>
+      </div>
+
+      <div style="padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border-light);">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+          <span style="background: var(--green); color: var(--bg); width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75em;">3</span>
+          <strong style="font-size: 0.9em;">"Who would you recommend this to?"</strong>
+        </div>
+        <p style="font-size: 0.82em; color: var(--text-muted); padding-left: 34px;">AI suggests options based on product category. User picks or types custom. Sets tone, actor, and language.</p>
+      </div>
+
+      <div style="margin-top: 20px; padding: 14px; background: var(--green-light); border: 1px solid var(--green-border); border-radius: 8px;">
+        <p style="font-size: 0.82em; color: var(--green); font-weight: 600; margin: 0;">That's it. 3 inputs. User is done in 30 seconds.</p>
+      </div>
+    </div>
+
+    <!-- OPTIONAL USER SIDE -->
+    <div class="card" style="border-top: 3px solid var(--text-muted); padding: 28px;">
+      <h3 style="color: var(--text-muted); font-size: 1.05em; margin-bottom: 16px;">🔧 Optional Customization (Power Users)</h3>
+      <p style="font-size: 0.85em; color: var(--text-secondary); margin-bottom: 16px;">Progressive disclosure — hidden by default, available for users who want control. Smart defaults if skipped.</p>
+      
+      <table class="comp-table" style="font-size: 0.78em;">
+        <tr><td><strong>Tone / vibe</strong></td><td>Auto-detected from product category</td></tr>
+        <tr><td><strong>Platform</strong></td><td>Default: TikTok 9:16, 25s</td></tr>
+        <tr><td><strong>Promo / discount</strong></td><td>No promo, generic CTA</td></tr>
+        <tr><td><strong>Brand assets</strong></td><td>No brand overlay</td></tr>
+        <tr><td><strong>Reference video URL</strong></td><td>Use best-performing template</td></tr>
+        <tr><td><strong>Custom script</strong></td><td>AI-generated from inputs</td></tr>
+        <tr><td><strong>Voice preference</strong></td><td>Auto-matched to actor</td></tr>
+        <tr><td><strong>Number of actors</strong></td><td>Default: 1 (can select 3 for montage)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- AI SIDE - FULL BREAKDOWN -->
+  <div class="card" style="border-top: 3px solid var(--accent); padding: 28px; margin-bottom: 24px;">
+    <h3 style="color: var(--accent); font-size: 1.05em; margin-bottom: 20px;">🤖 What Craftit Automates (3-5 minutes)</h3>
+
+    <div class="card-grid cols-3" style="margin-bottom: 0;">
+      <div style="padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border-light);">
+        <h3 style="font-size: 0.85em; color: var(--green); margin-bottom: 8px;">📎 From the Product URL</h3>
+        <ul style="padding-left: 16px; font-size: 0.78em; color: var(--text-secondary);">
+          <li>Product name</li>
+          <li>Description & features</li>
+          <li>Product images</li>
+          <li>Price</li>
+          <li>Buy link (for CTA)</li>
+          <li>Product category detection</li>
+        </ul>
+      </div>
+
+      <div style="padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border-light);">
+        <h3 style="font-size: 0.85em; color: var(--orange); margin-bottom: 8px;">🏷️ From the Category</h3>
+        <ul style="padding-left: 16px; font-size: 0.78em; color: var(--text-secondary);">
+          <li>Scene templates (6 per category)</li>
+          <li>Tone preset</li>
+          <li>Actor profile (age, look, setting)</li>
+          <li>Music genre & mood</li>
+          <li>Pacing & cut frequency</li>
+          <li>B-roll style</li>
+          <li>CTA language</li>
+        </ul>
+      </div>
+
+      <div style="padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border-light);">
+        <h3 style="font-size: 0.85em; color: var(--purple); margin-bottom: 8px;">💬 From "What You Love"</h3>
+        <ul style="padding-left: 16px; font-size: 0.78em; color: var(--text-secondary);">
+          <li>Full 5-part script</li>
+          <li>Shot list per script line</li>
+          <li>5+ script variations (different hooks/angles)</li>
+          <li>Hook options</li>
+          <li>Verdict phrasing</li>
+          <li>CTA text</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border-top: 3px solid var(--purple); padding: 28px; margin-bottom: 24px;">
+    <h3 style="color: var(--purple); font-size: 1.05em; margin-bottom: 20px;">🎬 What Craftit Produces</h3>
+
+    <div class="card-grid cols-3" style="margin-bottom: 0;">
+      <div style="padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border-light);">
+        <h3 style="font-size: 0.85em; color: var(--red); margin-bottom: 8px;">🎥 Video Assets</h3>
+        <ul style="padding-left: 16px; font-size: 0.78em; color: var(--text-secondary);">
+          <li>AI actor lip-synced to script (A-roll)</li>
+          <li>Product placement in actor's hands</li>
+          <li>Category-specific B-roll clips</li>
+          <li>Product close-up shots</li>
+          <li>Lifestyle context scenes</li>
+        </ul>
+      </div>
+
+      <div style="padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border-light);">
+        <h3 style="font-size: 0.85em; color: var(--cyan); margin-bottom: 8px;">🔊 Audio Assets</h3>
+        <ul style="padding-left: 16px; font-size: 0.78em; color: var(--text-secondary);">
+          <li>Voiceover (TTS matched to actor)</li>
+          <li>Background music (genre-matched)</li>
+          <li>Sound effects (context-aware)</li>
+          <li>Voice consistency across clips</li>
+        </ul>
+      </div>
+
+      <div style="padding: 16px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border-light);">
+        <h3 style="font-size: 0.85em; color: var(--green); margin-bottom: 8px;">📦 Final Output</h3>
+        <ul style="padding-left: 16px; font-size: 0.78em; color: var(--text-secondary);">
+          <li>Auto-assembled video (A+B roll)</li>
+          <li>Styled captions/subtitles</li>
+          <li>CTA overlay with price</li>
+          <li>Platform-specific exports</li>
+          <li><strong>10-16 draft variations</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE VISUAL SPLIT -->
+  <div class="insight-box" style="text-align: left; max-width: 100%;">
+    <div style="font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.78em; line-height: 2; color: var(--text-secondary);">
+      <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 240px;">
+          <div style="color: var(--green); font-weight: 700; margin-bottom: 8px; font-size: 0.9em;">USER DOES (30 seconds)</div>
+          <div>1. Paste URL ───────────────→</div>
+          <div>2. "What do you love?" ─────→</div>
+          <div>3. "Who is this for?" ──────→</div>
+          <div style="margin-top: 8px; color: var(--green);">✅ Done</div>
+        </div>
+        <div style="flex: 2; min-width: 340px;">
+          <div style="color: var(--accent); font-weight: 700; margin-bottom: 8px; font-size: 0.9em;">CRAFTIT DOES (3-5 minutes)</div>
+          <div>Extract product data + detect category</div>
+          <div>Generate 5+ scripts with shot lists</div>
+          <div>Select tone + actors + music + scenes</div>
+          <div>Create A-roll (talking head clips)</div>
+          <div>Create B-roll (product + lifestyle)</div>
+          <div>Generate voiceover + music + SFX</div>
+          <div>Auto-edit: assemble + captions + CTA</div>
+          <div>Produce <strong style="color: var(--accent);">10-16 draft variations</strong></div>
+          <div>Export for TikTok / Instagram / YouTube</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
