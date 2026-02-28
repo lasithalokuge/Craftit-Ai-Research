@@ -4,204 +4,365 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Craftit AI — SELL Video Auto-Generation Research</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d1117;
-    --surface: #161b22;
-    --surface2: #1c2333;
-    --border: #30363d;
-    --text: #e6edf3;
-    --text-muted: #8b949e;
-    --accent: #58a6ff;
-    --accent2: #bc8cff;
-    --green: #3fb950;
-    --orange: #d29922;
-    --red: #f85149;
-    --pink: #f778ba;
-    --cyan: #39d4e0;
-    --yellow: #e3b341;
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --surface-hover: #22222e;
+    --text: #e8e8ed;
+    --text-secondary: #9ca3b4;
+    --text-muted: #6b7280;
+    --border: #2a2a38;
+    --border-light: #1f1f2c;
+    --accent: #818cf8;
+    --accent-light: rgba(129,140,248,0.1);
+    --red: #f87171;
+    --red-light: rgba(248,113,113,0.08);
+    --red-border: rgba(248,113,113,0.2);
+    --green: #34d399;
+    --green-light: rgba(52,211,153,0.08);
+    --green-border: rgba(52,211,153,0.2);
+    --yellow: #fbbf24;
+    --yellow-light: rgba(251,191,36,0.08);
+    --yellow-border: rgba(251,191,36,0.2);
+    --purple: #a78bfa;
+    --purple-light: rgba(167,139,250,0.08);
+    --purple-border: rgba(167,139,250,0.2);
+    --orange: #fb923c;
+    --orange-light: rgba(251,146,60,0.08);
+    --orange-border: rgba(251,146,60,0.2);
+    --blue: #60a5fa;
+    --blue-light: rgba(96,165,250,0.08);
+    --blue-border: rgba(96,165,250,0.2);
+    --cyan: #22d3ee;
+    --cyan-light: rgba(34,211,238,0.08);
+    --cyan-border: rgba(34,211,238,0.2);
+    --pink: #f472b6;
+    --pink-light: rgba(244,114,182,0.08);
+    --pink-border: rgba(244,114,182,0.2);
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+    --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -4px rgba(0,0,0,0.2);
+    --radius: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    display: flex;
-    min-height: 100vh;
+  
+  body { 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
+    background: var(--bg); 
+    color: var(--text); 
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* Sidebar */
   .sidebar {
-    width: 280px;
-    min-width: 280px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 240px;
     background: var(--surface);
     border-right: 1px solid var(--border);
-    padding: 20px 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    padding: 24px 0;
+    z-index: 200;
     overflow-y: auto;
-    z-index: 100;
+    display: flex;
+    flex-direction: column;
   }
-  .sidebar-header {
+  .sidebar-logo {
     padding: 0 20px 20px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 12px;
   }
-  .sidebar-header h1 {
-    font-size: 16px;
-    color: var(--accent);
-    margin-bottom: 4px;
+  .sidebar-logo span {
+    font-size: 0.85em;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
   }
-  .sidebar-header p {
-    font-size: 12px;
+  .sidebar-logo .sub {
+    display: block;
+    font-size: 0.7em;
+    font-weight: 400;
     color: var(--text-muted);
+    margin-top: 2px;
   }
-  .nav-section {
-    padding: 8px 20px;
-    font-size: 11px;
+  .sidebar-section {
+    padding: 8px 16px 4px;
+    font-size: 0.65em;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.1em;
     color: var(--text-muted);
   }
-  .nav-link {
-    display: block;
-    padding: 8px 20px;
-    color: var(--text-muted);
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
     text-decoration: none;
-    font-size: 14px;
-    border-left: 3px solid transparent;
-    transition: all 0.15s;
+    padding: 9px 20px;
+    font-weight: 500;
+    font-size: 0.82em;
+    transition: all 0.15s ease;
+    border-left: 2px solid transparent;
+    margin: 1px 0;
   }
-  .nav-link:hover, .nav-link.active {
-    color: var(--text);
-    background: rgba(88,166,255,0.06);
+  .sidebar a:hover {
+    background: var(--accent-light);
+    color: var(--accent);
     border-left-color: var(--accent);
   }
-  .nav-link .emoji { margin-right: 8px; }
-
-  /* Main */
-  .main {
-    margin-left: 280px;
-    flex: 1;
-    padding: 40px;
-    max-width: 1100px;
+  .sidebar a.active {
+    background: var(--accent-light);
+    color: var(--accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+  .sidebar a .nav-icon {
+    font-size: 1em;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .sidebar-spacer { flex: 1; }
+  .sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.7em;
+    color: var(--text-muted);
+    line-height: 1.4;
   }
 
-  h2 {
-    font-size: 28px;
-    margin: 48px 0 16px;
-    padding-bottom: 8px;
+  /* Main content */
+  .main-content { margin-left: 240px; }
+
+  /* Mobile */
+  .mobile-topbar {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--surface);
     border-bottom: 1px solid var(--border);
-    color: var(--text);
+    z-index: 250;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+    box-shadow: var(--shadow);
   }
-  h2:first-child { margin-top: 0; }
-  h3 {
-    font-size: 20px;
-    margin: 32px 0 12px;
-    color: var(--accent2);
+  .mobile-topbar .hamburger {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid rgba(129,140,248,0.2);
+    font-size: 1.1em;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
   }
-  h4 {
-    font-size: 16px;
-    margin: 20px 0 8px;
-    color: var(--cyan);
+  .mobile-topbar .topbar-title { font-size: 0.85em; font-weight: 600; color: var(--text); }
+  .mobile-topbar .topbar-sub { font-size: 0.7em; color: var(--text-muted); }
+  .sidebar-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 190;
+    backdrop-filter: blur(4px);
   }
-  p, li {
-    line-height: 1.7;
-    color: var(--text);
+  .sidebar-overlay.open { display: block; }
+
+  /* Header */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 40px 40px;
+    text-align: center;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .header h1 { 
+    font-size: 2.2em; 
+    font-weight: 800; 
+    letter-spacing: -0.03em;
     margin-bottom: 8px;
   }
-  ul, ol { padding-left: 24px; margin-bottom: 16px; }
+  .header p { font-size: 1em; color: var(--text-secondary); }
+  .header .date { font-size: 0.85em; color: var(--text-muted); margin-top: 4px; }
+
+  /* Section */
+  .section { padding: 48px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-title { 
+    font-size: 1.5em; 
+    font-weight: 700; 
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    margin-bottom: 32px;
+    max-width: 640px;
+  }
+  .section + .section { border-top: 1px solid var(--border-light); }
+
+  /* Insight Box */
+  .insight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .insight-box .icon { font-size: 2em; margin-bottom: 12px; }
+  .insight-box h2 { font-size: 1.3em; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .insight-box p { font-size: 1em; line-height: 1.7; color: var(--text-secondary); }
+  .insight-box strong { color: var(--text); }
+
+  /* Card Grid */
+  .card-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 16px; 
+    margin-bottom: 32px; 
+  }
+  .card-grid.cols-2 { grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid.cols-4 { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .card-grid.cols-6 { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
 
   /* Cards */
   .card {
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius);
     padding: 24px;
-    margin: 16px 0;
-  }
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
-    margin: 16px 0;
-  }
-  .mini-card {
-    background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px;
+    transition: all 0.15s ease;
+    box-shadow: var(--shadow-sm);
   }
-  .mini-card h4 { margin-top: 0; }
+  .card:hover { box-shadow: var(--shadow-md); border-color: #3a3a4a; }
+  .card .card-icon { font-size: 1.4em; margin-bottom: 10px; }
+  .card h3 { font-size: 0.9em; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .card p { font-size: 0.85em; line-height: 1.6; color: var(--text-secondary); }
 
-  /* Stats */
-  .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px;
-    margin: 16px 0;
+  .tag { 
+    display: inline-block; 
+    padding: 3px 10px; 
+    border-radius: 6px; 
+    font-size: 0.7em; 
+    font-weight: 600; 
+    margin-top: 6px; 
+    margin-right: 4px;
+    letter-spacing: 0.02em;
   }
-  .stat {
-    background: var(--surface2);
+  .tag.accent { background: var(--accent-light); color: var(--accent); }
+  .tag.green { background: var(--green-light); color: var(--green); }
+  .tag.red { background: var(--red-light); color: var(--red); }
+  .tag.orange { background: var(--orange-light); color: var(--orange); }
+  .tag.purple { background: var(--purple-light); color: var(--purple); }
+  .tag.blue { background: var(--blue-light); color: var(--blue); }
+  .tag.yellow { background: var(--yellow-light); color: var(--yellow); }
+  .tag.pink { background: var(--pink-light); color: var(--pink); }
+  .tag.cyan { background: var(--cyan-light); color: var(--cyan); }
+
+  .card.themed-red { background: var(--red-light); border-color: var(--red-border); }
+  .card.themed-red h3 { color: var(--red); }
+  .card.themed-green { background: var(--green-light); border-color: var(--green-border); }
+  .card.themed-green h3 { color: var(--green); }
+  .card.themed-yellow { background: var(--yellow-light); border-color: var(--yellow-border); }
+  .card.themed-yellow h3 { color: var(--yellow); }
+  .card.themed-purple { background: var(--purple-light); border-color: var(--purple-border); }
+  .card.themed-purple h3 { color: var(--purple); }
+  .card.themed-blue { background: var(--blue-light); border-color: var(--blue-border); }
+  .card.themed-blue h3 { color: var(--blue); }
+  .card.themed-orange { background: var(--orange-light); border-color: var(--orange-border); }
+  .card.themed-orange h3 { color: var(--orange); }
+  .card.themed-cyan { background: var(--cyan-light); border-color: var(--cyan-border); }
+  .card.themed-cyan h3 { color: var(--cyan); }
+
+  /* Stat Cards */
+  .stat-card {
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px;
+    border-radius: var(--radius);
+    padding: 20px;
     text-align: center;
+    box-shadow: var(--shadow-sm);
   }
-  .stat .number {
-    font-size: 32px;
-    font-weight: 700;
+  .stat-card .number { 
+    font-size: 1.8em; 
+    font-weight: 800; 
     color: var(--accent);
-    display: block;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
   }
-  .stat .label {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 4px;
+  .stat-card .label { 
+    color: var(--text-muted); 
+    font-size: 0.78em; 
+    margin-top: 6px;
+    line-height: 1.4;
   }
-
-  /* Tags */
-  .tag {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
-    margin: 2px 4px 2px 0;
-  }
-  .tag-blue { background: rgba(88,166,255,0.15); color: var(--accent); }
-  .tag-purple { background: rgba(188,140,255,0.15); color: var(--accent2); }
-  .tag-green { background: rgba(63,185,80,0.15); color: var(--green); }
-  .tag-orange { background: rgba(210,153,34,0.15); color: var(--orange); }
-  .tag-red { background: rgba(248,81,73,0.15); color: var(--red); }
-  .tag-pink { background: rgba(247,120,186,0.15); color: var(--pink); }
-  .tag-cyan { background: rgba(57,212,224,0.15); color: var(--cyan); }
 
   /* Tables */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    font-size: 14px;
+  .table-wrap { 
+    overflow-x: auto; 
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    background: var(--surface);
   }
-  th, td {
-    padding: 10px 14px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-  }
-  th {
-    background: var(--surface2);
-    color: var(--text-muted);
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 0.82em; }
+  .comp-table th { 
+    background: #13131a; 
+    padding: 12px 10px; 
+    text-align: left; 
+    color: var(--text-secondary);
     font-weight: 600;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 0.85em;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
   }
-  td { color: var(--text); }
-  tr:hover td { background: rgba(88,166,255,0.03); }
+  .comp-table td { 
+    padding: 11px 10px; 
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text);
+  }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr:hover td { background: var(--surface-hover); }
 
   /* Pipeline */
   .pipeline {
@@ -209,729 +370,754 @@
     gap: 0;
     margin: 24px 0;
     overflow-x: auto;
-    padding-bottom: 8px;
   }
   .pipeline-step {
     flex: 1;
-    min-width: 140px;
-    background: var(--surface2);
+    min-width: 130px;
+    background: var(--surface);
     border: 1px solid var(--border);
-    padding: 16px 12px;
+    padding: 20px 14px;
     text-align: center;
     position: relative;
+    box-shadow: var(--shadow-sm);
   }
-  .pipeline-step:first-child { border-radius: 8px 0 0 8px; }
-  .pipeline-step:last-child { border-radius: 0 8px 8px 0; }
+  .pipeline-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+  .pipeline-step:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
   .pipeline-step .step-num {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    border-radius: 50%;
+    display: inline-flex;
+    width: 28px; height: 28px;
+    align-items: center; justify-content: center;
+    border-radius: 8px;
     background: var(--accent);
     color: var(--bg);
     font-weight: 700;
-    font-size: 12px;
-    margin-bottom: 8px;
+    font-size: 0.75em;
+    margin-bottom: 10px;
   }
   .pipeline-step .step-title {
     font-weight: 600;
-    font-size: 13px;
+    font-size: 0.82em;
     color: var(--text);
     display: block;
     margin-bottom: 4px;
   }
   .pipeline-step .step-detail {
-    font-size: 11px;
+    font-size: 0.7em;
     color: var(--text-muted);
+    line-height: 1.4;
   }
   .pipeline-step::after {
     content: '→';
     position: absolute;
-    right: -8px;
+    right: -9px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--accent);
     font-weight: bold;
+    font-size: 0.9em;
     z-index: 1;
   }
   .pipeline-step:last-child::after { display: none; }
 
-  /* Video type cards */
-  .vtype-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 12px;
-    margin: 16px 0;
+  /* Phase cards */
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
   }
+  .phase h3 { 
+    display: flex; align-items: center; gap: 10px; 
+    margin-bottom: 16px;
+    font-size: 1em; font-weight: 700;
+  }
+  .phase .phase-badge {
+    display: inline-flex;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .phase .phase-badge.now { background: var(--red-light); color: var(--red); }
+  .phase .phase-badge.next { background: var(--orange-light); color: var(--orange); }
+  .phase .phase-badge.later { background: var(--blue-light); color: var(--blue); }
+  .phase .phase-badge.future { background: var(--purple-light); color: var(--purple); }
+  .phase ul { padding-left: 20px; }
+  .phase li { margin-bottom: 10px; color: var(--text-secondary); font-size: 0.88em; line-height: 1.5; }
+  .phase li strong { color: var(--text); }
+
+  /* Video type cards */
   .vtype {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
     border-left: 3px solid var(--accent);
   }
-  .vtype h4 { margin: 0 0 8px; font-size: 15px; }
-  .vtype p { font-size: 13px; color: var(--text-muted); margin: 0; }
-  .vtype .vtype-structure { font-size: 12px; color: var(--cyan); margin-top: 8px; font-family: monospace; }
-
-  /* Blockquote */
-  blockquote {
-    border-left: 3px solid var(--accent2);
-    padding: 12px 20px;
-    margin: 16px 0;
-    background: rgba(188,140,255,0.06);
-    border-radius: 0 8px 8px 0;
-    font-style: italic;
-    color: var(--text-muted);
+  .vtype:hover { box-shadow: var(--shadow-md); }
+  .vtype h3 { font-size: 0.88em; font-weight: 600; margin-bottom: 6px; }
+  .vtype p { font-size: 0.8em; color: var(--text-secondary); line-height: 1.5; }
+  .vtype .structure { 
+    font-size: 0.72em; 
+    color: var(--accent); 
+    margin-top: 8px; 
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    letter-spacing: 0.01em;
   }
 
-  /* Architecture diagram */
+  /* Architecture */
   .arch-box {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    margin: 16px 0;
+    border-radius: var(--radius-lg);
+    padding: 28px;
     font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 13px;
+    font-size: 0.72em;
     line-height: 1.8;
     white-space: pre-wrap;
-    color: var(--text);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-sm);
+    overflow-x: auto;
   }
 
-  /* Highlight boxes */
-  .highlight {
-    background: rgba(88,166,255,0.08);
-    border: 1px solid rgba(88,166,255,0.2);
-    border-radius: 8px;
+  /* Opp cards */
+  .opp-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s ease;
+  }
+  .opp-card:hover { box-shadow: var(--shadow-md); }
+  .opp-card .opp-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.7em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0.03em;
+  }
+  .opp-card .opp-badge.critical { background: var(--red-light); color: var(--red); }
+  .opp-card .opp-badge.high { background: var(--orange-light); color: var(--orange); }
+  .opp-card h3 { font-size: 1.05em; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .opp-card > p { font-size: 0.88em; color: var(--text-secondary); line-height: 1.6; }
+  .opp-card .evidence {
+    font-size: 0.8em; color: var(--text-muted); margin-top: 14px;
+    padding: 14px; background: var(--bg); border-radius: 8px;
+    border: 1px solid var(--border-light); line-height: 1.5;
+  }
+
+  /* Timing Box */
+  .timing-box {
+    background: var(--accent-light);
+    border: 1px solid rgba(129,140,248,0.25);
+    border-radius: var(--radius-xl);
+    padding: 36px;
+    text-align: center;
+    margin-top: 32px;
+  }
+  .timing-box h2 { color: var(--accent); font-size: 1.2em; margin-bottom: 8px; }
+  .timing-box p { color: var(--text-secondary); font-size: 0.95em; }
+
+  /* Quote */
+  .quote-block {
+    border-left: 3px solid var(--accent);
     padding: 16px 20px;
-    margin: 16px 0;
+    margin: 24px 0;
+    background: var(--accent-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
   }
-  .highlight-green {
-    background: rgba(63,185,80,0.08);
-    border-color: rgba(63,185,80,0.2);
-  }
-  .highlight-orange {
-    background: rgba(210,153,34,0.08);
-    border-color: rgba(210,153,34,0.2);
-  }
+  .quote-block p { font-style: italic; color: var(--text-secondary); font-size: 0.9em; }
+  .quote-block strong { color: var(--text); }
 
-  /* Score bars */
-  .score-bar {
-    height: 8px;
-    background: var(--surface2);
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 4px 0;
-  }
-  .score-fill {
-    height: 100%;
-    border-radius: 4px;
-    transition: width 0.3s;
-  }
+  /* Divider */
+  .divider { height: 1px; background: var(--border-light); margin: 32px 0; }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .sidebar { display: none; }
-    .main { margin-left: 0; padding: 20px; }
+  /* Footer */
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    text-align: center;
+  }
+  .footer p { color: var(--text-muted); font-size: 0.82em; }
+
+  @media (max-width: 900px) {
+    .sidebar { 
+      transform: translateX(-100%); 
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sidebar.open { 
+      transform: translateX(0); 
+      box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+    }
+    .mobile-topbar { display: flex; }
+    .main-content { margin-left: 0; padding-top: 56px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .card-grid.cols-6 { grid-template-columns: repeat(2, 1fr); }
+    .card-grid.cols-3 { grid-template-columns: 1fr; }
+    .card-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+    .header h1 { font-size: 1.6em; }
+    .section { padding: 32px 20px; }
     .pipeline { flex-direction: column; }
+    .pipeline-step { border-radius: var(--radius) !important; }
     .pipeline-step::after { display: none; }
-    .pipeline-step { border-radius: 8px !important; }
   }
-
-  /* Smooth scroll */
   html { scroll-behavior: smooth; }
 </style>
 </head>
 <body>
 
-<nav class="sidebar">
-  <div class="sidebar-header">
-    <h1>🐙 Craftit AI Research</h1>
-    <p>SELL Video Auto-Generation</p>
+<!-- MOBILE TOPBAR -->
+<div class="mobile-topbar" id="mobileTopbar">
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <div>
+    <div class="topbar-title">SELL Video Research</div>
+    <div class="topbar-sub">Craftit AI</div>
   </div>
+</div>
 
-  <div class="nav-section">Overview</div>
-  <a class="nav-link" href="#overview"><span class="emoji">📊</span>Executive Summary</a>
-  <a class="nav-link" href="#video-types"><span class="emoji">🎬</span>13 SELL Video Types</a>
-  <a class="nav-link" href="#stats"><span class="emoji">📈</span>Research Stats</a>
+<!-- OVERLAY -->
+<div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
 
-  <div class="nav-section">YouTube Analysis</div>
-  <a class="nav-link" href="#batch1"><span class="emoji">🎯</span>UGC Ad Workflows</a>
-  <a class="nav-link" href="#batch2"><span class="emoji">🛍️</span>Product Ad Tutorials</a>
-  <a class="nav-link" href="#batch3"><span class="emoji">🏪</span>E-Commerce Platform Ads</a>
-  <a class="nav-link" href="#batch4"><span class="emoji">🎥</span>Studio-Quality Commercials</a>
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span>🐙 Craftit AI</span>
+    <span class="sub">SELL Video Auto-Generation</span>
+  </div>
+  
+  <div class="sidebar-section">Overview</div>
+  <a href="#insight" onclick="closeSidebar()"><span class="nav-icon">💡</span> Key Insight</a>
+  <a href="#stats" onclick="closeSidebar()"><span class="nav-icon">📊</span> Research Stats</a>
+  <a href="#video-types" onclick="closeSidebar()"><span class="nav-icon">🎬</span> 13 Video Types</a>
 
-  <div class="nav-section">Synthesis</div>
-  <a class="nav-link" href="#tools-map"><span class="emoji">🧰</span>Tools Ecosystem Map</a>
-  <a class="nav-link" href="#inputs"><span class="emoji">📥</span>Required Inputs</a>
-  <a class="nav-link" href="#structure"><span class="emoji">🏗️</span>Video Structure Framework</a>
-  <a class="nav-link" href="#patterns"><span class="emoji">🔑</span>Key Patterns & Insights</a>
+  <div class="sidebar-section">YouTube Analysis</div>
+  <a href="#batch1" onclick="closeSidebar()"><span class="nav-icon">🎯</span> UGC Ad Workflows</a>
+  <a href="#batch2" onclick="closeSidebar()"><span class="nav-icon">🛍️</span> Product Ad Tutorials</a>
+  <a href="#batch3" onclick="closeSidebar()"><span class="nav-icon">🏪</span> E-Commerce Ads</a>
+  <a href="#batch4" onclick="closeSidebar()"><span class="nav-icon">🎥</span> Studio Commercials</a>
 
-  <div class="nav-section">Architecture</div>
-  <a class="nav-link" href="#workflow"><span class="emoji">⚡</span>Proposed Craftit Workflow</a>
-  <a class="nav-link" href="#architecture"><span class="emoji">🏛️</span>System Architecture</a>
-  <a class="nav-link" href="#per-type"><span class="emoji">📋</span>Per-Type Requirements</a>
-  <a class="nav-link" href="#roadmap"><span class="emoji">🗺️</span>Implementation Roadmap</a>
+  <div class="sidebar-section">Synthesis</div>
+  <a href="#tools-map" onclick="closeSidebar()"><span class="nav-icon">🧰</span> Tools Ecosystem</a>
+  <a href="#inputs" onclick="closeSidebar()"><span class="nav-icon">📥</span> Required Inputs</a>
+  <a href="#structure" onclick="closeSidebar()"><span class="nav-icon">🏗️</span> Video Structure</a>
+  <a href="#patterns" onclick="closeSidebar()"><span class="nav-icon">🔑</span> Key Patterns</a>
+
+  <div class="sidebar-section">Architecture</div>
+  <a href="#workflow" onclick="closeSidebar()"><span class="nav-icon">⚡</span> Craftit Workflow</a>
+  <a href="#architecture" onclick="closeSidebar()"><span class="nav-icon">🏛️</span> System Design</a>
+  <a href="#per-type" onclick="closeSidebar()"><span class="nav-icon">📋</span> Per-Type Specs</a>
+  <a href="#roadmap" onclick="closeSidebar()"><span class="nav-icon">🗺️</span> Roadmap</a>
+
+  <div class="sidebar-spacer"></div>
+  <div class="sidebar-footer">
+    Compiled by Pixel 🐙<br>
+    February 2026
+  </div>
 </nav>
 
-<main class="main">
+<!-- MAIN CONTENT -->
+<div class="main-content">
 
-<!-- ===== OVERVIEW ===== -->
-<h2 id="overview">📊 Executive Summary</h2>
-
-<div class="highlight">
-  <strong>Mission:</strong> Research how AI tools create SELL videos today, identify the minimum inputs needed, the best workflows, and design Craftit's automated pipeline for world-class SELL video generation from minimal user input.
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">🐙 Pixel · SELL Video Research</div>
+  <h1>SELL Video Auto-Generation</h1>
+  <p>YouTube Analysis · AI Tools Mapping · Workflow Design · System Architecture</p>
+  <p class="date">February 2026 · 20 Videos Analyzed · Category 1 of SELL</p>
 </div>
 
-<p>We analyzed <strong>20 YouTube tutorial videos</strong> across 4 batches, plus multiple web articles and tool documentation. The research covers the complete landscape of AI-generated sales videos — from UGC ads to studio-quality commercials, across TikTok Shop, Shopify, Amazon, and Meta platforms.</p>
-
-<div class="stat-grid">
-  <div class="stat"><span class="number">20</span><span class="label">Videos Analyzed</span></div>
-  <div class="stat"><span class="number">13</span><span class="label">SELL Video Types</span></div>
-  <div class="stat"><span class="number">25+</span><span class="label">AI Tools Mapped</span></div>
-  <div class="stat"><span class="number">4</span><span class="label">Key Inputs Needed</span></div>
-</div>
-
-<div class="card">
-  <h4 style="color: var(--green); margin-top: 0;">🎯 The #1 Finding</h4>
-  <p>Every successful AI video ad workflow follows the same meta-pattern: <strong>Find what already works → Clone the winning psychology → Adapt for your product → Generate many variations → Test</strong>. The tools that win are the ones that make this loop fastest with the fewest inputs.</p>
-</div>
-
-<div class="card">
-  <h4 style="color: var(--accent); margin-top: 0;">💡 Craftit's Opportunity</h4>
-  <p>No single tool handles the full SELL video pipeline end-to-end with quality. Creators currently use <strong>5-8 different tools</strong> per ad. Craftit can win by being the first platform where you provide a product URL + select a video type → get a world-class SELL video with script, scenes, voiceover, music, and captions — all auto-generated.</p>
-</div>
-
-<!-- ===== 13 VIDEO TYPES ===== -->
-<h2 id="video-types">🎬 The 13 SELL Video Types</h2>
-
-<p>Each type has a specific structure, audience psychology, and use case. Here's what we found about how AI can generate each:</p>
-
-<div class="vtype-grid">
-  <div class="vtype">
-    <h4>1. UGC (Sales-Focused)</h4>
-    <p>Creator-style authentic video showing real-life product usage. Feels like a real person recommending, not a brand ad.</p>
-    <div class="vtype-structure">Hook → Personal story → Product demo → Soft CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>2. Product Promo</h4>
-    <p>Polished promotional video with key benefits, stunning visuals, and selling points.</p>
-    <div class="vtype-structure">Cinematic hook → Feature showcase → Benefits → CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>3. Advertisement</h4>
-    <p>Direct, high-impact marketing with attention-grabbing hooks and strong messaging.</p>
-    <div class="vtype-structure">Pattern interrupt → Problem → Solution → Urgent CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>4. Product Launch</h4>
-    <p>High-energy introduction of a new product — excitement, exclusivity, early access.</p>
-    <div class="vtype-structure">Teaser → Reveal → Features → Limited availability CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>5. Problem–Solution</h4>
-    <p>Presents a relatable problem, introduces product as the answer, ends with strong CTA.</p>
-    <div class="vtype-structure">Pain point → Agitate → Solution → Proof → CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>6. Feature Breakdown</h4>
-    <p>Structured video explaining key features and how each solves a specific need.</p>
-    <div class="vtype-structure">Overview → Feature 1 → Feature 2 → Feature 3 → CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>7. Offer / Discount</h4>
-    <p>Sales-driven video centered around a promotion to trigger urgency.</p>
-    <div class="vtype-structure">Attention hook → Offer details → Value stack → Deadline CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>8. Limited Time Campaign</h4>
-    <p>High-urgency video emphasizing scarcity and countdowns.</p>
-    <div class="vtype-structure">Urgency hook → What's ending → Why act now → Countdown CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>9. Retargeting Ad</h4>
-    <p>Reminder-style video for people who already showed interest.</p>
-    <div class="vtype-structure">Recognition → Reminder → New angle/proof → Return CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>10. Shopify Product Video</h4>
-    <p>E-commerce optimized for product pages — benefits clearly, concisely.</p>
-    <div class="vtype-structure">Product hero → Key benefits → Social proof → Buy CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>11. Amazon Listing Video</h4>
-    <p>Marketplace-optimized — features, usage, value quickly to improve listing conversions.</p>
-    <div class="vtype-structure">Product in use → Features → Comparison → Purchase CTA</div>
-  </div>
-  <div class="vtype">
-    <h4>12. TikTok Shop Video</h4>
-    <p>Short, fast-paced, vertical — tailored for in-app shopping and impulse buying.</p>
-    <div class="vtype-structure">Scroll-stop hook → Quick demo → Social proof → Shop now</div>
-  </div>
-  <div class="vtype">
-    <h4>13. Comparison / Versus</h4>
-    <p>Side-by-side comparison positioning your product as the better choice.</p>
-    <div class="vtype-structure">Challenge setup → Side-by-side → Winner reveal → CTA</div>
+<!-- BIG INSIGHT -->
+<div class="section" id="insight">
+  <div class="insight-box">
+    <div class="icon">💡</div>
+    <h2>The One Big Insight</h2>
+    <p>Every successful AI video ad workflow follows the same meta-pattern: <strong>Find what already works → Clone the winning psychology → Adapt for your product → Generate many variations → Test.</strong></p>
+    <p style="margin-top: 12px; font-weight: 600; color: var(--accent);">The tools that win are the ones that make this loop fastest with the fewest inputs. Craftit can be that tool.</p>
   </div>
 </div>
 
-<!-- ===== RESEARCH STATS ===== -->
-<h2 id="stats">📈 Research Statistics</h2>
+<!-- STATS -->
+<div class="section" id="stats">
+  <div class="section-label">📊 Research</div>
+  <div class="section-title">Research at a Glance</div>
+  <div class="section-desc">Deep analysis of the AI SELL video creation landscape.</div>
 
-<div class="stat-grid">
-  <div class="stat"><span class="number">5</span><span class="label">Batch 1: UGC Ads</span></div>
-  <div class="stat"><span class="number">5</span><span class="label">Batch 2: Product Ads</span></div>
-  <div class="stat"><span class="number">5</span><span class="label">Batch 3: E-Commerce</span></div>
-  <div class="stat"><span class="number">5</span><span class="label">Batch 4: Commercials</span></div>
-</div>
+  <div class="card-grid cols-6">
+    <div class="stat-card"><div class="number">20</div><div class="label">YouTube Videos Analyzed</div></div>
+    <div class="stat-card"><div class="number">13</div><div class="label">SELL Video Types Mapped</div></div>
+    <div class="stat-card"><div class="number">25+</div><div class="label">AI Tools Discovered</div></div>
+    <div class="stat-card"><div class="number">4</div><div class="label">Essential Inputs Needed</div></div>
+    <div class="stat-card"><div class="number">5-8</div><div class="label">Tools Per Ad (Current)</div></div>
+    <div class="stat-card"><div class="number">$67K</div><div class="label">Top Creator Revenue (1 Video)</div></div>
+  </div>
 
-<!-- ===== BATCH 1 ===== -->
-<h2 id="batch1">🎯 Batch 1: UGC Ad Workflows</h2>
-
-<p>5 videos analyzing how creators build AI UGC ads from scratch — the most common SELL video format today.</p>
-
-<div class="card">
-  <h4 style="margin-top:0">Videos Analyzed</h4>
-  <table>
-    <tr><th>Video</th><th>Creator</th><th>Key Tool</th><th>Key Insight</th></tr>
-    <tr><td>Complete 2025 Framework</td><td>Kelly (Motion)</td><td>Multiple</td><td>AI = creative intern, not director. Hybrid human+AI best.</td></tr>
-    <tr><td>Viral UGC 100% AI</td><td>E-com educator</td><td>Arcads + Claude</td><td>Speech-to-speech is the killer feature for realism</td></tr>
-    <tr><td>Viral AI UGC 2026</td><td>ElevenLabs</td><td>ElevenLabs ecosystem</td><td>Product grid reference technique for placement</td></tr>
-    <tr><td>Viral AI UGC with Sora 2</td><td>Christian</td><td>Arcads + Sora 2</td><td>Reverse-engineer proven TikTok ads, don't create from scratch</td></tr>
-    <tr><td>3.6x ROAS Tutorial</td><td>Alfie</td><td>Spiel + Custom GPTs</td><td>A-roll + B-roll separation, shot list approach</td></tr>
-  </table>
-</div>
-
-<h3>Universal UGC Workflow</h3>
-<div class="pipeline">
-  <div class="pipeline-step">
-    <span class="step-num">1</span>
-    <span class="step-title">Research</span>
-    <span class="step-detail">Find proven ads on TikTok/Meta Ad Libraries</span>
-  </div>
-  <div class="pipeline-step">
-    <span class="step-num">2</span>
-    <span class="step-title">Script</span>
-    <span class="step-detail">Extract/adapt winning scripts via Claude/GPT</span>
-  </div>
-  <div class="pipeline-step">
-    <span class="step-num">3</span>
-    <span class="step-title">Actor/Image</span>
-    <span class="step-detail">Generate AI actors, place product in hands</span>
-  </div>
-  <div class="pipeline-step">
-    <span class="step-num">4</span>
-    <span class="step-title">Video</span>
-    <span class="step-detail">Animate with Sora/Veo/Kling + speech</span>
-  </div>
-  <div class="pipeline-step">
-    <span class="step-num">5</span>
-    <span class="step-title">Audio</span>
-    <span class="step-detail">Voice + music via ElevenLabs/Suno</span>
-  </div>
-  <div class="pipeline-step">
-    <span class="step-num">6</span>
-    <span class="step-title">Edit</span>
-    <span class="step-detail">A-roll + B-roll + captions in CapCut</span>
-  </div>
-  <div class="pipeline-step">
-    <span class="step-num">7</span>
-    <span class="step-title">Test</span>
-    <span class="step-detail">Script × Actor matrix, find winners, scale</span>
+  <div class="card-grid">
+    <div class="card themed-green">
+      <div class="card-icon">⚡</div>
+      <h3>URL → Video Is the Standard</h3>
+      <p>Best tools today: paste a product URL, get a complete ad. Creatify generates 16 drafts per run. That's the bar Craftit must match.</p>
+    </div>
+    <div class="card themed-yellow">
+      <div class="card-icon">📝</div>
+      <h3>Script Quality Is the Bottleneck</h3>
+      <p>Every creator says: bad script = bad ad regardless of video quality. Custom GPTs trained on winning ads produce the best scripts.</p>
+    </div>
+    <div class="card themed-purple">
+      <div class="card-icon">🔁</div>
+      <h3>Volume Beats Perfection</h3>
+      <p>Winners test 10-50 variations per product. Success often comes on the 7th-8th script. Batch generation is a must-have feature.</p>
+    </div>
+    <div class="card themed-blue">
+      <div class="card-icon">🧩</div>
+      <h3>No One Owns the Full Pipeline</h3>
+      <p>Creators use 5-8 tools per ad. No single platform handles research → script → actors → video → voice → edit → test. Massive opportunity.</p>
+    </div>
   </div>
 </div>
 
-<div class="highlight-green">
-  <strong>🔑 Key Finding:</strong> The Hook → Problem → Solution → CTA formula is universal across ALL high-performing UGC ads. Every tool and tutorial follows this exact structure.
-</div>
+<!-- 13 VIDEO TYPES -->
+<div class="section" id="video-types">
+  <div class="section-label">🎬 Category</div>
+  <div class="section-title">The 13 SELL Video Types</div>
+  <div class="section-desc">Each type has a specific structure, audience psychology, and use case. AI must handle all 13.</div>
 
-<!-- ===== BATCH 2 ===== -->
-<h2 id="batch2">🛍️ Batch 2: Product Ad Tutorials (Creatify Deep-Dive)</h2>
-
-<p>5 Creatify tutorials revealing the gold standard for URL-to-video product ad generation.</p>
-
-<div class="card">
-  <h4 style="margin-top:0">Creatify's Approach (Market Leader)</h4>
-  <table>
-    <tr><th>Feature</th><th>What It Does</th><th>Craftit Takeaway</th></tr>
-    <tr><td>URL-to-Video</td><td>Paste any product URL → complete ad in minutes</td><td>Must-have baseline feature</td></tr>
-    <tr><td>Batch Mode</td><td>Up to 50 variations (scripts × visual styles)</td><td>Volume testing is essential</td></tr>
-    <tr><td>IVA Framework</td><td>Image → Video → Ad — clear 3-step pipeline</td><td>Great mental model for users</td></tr>
-    <tr><td>Avatar + Product</td><td>AI person actually holding/using the product</td><td>Breakthrough interaction feature</td></tr>
-    <tr><td>16 Script Types</td><td>Emotional, Gen Z, storytime, motivational, etc.</td><td>Structured frameworks > open-ended</td></tr>
-    <tr><td>VO3/Veo 3</td><td>Google's video model for cinematic quality</td><td>Multi-model strategy needed</td></tr>
-    <tr><td>Creative Testing</td><td>Full A/B pipeline: generate → launch → analyze</td><td>Premium differentiator</td></tr>
-    <tr><td>Competitor Tracker</td><td>See what ads competitors are running</td><td>Research integration valuable</td></tr>
-  </table>
-</div>
-
-<div class="highlight">
-  <strong>💡 Creatify generates 16 video drafts per run.</strong> Their bet: volume + testing > perfection. Users preview 16 options, pick the best, render only those. Craftit should match or exceed this approach.
-</div>
-
-<!-- ===== BATCH 3 ===== -->
-<h2 id="batch3">🏪 Batch 3: E-Commerce Platform Ads</h2>
-
-<p>5 videos covering TikTok Shop, Shopify dropshipping, and Amazon listing videos — the money-making side.</p>
-
-<div class="card-grid">
-  <div class="mini-card">
-    <h4 style="color: var(--pink)">TikTok Shop Organic</h4>
-    <p><strong>Length:</strong> 15s – 3 min</p>
-    <p><strong>Key:</strong> Trending sounds (add in TikTok), CTA arrow to shop link, post same video 20x</p>
-    <p><strong>Surprise:</strong> 3-min videos with delayed product mention (1:15+) can outperform short ones</p>
-  </div>
-  <div class="mini-card">
-    <h4 style="color: var(--orange)">TikTok Shop Affiliate</h4>
-    <p><strong>Length:</strong> 15s optimal</p>
-    <p><strong>Key:</strong> Problem→solution, product-focused (no talking head), remove brand names for reuse</p>
-    <p><strong>Commission:</strong> 30-35% (up to 60%)</p>
-  </div>
-  <div class="mini-card">
-    <h4 style="color: var(--green)">Shopify/Dropshipping</h4>
-    <p><strong>Length:</strong> 30-45s</p>
-    <p><strong>Key:</strong> 3 different avatars per video, strong hook, website checkout preview in CTA</p>
-    <p><strong>Result:</strong> $1k/day proven</p>
-  </div>
-  <div class="mini-card">
-    <h4 style="color: var(--accent)">Amazon Listing</h4>
-    <p><strong>Length:</strong> 15-30s</p>
-    <p><strong>Key:</strong> Amazon scraping for assets, features/usage/value quickly, optimized for product page</p>
-    <p><strong>Input:</strong> Just Amazon URL</p>
-  </div>
-</div>
-
-<div class="card">
-  <h4 style="margin-top:0; color: var(--yellow)">💰 Proof Points from Creators</h4>
-  <ul>
-    <li><strong>$67,420 from one AI TikTok Shop video</strong> — 3-min educational format with delayed product plug</li>
-    <li><strong>$1k/day dropshipping ads</strong> — using Arcads + CapCut Commerce Pro (free tools)</li>
-    <li><strong>2.12 ROAS on $400/day spend</strong> — purely AI-generated visuals, 20% margin</li>
-    <li><strong>3 product tests in under 1 hour</strong> — Kling 3.0 for ultra-realistic B-roll</li>
-  </ul>
-</div>
-
-<!-- ===== BATCH 4 ===== -->
-<h2 id="batch4">🎥 Batch 4: Studio-Quality Commercials</h2>
-
-<p>5 videos on creating professional-grade AI commercials and the most advanced production techniques.</p>
-
-<div class="card">
-  <h4 style="margin-top:0">What Separates Good from Great AI Ads</h4>
-  <table>
-    <tr><th>Good (Baseline)</th><th>Great (What Converts)</th></tr>
-    <tr><td>AI talking head reads a script</td><td>B-roll layered over talking head — lifestyle shots, product close-ups, action scenes</td></tr>
-    <tr><td>Generic prompts</td><td>Hyper-specific: exact hand movements, camera angles, lighting, ambient sound</td></tr>
-    <tr><td>Single angle</td><td>Multi-angle reference sheets, style-locked color grading</td></tr>
-    <tr><td>One version published</td><td>10-20 variations generated, tested, winners scaled</td></tr>
-    <tr><td>Polished brand feel</td><td>Platform-native UGC feel — lower stability, casual tone, handheld camera</td></tr>
-  </table>
-</div>
-
-<h3>Advanced Techniques Discovered</h3>
-<div class="card-grid">
-  <div class="mini-card">
-    <h4>4-Panel Generation</h4>
-    <p>Generate 4 shots in one image for consistent color grading/style, then separate. Style-locks the entire project.</p>
-    <span class="tag tag-purple">Nano Banana Pro</span>
-  </div>
-  <div class="mini-card">
-    <h4>Snapshot-to-Actor Pipeline</h4>
-    <p>Generate product demo video → snapshot a frame → train as custom Arcads actor → same face for talking head.</p>
-    <span class="tag tag-blue">Kling 3.0</span> <span class="tag tag-green">Arcads</span>
-  </div>
-  <div class="mini-card">
-    <h4>Start+End Frame Technique</h4>
-    <p>Create start and end frame images → Kling generates the motion between them. Maximum control over output.</p>
-    <span class="tag tag-blue">Kling 3.0</span>
-  </div>
-  <div class="mini-card">
-    <h4>Voice Consistency Fix</h4>
-    <p>Generate video clips → export audio → ElevenLabs voice changer to unify → re-sync. Fixes Veo's inconsistent voices.</p>
-    <span class="tag tag-orange">ElevenLabs</span>
+  <div class="card-grid cols-3">
+    <div class="vtype" style="border-left-color: var(--red);">
+      <h3>1. UGC (Sales-Focused)</h3>
+      <p>Creator-style authentic video. Feels like a real person recommending, not a brand ad.</p>
+      <div class="structure">Hook → Personal story → Demo → Soft CTA</div>
+      <span class="tag red">20-30s</span> <span class="tag accent">Most Common</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--purple);">
+      <h3>2. Product Promo</h3>
+      <p>Polished promotional video with stunning visuals, key benefits, and selling points.</p>
+      <div class="structure">Cinematic hook → Features → Benefits → CTA</div>
+      <span class="tag purple">15-30s</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--orange);">
+      <h3>3. Advertisement</h3>
+      <p>Direct, high-impact marketing with attention-grabbing hooks and strong messaging.</p>
+      <div class="structure">Pattern interrupt → Problem → Solution → CTA</div>
+      <span class="tag orange">15-30s</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--yellow);">
+      <h3>4. Product Launch</h3>
+      <p>High-energy new product introduction — excitement, exclusivity, early access.</p>
+      <div class="structure">Teaser → Reveal → Features → Limited CTA</div>
+      <span class="tag yellow">30-60s</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--green);">
+      <h3>5. Problem–Solution</h3>
+      <p>Relatable problem → product as answer → strong CTA. Most persuasive format.</p>
+      <div class="structure">Pain → Agitate → Solve → Proof → CTA</div>
+      <span class="tag green">20-45s</span> <span class="tag accent">High Convert</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--blue);">
+      <h3>6. Feature Breakdown</h3>
+      <p>Structured walkthrough of key features and how each solves a specific need.</p>
+      <div class="structure">Overview → Feature 1 → 2 → 3 → CTA</div>
+      <span class="tag blue">30-60s</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--red);">
+      <h3>7. Offer / Discount</h3>
+      <p>Promotion-centered video designed to trigger urgency and action.</p>
+      <div class="structure">Attention → Offer → Value stack → Deadline CTA</div>
+      <span class="tag red">15-20s</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--orange);">
+      <h3>8. Limited Time Campaign</h3>
+      <p>High-urgency video emphasizing scarcity and countdowns.</p>
+      <div class="structure">Urgency hook → Ending → Act now → Countdown</div>
+      <span class="tag orange">15-20s</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--cyan);">
+      <h3>9. Retargeting Ad</h3>
+      <p>Reminder for people who already showed interest. Reinforces value.</p>
+      <div class="structure">Recognition → Reminder → New angle → Return CTA</div>
+      <span class="tag cyan">15-20s</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--green);">
+      <h3>10. Shopify Product Video</h3>
+      <p>E-commerce optimized for product pages — benefits clearly, concisely.</p>
+      <div class="structure">Product hero → Benefits → Proof → Buy CTA</div>
+      <span class="tag green">15-30s</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--yellow);">
+      <h3>11. Amazon Listing Video</h3>
+      <p>Marketplace-optimized to improve listing conversions. Quick value communication.</p>
+      <div class="structure">In-use → Features → Comparison → Purchase CTA</div>
+      <span class="tag yellow">15-30s</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--pink);">
+      <h3>12. TikTok Shop Video</h3>
+      <p>Short, vertical, fast-paced. Tailored for in-app shopping and impulse buying.</p>
+      <div class="structure">Scroll-stop → Quick demo → Proof → Shop now</div>
+      <span class="tag pink">15s or 60s+</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--purple);">
+      <h3>13. Comparison / Versus</h3>
+      <p>Side-by-side comparison positioning your product as the better choice.</p>
+      <div class="structure">Challenge → Side-by-side → Winner → CTA</div>
+      <span class="tag purple">30-45s</span>
+    </div>
   </div>
 </div>
 
-<!-- ===== TOOLS MAP ===== -->
-<h2 id="tools-map">🧰 AI Tools Ecosystem Map</h2>
+<!-- BATCH 1: UGC -->
+<div class="section" id="batch1">
+  <div class="section-label">🎯 YouTube Analysis — Batch 1</div>
+  <div class="section-title">UGC Ad Workflows</div>
+  <div class="section-desc">5 videos analyzing how creators build AI UGC ads from scratch — the most common SELL video format today.</div>
 
-<div class="card">
-<table>
-  <tr><th>Category</th><th>Top Tools</th><th>Notes</th></tr>
-  <tr>
-    <td><strong>Ad Research</strong></td>
-    <td><span class="tag tag-blue">Meta Ads Library</span> <span class="tag tag-blue">TikTok Top Ads</span> <span class="tag tag-purple">Mana</span> <span class="tag tag-purple">Social One</span></td>
-    <td>Free libraries + paid intelligence tools</td>
-  </tr>
-  <tr>
-    <td><strong>Script Writing</strong></td>
-    <td><span class="tag tag-green">Claude</span> <span class="tag tag-green">ChatGPT</span> <span class="tag tag-green">Custom GPTs</span></td>
-    <td>Claude preferred for scripts; custom GPTs for templates</td>
-  </tr>
-  <tr>
-    <td><strong>Image Generation</strong></td>
-    <td><span class="tag tag-orange">Nano Banana Pro</span> <span class="tag tag-orange">Krea AI</span> <span class="tag tag-orange">CLAID</span></td>
-    <td>Nano Banana is consensus #1 for product/character images</td>
-  </tr>
-  <tr>
-    <td><strong>Video Generation</strong></td>
-    <td><span class="tag tag-pink">Kling 2.5-3.0</span> <span class="tag tag-pink">Google Veo 3.1</span> <span class="tag tag-pink">Sora 2</span></td>
-    <td>Kling = quality per clip; Veo = volume (free unlimited)</td>
-  </tr>
-  <tr>
-    <td><strong>AI UGC Actors</strong></td>
-    <td><span class="tag tag-cyan">Arcads</span> <span class="tag tag-cyan">Spiel</span> <span class="tag tag-cyan">HeyGen</span></td>
-    <td>Arcads = market leader; Spiel = actor consistency</td>
-  </tr>
-  <tr>
-    <td><strong>Voice & Audio</strong></td>
-    <td><span class="tag tag-red">ElevenLabs</span> <span class="tag tag-red">Suno</span></td>
-    <td>ElevenLabs dominates voice; Suno for music</td>
-  </tr>
-  <tr>
-    <td><strong>All-in-One Platforms</strong></td>
-    <td><span class="tag tag-green">Creatify</span> <span class="tag tag-green">TopView</span> <span class="tag tag-green">AI Media Machine</span></td>
-    <td>Creatify = most complete; TopView = viral cloning</td>
-  </tr>
-  <tr>
-    <td><strong>Editing</strong></td>
-    <td><span class="tag tag-blue">CapCut</span> <span class="tag tag-blue">Descript</span></td>
-    <td>CapCut is universal choice across all creators</td>
-  </tr>
-</table>
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead>
+        <tr><th>Video</th><th>Creator</th><th>Key Tool</th><th>Key Insight</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Complete 2025 Framework</td><td>Kelly (Motion)</td><td>Multiple</td><td>AI = creative intern, not director. Hybrid human+AI best</td></tr>
+        <tr><td>Viral UGC 100% AI</td><td>E-com educator</td><td>Arcads + Claude</td><td>Speech-to-speech is THE killer feature for realism</td></tr>
+        <tr><td>Viral AI UGC 2026</td><td>ElevenLabs</td><td>ElevenLabs</td><td>Product grid reference technique for placement</td></tr>
+        <tr><td>Viral AI UGC with Sora 2</td><td>Christian</td><td>Arcads + Sora 2</td><td>Reverse-engineer proven TikTok ads, never start from scratch</td></tr>
+        <tr><td>3.6x ROAS Tutorial</td><td>Alfie</td><td>Spiel + GPTs</td><td>A-roll + B-roll separation with shot list approach</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Universal UGC Workflow</h3>
+  <div class="pipeline">
+    <div class="pipeline-step"><span class="step-num">1</span><span class="step-title">Research</span><span class="step-detail">Find proven ads on TikTok / Meta Ad Libraries</span></div>
+    <div class="pipeline-step"><span class="step-num">2</span><span class="step-title">Script</span><span class="step-detail">Extract & adapt winning scripts via Claude / GPT</span></div>
+    <div class="pipeline-step"><span class="step-num">3</span><span class="step-title">Actor</span><span class="step-detail">Generate AI actors, place product in hands</span></div>
+    <div class="pipeline-step"><span class="step-num">4</span><span class="step-title">Video</span><span class="step-detail">Animate with Sora / Veo / Kling + speech</span></div>
+    <div class="pipeline-step"><span class="step-num">5</span><span class="step-title">Audio</span><span class="step-detail">Voice + music via ElevenLabs / Suno</span></div>
+    <div class="pipeline-step"><span class="step-num">6</span><span class="step-title">Edit</span><span class="step-detail">A-roll + B-roll + captions in CapCut</span></div>
+    <div class="pipeline-step"><span class="step-num">7</span><span class="step-title">Test</span><span class="step-detail">Script × Actor matrix, find winners, scale</span></div>
+  </div>
+
+  <div class="quote-block">
+    <p><strong>"Hook → Problem → Solution → CTA"</strong> — this formula is universal across ALL high-performing UGC ads. Every tool and tutorial follows this exact structure.</p>
+  </div>
 </div>
 
-<!-- ===== REQUIRED INPUTS ===== -->
-<h2 id="inputs">📥 Required User Inputs — What Craftit Needs to Collect</h2>
+<!-- BATCH 2: CREATIFY -->
+<div class="section" id="batch2">
+  <div class="section-label">🛍️ YouTube Analysis — Batch 2</div>
+  <div class="section-title">Product Ad Tutorials (Creatify Deep-Dive)</div>
+  <div class="section-desc">5 Creatify tutorials revealing the gold standard for URL-to-video product ad generation.</div>
 
-<div class="highlight-green">
-  <strong>The golden rule across all 20 videos:</strong> The fewer inputs required, the higher adoption. The best tools need just a <strong>product URL</strong> to get started.
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Feature</th><th>What It Does</th><th>Craftit Takeaway</th></tr></thead>
+      <tbody>
+        <tr><td><strong>URL-to-Video</strong></td><td>Paste any product URL → complete ad in minutes</td><td>Must-have baseline feature</td></tr>
+        <tr><td><strong>Batch Mode</strong></td><td>Up to 50 variations (scripts × visual styles)</td><td>Volume testing is essential</td></tr>
+        <tr><td><strong>IVA Framework</strong></td><td>Image → Video → Ad — clear 3-step pipeline</td><td>Great mental model for users</td></tr>
+        <tr><td><strong>Avatar + Product</strong></td><td>AI person actually holding/using the product</td><td>Breakthrough interaction feature</td></tr>
+        <tr><td><strong>16 Script Types</strong></td><td>Emotional, Gen Z, storytime, motivational, etc.</td><td>Structured frameworks > open-ended</td></tr>
+        <tr><td><strong>VO3 / Veo 3</strong></td><td>Google's video model for cinematic quality</td><td>Multi-model strategy needed</td></tr>
+        <tr><td><strong>Creative Testing</strong></td><td>Full A/B pipeline: generate → launch → analyze</td><td>Premium differentiator</td></tr>
+        <tr><td><strong>Competitor Tracker</strong></td><td>See what ads competitors are running</td><td>Research integration valuable</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="quote-block">
+    <p><strong>Creatify generates 16 video drafts per run.</strong> Their bet: volume + testing > perfection. Users preview 16 options, pick the best, render only those. Craftit should match or exceed this.</p>
+  </div>
 </div>
 
-<div class="card">
-<h3 style="margin-top:0">Input Tiers</h3>
-<table>
-  <tr><th>Tier</th><th>Input</th><th>Required?</th><th>How It's Used</th></tr>
-  <tr>
-    <td rowspan="2"><strong>Tier 1<br><span class="tag tag-green">Essential</span></strong></td>
-    <td>Product URL <em>or</em> Product Image + Name</td>
-    <td>✅ Required</td>
-    <td>Auto-extract product info, images, description, price</td>
-  </tr>
-  <tr>
-    <td>Video Type Selection</td>
-    <td>✅ Required</td>
-    <td>Determines structure, tone, pacing, CTA style</td>
-  </tr>
-  <tr>
-    <td rowspan="3"><strong>Tier 2<br><span class="tag tag-blue">Recommended</span></strong></td>
-    <td>Target Audience Description</td>
-    <td>⭐ Recommended</td>
-    <td>Script tone, pain points, language, actor selection</td>
-  </tr>
-  <tr>
-    <td>Key Selling Points / Differentiators</td>
-    <td>⭐ Recommended</td>
-    <td>Script content, feature selection, angle choice</td>
-  </tr>
-  <tr>
-    <td>Promotional Details (discount, offer, deadline)</td>
-    <td>⭐ For offer types</td>
-    <td>Offer/discount/campaign video types specifically</td>
-  </tr>
-  <tr>
-    <td rowspan="4"><strong>Tier 3<br><span class="tag tag-purple">Optional</span></strong></td>
-    <td>Brand Assets (logo, colors, fonts)</td>
-    <td>Optional</td>
-    <td>Brand consistency in captions, end screens, overlays</td>
-  </tr>
-  <tr>
-    <td>Reference/Inspiration Video URL</td>
-    <td>Optional</td>
-    <td>Clone winning format/style/pacing</td>
-  </tr>
-  <tr>
-    <td>Custom Script</td>
-    <td>Optional</td>
-    <td>Override AI-generated script</td>
-  </tr>
-  <tr>
-    <td>Voice Recording (speech-to-speech)</td>
-    <td>Optional</td>
-    <td>Clone tonality for maximum realism</td>
-  </tr>
-</table>
+<!-- BATCH 3: E-COMMERCE -->
+<div class="section" id="batch3">
+  <div class="section-label">🏪 YouTube Analysis — Batch 3</div>
+  <div class="section-title">E-Commerce Platform Ads</div>
+  <div class="section-desc">5 videos covering TikTok Shop, Shopify dropshipping, and Amazon listing videos.</div>
+
+  <div class="card-grid cols-4">
+    <div class="card themed-pink">
+      <div class="card-icon">📱</div>
+      <h3>TikTok Shop Organic</h3>
+      <p><strong>15s – 3 min</strong><br>Trending sounds (add in TikTok), CTA arrow to shop link, post same video 20x.<br><br><em>Surprise:</em> 3-min videos with delayed product mention (1:15+) can outperform short ones.</p>
+    </div>
+    <div class="card themed-orange">
+      <div class="card-icon">🤝</div>
+      <h3>TikTok Shop Affiliate</h3>
+      <p><strong>15s optimal</strong><br>Problem→solution, product-focused (no talking head), remove brand names for reuse.<br><br><em>Commission:</em> 30-35% (up to 60%)</p>
+    </div>
+    <div class="card themed-green">
+      <div class="card-icon">🛒</div>
+      <h3>Shopify / Dropshipping</h3>
+      <p><strong>30-45s</strong><br>3 different avatars per video, strong hook, website checkout preview in CTA.<br><br><em>Proven result:</em> $1k/day</p>
+    </div>
+    <div class="card themed-blue">
+      <div class="card-icon">📦</div>
+      <h3>Amazon Listing</h3>
+      <p><strong>15-30s</strong><br>Amazon auto-scrapes for assets, features/usage/value quickly, optimized for product page.<br><br><em>Input:</em> Just Amazon URL</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="card themed-yellow">
+    <div class="card-icon">💰</div>
+    <h3>Proof Points from Creators</h3>
+    <p>
+      <strong>$67,420</strong> from one AI TikTok Shop video — 3-min educational format with delayed product plug<br>
+      <strong>$1k/day</strong> dropshipping ads — using Arcads + CapCut Commerce Pro (free tools)<br>
+      <strong>2.12 ROAS</strong> on $400/day spend — purely AI-generated visuals, 20% margin<br>
+      <strong>3 product tests in under 1 hour</strong> — Kling 3.0 for ultra-realistic B-roll
+    </p>
+  </div>
 </div>
 
-<blockquote>
-  "The most successful tools need just a product URL. Everything else should be auto-generated with smart defaults, but customizable for power users." — Synthesis across 20 videos
-</blockquote>
+<!-- BATCH 4: COMMERCIALS -->
+<div class="section" id="batch4">
+  <div class="section-label">🎥 YouTube Analysis — Batch 4</div>
+  <div class="section-title">Studio-Quality Commercials</div>
+  <div class="section-desc">5 videos on professional-grade AI commercials and the most advanced production techniques.</div>
 
-<!-- ===== VIDEO STRUCTURE ===== -->
-<h2 id="structure">🏗️ Universal Video Ad Structure</h2>
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Good (Baseline)</th><th>Great (What Converts)</th></tr></thead>
+      <tbody>
+        <tr><td>AI talking head reads a script</td><td>B-roll layered — lifestyle shots, product close-ups, action scenes</td></tr>
+        <tr><td>Generic prompts</td><td>Hyper-specific: hand movements, camera angles, lighting, ambient sound</td></tr>
+        <tr><td>Single angle, static character</td><td>Multi-angle reference sheets, style-locked color grading</td></tr>
+        <tr><td>One version published</td><td>10-20 variations generated, tested, winners scaled</td></tr>
+        <tr><td>Polished brand feel</td><td>Platform-native UGC feel — lower stability, casual tone, handheld camera</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="card">
-  <h3 style="margin-top:0">The Hook → Body → CTA Framework</h3>
-  <p>This is THE proven framework. Every tool, every tutorial, every winning ad follows it.</p>
+  <div class="divider"></div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Advanced Techniques</h3>
+  <div class="card-grid cols-4">
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <h3>4-Panel Generation</h3>
+      <p>Generate 4 shots in one image for consistent color grading/style, then separate. Style-locks the entire project.</p>
+      <span class="tag purple">Nano Banana Pro</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">📸</div>
+      <h3>Snapshot-to-Actor</h3>
+      <p>Generate product demo video → snapshot frame → train as Arcads custom actor → same face for talking head.</p>
+      <span class="tag blue">Kling 3.0</span> <span class="tag green">Arcads</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🖼️</div>
+      <h3>Start+End Frame</h3>
+      <p>Create start and end frame images → Kling generates motion between. Maximum control over output.</p>
+      <span class="tag blue">Kling 3.0</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎙️</div>
+      <h3>Voice Consistency Fix</h3>
+      <p>Generate clips → export audio → ElevenLabs voice changer to unify → re-sync. Fixes Veo's inconsistent voices.</p>
+      <span class="tag orange">ElevenLabs</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS MAP -->
+<div class="section" id="tools-map">
+  <div class="section-label">🧰 Synthesis</div>
+  <div class="section-title">AI Tools Ecosystem Map</div>
+  <div class="section-desc">The complete landscape of tools creators use to make SELL videos today.</div>
+
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Category</th><th>Top Tools</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ad Research</strong></td><td>Meta Ads Library · TikTok Top Ads · Mana · Social One</td><td>Free libraries + paid intelligence tools</td></tr>
+        <tr><td><strong>Script Writing</strong></td><td>Claude · ChatGPT · Custom GPTs</td><td>Claude preferred for scripts; GPTs for templates</td></tr>
+        <tr><td><strong>Image Generation</strong></td><td>Nano Banana Pro · Krea AI · CLAID</td><td>Nano Banana = consensus #1 for product/character</td></tr>
+        <tr><td><strong>Video Generation</strong></td><td>Kling 2.5-3.0 · Google Veo 3.1 · Sora 2</td><td>Kling = quality; Veo = volume (free unlimited)</td></tr>
+        <tr><td><strong>AI UGC Actors</strong></td><td>Arcads · Spiel · HeyGen</td><td>Arcads = market leader; Spiel = consistency</td></tr>
+        <tr><td><strong>Voice & Audio</strong></td><td>ElevenLabs · Suno</td><td>ElevenLabs dominates voice; Suno for music</td></tr>
+        <tr><td><strong>All-in-One</strong></td><td>Creatify · TopView · AI Media Machine</td><td>Creatify = most complete; TopView = viral cloning</td></tr>
+        <tr><td><strong>Editing</strong></td><td>CapCut · Descript</td><td>CapCut is universal choice across all creators</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- REQUIRED INPUTS -->
+<div class="section" id="inputs">
+  <div class="section-label">📥 Synthesis</div>
+  <div class="section-title">Required User Inputs</div>
+  <div class="section-desc">What Craftit needs to collect from users to generate world-class SELL videos.</div>
+
+  <div class="quote-block">
+    <p><strong>The golden rule across all 20 videos:</strong> The fewer inputs required, the higher adoption. The best tools need just a product URL to get started.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Tier</th><th>Input</th><th>Required?</th><th>How It's Used</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="2"><strong>Tier 1 — Essential</strong></td><td>Product URL <em>or</em> Image + Name</td><td>✅ Required</td><td>Auto-extract product info, images, description, price</td></tr>
+        <tr><td>Video Type Selection</td><td>✅ Required</td><td>Determines structure, tone, pacing, CTA style</td></tr>
+        <tr><td rowspan="3"><strong>Tier 2 — Recommended</strong></td><td>Target Audience Description</td><td>⭐ Recommended</td><td>Script tone, pain points, language, actor selection</td></tr>
+        <tr><td>Key Selling Points / Differentiators</td><td>⭐ Recommended</td><td>Script content, feature selection, angle choice</td></tr>
+        <tr><td>Promotional Details</td><td>⭐ For offer types</td><td>Discount/offer/deadline for campaign video types</td></tr>
+        <tr><td rowspan="4"><strong>Tier 3 — Optional</strong></td><td>Brand Assets (logo, colors, fonts)</td><td>Optional</td><td>Brand consistency in captions, end screens, overlays</td></tr>
+        <tr><td>Reference / Inspiration Video URL</td><td>Optional</td><td>Clone winning format/style/pacing</td></tr>
+        <tr><td>Custom Script</td><td>Optional</td><td>Override AI-generated script</td></tr>
+        <tr><td>Voice Recording (speech-to-speech)</td><td>Optional</td><td>Clone tonality for maximum realism</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- VIDEO STRUCTURE -->
+<div class="section" id="structure">
+  <div class="section-label">🏗️ Synthesis</div>
+  <div class="section-title">Universal Video Ad Structure</div>
+  <div class="section-desc">THE proven framework. Every tool, every tutorial, every winning ad follows it.</div>
 
   <div class="pipeline">
-    <div class="pipeline-step" style="border-left: 3px solid var(--red);">
-      <span class="step-num" style="background: var(--red);">H</span>
-      <span class="step-title">Hook (1-3s)</span>
-      <span class="step-detail">Stop the scroll. Pattern interrupt, bold claim, relatable pain.</span>
-    </div>
-    <div class="pipeline-step" style="border-left: 3px solid var(--accent);">
-      <span class="step-num">B</span>
-      <span class="step-title">Body (10-40s)</span>
-      <span class="step-detail">Deliver value. Problem → Solution → Proof. Show product in action.</span>
-    </div>
-    <div class="pipeline-step" style="border-left: 3px solid var(--green);">
-      <span class="step-num" style="background: var(--green);">C</span>
-      <span class="step-title">CTA (3-5s)</span>
-      <span class="step-detail">Drive action. Clear, urgent, specific next step.</span>
-    </div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--red);"><span class="step-num" style="background: var(--red);">H</span><span class="step-title">Hook (1-3s)</span><span class="step-detail">Stop the scroll. Pattern interrupt, bold claim, relatable pain.</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--orange);"><span class="step-num" style="background: var(--orange);">P</span><span class="step-title">Problem (3-5s)</span><span class="step-detail">Relatable pain point. Build emotional connection.</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--accent);"><span class="step-num">S</span><span class="step-title">Solution (10-15s)</span><span class="step-detail">Introduce product, show in action. Make it feel effortless.</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--purple);"><span class="step-num" style="background: var(--purple);">R</span><span class="step-title">Proof (5-10s)</span><span class="step-detail">Social proof, before/after, stats, testimonials.</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">C</span><span class="step-title">CTA (3-5s)</span><span class="step-detail">Tell them exactly what to do. Clear, urgent, specific.</span></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Hook Formulas That Convert</h3>
+  <div class="card-grid cols-4">
+    <div class="card"><div class="card-icon">⚡</div><h3>Pattern Interrupt</h3><p>"Stop doing [X] if you want [Y]"<br>"Everyone thinks [misconception], but..."</p></div>
+    <div class="card"><div class="card-icon">🧐</div><h3>Curiosity</h3><p>"The secret that [authority] doesn't want you to know"<br>"This changes everything about [topic]"</p></div>
+    <div class="card"><div class="card-icon">😤</div><h3>Problem-First</h3><p>"If you're struggling with [pain point]..."<br>"Finally, a solution to [problem]"</p></div>
+    <div class="card"><div class="card-icon">👥</div><h3>Social Proof</h3><p>"This [age] discovered [result]"<br>"Why 50,000 people switched to..."</p></div>
   </div>
 </div>
 
-<h3>Expanded 5-Part Structure (Highest Converting)</h3>
-<div class="card">
-  <table>
-    <tr><th>Part</th><th>Duration</th><th>Purpose</th><th>Example</th></tr>
-    <tr><td><span class="tag tag-red">Hook</span></td><td>1-3s</td><td>Grab attention, stop scrolling</td><td>"Stop doing X if you want Y"</td></tr>
-    <tr><td><span class="tag tag-orange">Problem</span></td><td>3-5s</td><td>Relatable pain, build connection</td><td>"Tired of X that never works?"</td></tr>
-    <tr><td><span class="tag tag-blue">Solution</span></td><td>10-15s</td><td>Introduce product, show in action</td><td>"This [product] changed everything"</td></tr>
-    <tr><td><span class="tag tag-purple">Proof</span></td><td>5-10s</td><td>Social proof, before/after, stats</td><td>"Over 10,000 5-star reviews"</td></tr>
-    <tr><td><span class="tag tag-green">CTA</span></td><td>3-5s</td><td>Tell them exactly what to do</td><td>"Shop now and save 20%"</td></tr>
-  </table>
+<!-- KEY PATTERNS -->
+<div class="section" id="patterns">
+  <div class="section-label">🔑 Synthesis</div>
+  <div class="section-title">Top 10 Insights Across All 20 Videos</div>
+  <div class="section-desc">The most important patterns that should shape Craftit's SELL video engine.</div>
+
+  <div class="opp-card">
+    <div class="opp-badge critical">CRITICAL</div>
+    <h3>1. Script > Visuals</h3>
+    <p>Multiple creators emphasize: a mediocre-looking ad with a great hook outperforms a beautiful ad with a weak script. Invest in script quality above everything.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge critical">CRITICAL</div>
+    <h3>2. Clone, Don't Create</h3>
+    <p>Every tactical video starts with finding proven winners and adapting them. No one creates from scratch. Best workflow: find → transcribe → adapt → generate.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge critical">CRITICAL</div>
+    <h3>3. Volume + Testing Beats Perfection</h3>
+    <p>Generate 10-50 variations. Test script × actor combinations. Find winners. Scale with more variations of what works.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>4. B-Roll Is Mandatory</h3>
+    <p>Never show just a talking head. Interleave product demos, lifestyle shots, motion graphics. Speed up B-roll ~20% to hide AI artifacts.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>5. Speech-to-Speech Is the Quality Differentiator</h3>
+    <p>Recording your own voice with natural inflection → AI clones that tonality = dramatically more realistic than text-to-speech.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>6. Product Placement Is the Hardest Challenge</h3>
+    <p>Getting products to look natural in AI hands requires workarounds: product grids, lighting-matching prompts, start/end frame control.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>7. Three Avatars > One Avatar</h3>
+    <p>Splitting scripts across 3 different AI actors creates montage-style ads that feel more dynamic and perform better.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>8. Platform-Native Feel Wins</h3>
+    <p>Must look like organic UGC, not polished brand content. "Phone, front camera, selfie" in prompts is critical for authenticity.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>9. Length Depends on Context</h3>
+    <p>15s for e-commerce affiliates, 30s for brand ads, 3min for organic TikTok. Optimal lengths vary dramatically by platform and purpose.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>10. Post Same Video 20x</h3>
+    <p>On TikTok, repetition matters. The algorithm shows different audiences each time. Don't just post once.</p>
+  </div>
+
+  <div class="card themed-red" style="margin-top: 24px;">
+    <div class="card-icon">⚠️</div>
+    <h3>What AI Still Can't Do Well</h3>
+    <p>Genuine emotional connection · Trauma/health sensitivity · Complex hand-product interactions · Consistent character across many scenes · Platform-native trending sounds (must add in-app)</p>
+  </div>
 </div>
 
-<h3>Hook Formulas That Convert</h3>
-<div class="card-grid">
-  <div class="mini-card">
-    <h4>Pattern Interrupt</h4>
-    <p>"Stop doing [X] if you want [Y]"</p>
-    <p>"Everyone thinks [misconception], but..."</p>
-  </div>
-  <div class="mini-card">
-    <h4>Curiosity</h4>
-    <p>"The secret that [authority] doesn't want you to know"</p>
-    <p>"This changes everything about [topic]"</p>
-  </div>
-  <div class="mini-card">
-    <h4>Problem-First</h4>
-    <p>"If you're struggling with [pain point]..."</p>
-    <p>"Finally, a solution to [problem]"</p>
-  </div>
-  <div class="mini-card">
-    <h4>Social Proof</h4>
-    <p>"This [age] discovered [result]"</p>
-    <p>"Why 50,000 people switched to..."</p>
-  </div>
-</div>
-
-<!-- ===== KEY PATTERNS ===== -->
-<h2 id="patterns">🔑 Key Patterns & Insights</h2>
-
-<div class="card">
-  <h3 style="margin-top:0">Top 10 Insights Across All 20 Videos</h3>
-  <ol>
-    <li><strong>Script > Visuals.</strong> Multiple creators emphasize: a mediocre-looking ad with a great hook outperforms a beautiful ad with a weak script. Invest in script quality above everything.</li>
-    <li><strong>Clone, don't create.</strong> Every tactical video starts with finding proven winners and adapting them. No one creates from scratch. The best workflow: find → transcribe → adapt → generate.</li>
-    <li><strong>Volume + testing beats perfection.</strong> Generate 10-50 variations. Test script × actor combinations. Find winners. Scale with more variations of what works.</li>
-    <li><strong>B-roll is mandatory.</strong> Never show just a talking head. Interleave product demos, lifestyle shots, and motion graphics. Speed up B-roll ~20% to hide AI artifacts.</li>
-    <li><strong>Speech-to-speech is the quality differentiator.</strong> Recording your own voice with natural inflection and having AI clone that tonality is dramatically more realistic than text-to-speech.</li>
-    <li><strong>Product placement is the hardest technical challenge.</strong> Getting products to look natural in AI hands requires workarounds: product grids, lighting-matching prompts, start/end frame control.</li>
-    <li><strong>3 avatars > 1 avatar.</strong> Splitting scripts across 3 different AI actors creates montage-style ads that feel more dynamic and perform better.</li>
-    <li><strong>Platform-native feel wins.</strong> Must look like organic UGC, not polished brand content. "Phone, front camera, selfie" in prompts is critical for authenticity.</li>
-    <li><strong>15s for e-commerce, 30s for brand, 3min for organic.</strong> Optimal lengths vary dramatically by platform and purpose.</li>
-    <li><strong>Post same video 20x.</strong> On TikTok, repetition matters. The algorithm shows different audiences each time. Don't just post once.</li>
-  </ol>
-</div>
-
-<div class="highlight-orange">
-  <strong>⚠️ What AI Still Can't Do Well:</strong> Genuine emotional connection, trauma/health sensitivity, complex hand-product interactions, consistent character across many scenes, and platform-native trending sounds (must add in-app).
-</div>
-
-<!-- ===== PROPOSED WORKFLOW ===== -->
-<h2 id="workflow">⚡ Proposed Craftit Auto-Generation Workflow</h2>
-
-<div class="card">
-  <h3 style="margin-top:0">The "Minimal Input, Maximum Output" Pipeline</h3>
+<!-- PROPOSED WORKFLOW -->
+<div class="section" id="workflow">
+  <div class="section-label">⚡ Architecture</div>
+  <div class="section-title">Proposed Craftit Auto-Generation Workflow</div>
+  <div class="section-desc">The "Minimal Input, Maximum Output" pipeline — from product URL to ready-to-run ads.</div>
 
   <div class="pipeline">
-    <div class="pipeline-step" style="border-top: 3px solid var(--green);">
-      <span class="step-num" style="background: var(--green);">1</span>
-      <span class="step-title">Input</span>
-      <span class="step-detail">Product URL + Video Type</span>
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">1</span><span class="step-title">Input</span><span class="step-detail">Product URL + Video Type</span></div>
+    <div class="pipeline-step"><span class="step-num">2</span><span class="step-title">Extract</span><span class="step-detail">Auto-scrape product info, images, price</span></div>
+    <div class="pipeline-step"><span class="step-num">3</span><span class="step-title">Script</span><span class="step-detail">AI generates 5+ scripts per type</span></div>
+    <div class="pipeline-step"><span class="step-num">4</span><span class="step-title">Scenes</span><span class="step-detail">Auto shot list + scene generation</span></div>
+    <div class="pipeline-step"><span class="step-num">5</span><span class="step-title">Media</span><span class="step-detail">AI actors, product shots, B-roll</span></div>
+    <div class="pipeline-step"><span class="step-num">6</span><span class="step-title">Audio</span><span class="step-detail">Voice, music, sound effects</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">7</span><span class="step-title">Assemble</span><span class="step-detail">Auto-edit + captions + export</span></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">User Journey — 3 Steps</h3>
+  <div class="card-grid cols-3">
+    <div class="card" style="border-top: 3px solid var(--green);">
+      <div class="card-icon">📎</div>
+      <h3>Step 1: Tell Us About Your Product</h3>
+      <p>Paste product URL <em>or</em> upload images + describe. Craftit auto-extracts: name, description, features, price, images. User confirms/edits.</p>
     </div>
-    <div class="pipeline-step">
-      <span class="step-num">2</span>
-      <span class="step-title">Extract</span>
-      <span class="step-detail">Auto-scrape product info, images, price</span>
+    <div class="card" style="border-top: 3px solid var(--accent);">
+      <div class="card-icon">🎬</div>
+      <h3>Step 2: Choose Your Video Type</h3>
+      <p>Select from 13 SELL video types (with previews). Optional: target audience, tone, promo details, reference video URL.</p>
     </div>
-    <div class="pipeline-step">
-      <span class="step-num">3</span>
-      <span class="step-title">Script</span>
-      <span class="step-detail">AI generates 5+ scripts per type</span>
-    </div>
-    <div class="pipeline-step">
-      <span class="step-num">4</span>
-      <span class="step-title">Scenes</span>
-      <span class="step-detail">Auto shot list + scene generation</span>
-    </div>
-    <div class="pipeline-step">
-      <span class="step-num">5</span>
-      <span class="step-title">Media</span>
-      <span class="step-detail">AI actors, product shots, B-roll</span>
-    </div>
-    <div class="pipeline-step">
-      <span class="step-num">6</span>
-      <span class="step-title">Audio</span>
-      <span class="step-detail">Voice, music, sound effects</span>
-    </div>
-    <div class="pipeline-step">
-      <span class="step-num" style="background: var(--green);">7</span>
-      <span class="step-title">Assemble</span>
-      <span class="step-detail">Auto-edit + captions + export</span>
+    <div class="card" style="border-top: 3px solid var(--purple);">
+      <div class="card-icon">✨</div>
+      <h3>Step 3: Review & Generate</h3>
+      <p>Preview 5+ AI-generated scripts. Craftit generates 10-16 video drafts. Pick favorites, render in HD, export per platform.</p>
     </div>
   </div>
 </div>
 
-<h3>User Journey (3 Steps)</h3>
-<div class="card-grid">
-  <div class="mini-card" style="border-top: 3px solid var(--green);">
-    <h4>Step 1: Tell Us About Your Product</h4>
-    <ul>
-      <li>Paste product URL <em>or</em> upload images + describe</li>
-      <li>Craftit auto-extracts: name, description, features, price, images</li>
-      <li>User confirms/edits extracted info</li>
-    </ul>
-  </div>
-  <div class="mini-card" style="border-top: 3px solid var(--accent);">
-    <h4>Step 2: Choose Your Video Type</h4>
-    <ul>
-      <li>Select from 13 SELL video types (with examples)</li>
-      <li>Optional: target audience, tone, promo details</li>
-      <li>Optional: reference video URL to clone style</li>
-    </ul>
-  </div>
-  <div class="mini-card" style="border-top: 3px solid var(--accent2);">
-    <h4>Step 3: Review & Generate</h4>
-    <ul>
-      <li>Preview 5+ AI-generated scripts (pick or edit)</li>
-      <li>Craftit generates 10-16 video drafts</li>
-      <li>User previews, picks favorites, renders</li>
-    </ul>
-  </div>
-</div>
+<!-- SYSTEM ARCHITECTURE -->
+<div class="section" id="architecture">
+  <div class="section-label">🏛️ Architecture</div>
+  <div class="section-title">System Architecture</div>
+  <div class="section-desc">The complete technical pipeline for Craftit's SELL video auto-generation engine.</div>
 
-<!-- ===== ARCHITECTURE ===== -->
-<h2 id="architecture">🏛️ System Architecture</h2>
-
-<div class="arch-box">
-┌─────────────────────────────────────────────────────────────────────┐
+  <div class="arch-box">┌─────────────────────────────────────────────────────────────────────┐
 │                        USER INPUT LAYER                              │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────────┐  │
 │  │ Product URL   │  │ Video Type   │  │ Optional: Audience,      │  │
@@ -967,13 +1153,11 @@
 │  ┌─────────────┐  ┌──────────────┐  ┌──────────────────────────┐  │
 │  │ A-Roll       │  │ B-Roll       │  │ Product Shots             │  │
 │  │ (Talking)    │  │ (Supporting) │  │ (Hero, In-Use, Close-up)  │  │
-│  │              │  │              │  │                            │  │
 │  │ AI Avatars   │  │ Lifestyle    │  │ Product placement in      │  │
 │  │ Lip-synced   │  │ Product demo │  │ environments & hands      │  │
 │  │ UGC-style    │  │ Motion GFX   │  │ Multi-angle generation    │  │
 │  └─────────────┘  └──────────────┘  └──────────────────────────┘  │
-│                                                                      │
-│  Models: Kling 3.x | Veo 3.x | Sora 2 | Nano Banana Pro             │
+│  Models: Kling 3.x │ Veo 3.x │ Sora 2 │ Nano Banana Pro            │
 └──────────────────────────────┬──────────────────────────────────────┘
                                │
                                ▼
@@ -985,205 +1169,141 @@
 │  │ Multi-lang  │  │ Genre-matched   │  │ (unboxing, clicks, etc) │  │
 │  │ Voice clone │  │ Royalty-free    │  │                          │  │
 │  └────────────┘  └─────────────────┘  └────────────────────────┘  │
-│                                                                      │
-│  Models: ElevenLabs | Suno | Custom TTS                              │
+│  Models: ElevenLabs │ Suno │ Custom TTS                              │
 └──────────────────────────────┬──────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │                    AUTO-ASSEMBLY ENGINE                               │
 │  • Arrange A-roll + B-roll per shot list                             │
-│  • Apply dynamic captions/subtitles (styled per platform)            │
-│  • Sync audio tracks (voice + music + SFX)                           │
-│  • Add brand elements (logo, colors, end screen)                     │
-│  • Apply CTA overlays (platform-specific)                            │
+│  • Dynamic captions/subtitles (styled per platform)                  │
+│  • Sync audio (voice + music + SFX)                                  │
+│  • Brand elements (logo, colors, end screen)                         │
+│  • CTA overlays (platform-specific)                                  │
 │  • Speed up B-roll 20% (hide AI artifacts)                           │
-│  • Auto-resize for platform (9:16, 1:1, 16:9)                       │
+│  • Auto-resize (9:16, 1:1, 16:9)                                    │
 │  • Generate 10-16 draft variations                                   │
 └──────────────────────────────┬──────────────────────────────────────┘
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────┐
 │                     OUTPUT & TESTING                                  │
-│  • Preview 10-16 drafts                                              │
-│  • Select favorites → render in HD                                   │
+│  • Preview 10-16 drafts → select favorites → render HD              │
 │  • Export per platform (TikTok, Meta, YouTube, Shopify, Amazon)      │
-│  • Batch variation generation (Script × Actor matrix)                │
-│  • A/B testing integration (optional)                                │
-│  • AI disclosure/labeling built-in                                   │
-└─────────────────────────────────────────────────────────────────────┘
+│  • Batch variation (Script × Actor matrix)                           │
+│  • A/B testing integration                                           │
+│  • AI disclosure / labeling built-in                                 │
+└─────────────────────────────────────────────────────────────────────┘</div>
 </div>
 
-<!-- ===== PER-TYPE REQUIREMENTS ===== -->
-<h2 id="per-type">📋 Per-Type Generation Requirements</h2>
+<!-- PER-TYPE SPECS -->
+<div class="section" id="per-type">
+  <div class="section-label">📋 Architecture</div>
+  <div class="section-title">Per-Type Generation Specifications</div>
+  <div class="section-desc">What each of the 13 SELL video types needs from the generation engine.</div>
 
-<div class="card">
-<table>
-  <tr>
-    <th>Video Type</th>
-    <th>Duration</th>
-    <th>Unique Inputs</th>
-    <th>Structure</th>
-    <th>Key Elements</th>
-  </tr>
-  <tr>
-    <td>UGC (Sales)</td>
-    <td>20-30s</td>
-    <td>—</td>
-    <td>Hook → Story → Demo → CTA</td>
-    <td>Front-camera feel, casual tone, authentic speech</td>
-  </tr>
-  <tr>
-    <td>Product Promo</td>
-    <td>15-30s</td>
-    <td>—</td>
-    <td>Cinematic hook → Features → Benefits → CTA</td>
-    <td>Polished visuals, product hero shots, music-driven</td>
-  </tr>
-  <tr>
-    <td>Advertisement</td>
-    <td>15-30s</td>
-    <td>—</td>
-    <td>Pattern interrupt → Problem → Solution → CTA</td>
-    <td>High energy, bold claims, strong messaging</td>
-  </tr>
-  <tr>
-    <td>Product Launch</td>
-    <td>30-60s</td>
-    <td>Launch date, exclusivity details</td>
-    <td>Teaser → Reveal → Features → Early access CTA</td>
-    <td>Excitement, countdown, exclusivity, FOMO</td>
-  </tr>
-  <tr>
-    <td>Problem–Solution</td>
-    <td>20-45s</td>
-    <td>Pain points to address</td>
-    <td>Pain → Agitate → Solve → Proof → CTA</td>
-    <td>Relatable struggle, before/after, testimonials</td>
-  </tr>
-  <tr>
-    <td>Feature Breakdown</td>
-    <td>30-60s</td>
-    <td>Feature list with benefits</td>
-    <td>Overview → Feature 1 → 2 → 3 → CTA</td>
-    <td>Clean demos, numbered/structured, educational</td>
-  </tr>
-  <tr>
-    <td>Offer / Discount</td>
-    <td>15-20s</td>
-    <td>Discount %, promo code, deadline</td>
-    <td>Attention → Offer → Value stack → Deadline CTA</td>
-    <td>Price anchoring, savings callout, urgency</td>
-  </tr>
-  <tr>
-    <td>Limited Time</td>
-    <td>15-20s</td>
-    <td>End date/time, stock quantity</td>
-    <td>Urgency → What's ending → Act now → Countdown</td>
-    <td>Countdown timer, scarcity, FOMO</td>
-  </tr>
-  <tr>
-    <td>Retargeting</td>
-    <td>15-20s</td>
-    <td>Previous interaction context</td>
-    <td>Recognition → Reminder → New angle → Return CTA</td>
-    <td>Familiar tone, new proof point, sweetener</td>
-  </tr>
-  <tr>
-    <td>Shopify Product</td>
-    <td>15-30s</td>
-    <td>Shopify URL</td>
-    <td>Hero → Benefits → Social proof → Buy CTA</td>
-    <td>Clean product shots, benefit-focused, conversion-optimized</td>
-  </tr>
-  <tr>
-    <td>Amazon Listing</td>
-    <td>15-30s</td>
-    <td>Amazon ASIN/URL</td>
-    <td>In-use → Features → Comparison → Purchase CTA</td>
-    <td>Amazon-optimized format, quick value communication</td>
-  </tr>
-  <tr>
-    <td>TikTok Shop</td>
-    <td>15s or 60s+</td>
-    <td>TikTok Shop product link</td>
-    <td>Scroll-stop → Quick demo → Proof → Shop now</td>
-    <td>Vertical, fast-paced, trending audio slot, impulse-buy CTA</td>
-  </tr>
-  <tr>
-    <td>Comparison</td>
-    <td>30-45s</td>
-    <td>Competitor product name/details</td>
-    <td>Challenge → Side-by-side → Winner → CTA</td>
-    <td>Split-screen, feature checkmarks, clear winner</td>
-  </tr>
-</table>
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Type</th><th>Duration</th><th>Unique Inputs</th><th>Structure</th><th>Key Elements</th></tr></thead>
+      <tbody>
+        <tr><td>UGC (Sales)</td><td>20-30s</td><td>—</td><td>Hook → Story → Demo → CTA</td><td>Front-camera, casual tone, authentic speech</td></tr>
+        <tr><td>Product Promo</td><td>15-30s</td><td>—</td><td>Cinematic → Features → Benefits → CTA</td><td>Polished visuals, hero shots, music-driven</td></tr>
+        <tr><td>Advertisement</td><td>15-30s</td><td>—</td><td>Interrupt → Problem → Solution → CTA</td><td>High energy, bold claims, strong messaging</td></tr>
+        <tr><td>Product Launch</td><td>30-60s</td><td>Launch date, exclusivity</td><td>Teaser → Reveal → Features → CTA</td><td>Excitement, countdown, FOMO</td></tr>
+        <tr><td>Problem–Solution</td><td>20-45s</td><td>Pain points</td><td>Pain → Agitate → Solve → Proof → CTA</td><td>Before/after, testimonials</td></tr>
+        <tr><td>Feature Breakdown</td><td>30-60s</td><td>Feature list</td><td>Overview → F1 → F2 → F3 → CTA</td><td>Clean demos, structured, educational</td></tr>
+        <tr><td>Offer / Discount</td><td>15-20s</td><td>Discount %, code, deadline</td><td>Attention → Offer → Value → Deadline</td><td>Price anchoring, savings, urgency</td></tr>
+        <tr><td>Limited Time</td><td>15-20s</td><td>End date, stock qty</td><td>Urgency → Ending → Act now → Countdown</td><td>Timer, scarcity, FOMO</td></tr>
+        <tr><td>Retargeting</td><td>15-20s</td><td>Previous context</td><td>Recognize → Remind → New angle → Return</td><td>Familiar tone, sweetener</td></tr>
+        <tr><td>Shopify Product</td><td>15-30s</td><td>Shopify URL</td><td>Hero → Benefits → Proof → Buy</td><td>Clean product shots, conversion-optimized</td></tr>
+        <tr><td>Amazon Listing</td><td>15-30s</td><td>Amazon URL</td><td>In-use → Features → Compare → Purchase</td><td>Amazon format, quick value</td></tr>
+        <tr><td>TikTok Shop</td><td>15s / 60s+</td><td>TikTok product link</td><td>Scroll-stop → Demo → Proof → Shop</td><td>Vertical, fast, impulse CTA</td></tr>
+        <tr><td>Comparison</td><td>30-45s</td><td>Competitor name</td><td>Challenge → Side-by-side → Winner → CTA</td><td>Split-screen, checkmarks</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<!-- ===== ROADMAP ===== -->
-<h2 id="roadmap">🗺️ Implementation Roadmap</h2>
+<!-- ROADMAP -->
+<div class="section" id="roadmap">
+  <div class="section-label">🗺️ Architecture</div>
+  <div class="section-title">Implementation Roadmap</div>
+  <div class="section-desc">Four phases to go from zero to a self-improving SELL video engine.</div>
 
-<div class="card">
-  <h3 style="margin-top:0">Phase 1: Foundation (Weeks 1-4)</h3>
-  <ul>
-    <li>✅ Product URL scraper (extract name, desc, images, price from any URL)</li>
-    <li>✅ Script engine with 13 type-specific templates (Hook → Body → CTA)</li>
-    <li>✅ Basic video assembly: product images + captions + voiceover + music</li>
-    <li>✅ Platform-specific export (9:16, 1:1, 16:9 with safe zones)</li>
-    <li><strong>MVP output:</strong> Simple product promo videos from URL</li>
-  </ul>
+  <div class="phase">
+    <h3><span class="phase-badge now">WEEKS 1-4</span> Phase 1: Foundation</h3>
+    <ul>
+      <li><strong>Product URL scraper</strong> — extract name, desc, images, price from any URL</li>
+      <li><strong>Script engine</strong> — 13 type-specific templates (Hook → Body → CTA)</li>
+      <li><strong>Basic video assembly</strong> — product images + captions + voiceover + music</li>
+      <li><strong>Platform-specific export</strong> — 9:16, 1:1, 16:9 with safe zones</li>
+      <li>MVP output: Simple product promo videos from URL</li>
+    </ul>
+  </div>
 
-  <h3>Phase 2: AI Media (Weeks 5-8)</h3>
-  <ul>
-    <li>🔄 AI avatar integration (talking heads, lip-synced to script)</li>
-    <li>🔄 Product placement in AI scenes (avatar holding product)</li>
-    <li>🔄 B-roll generation (lifestyle, product demo, motion graphics)</li>
-    <li>🔄 Multi-avatar support (3 actors per video)</li>
-    <li><strong>Output:</strong> Full UGC-style and promo videos</li>
-  </ul>
+  <div class="phase">
+    <h3><span class="phase-badge next">WEEKS 5-8</span> Phase 2: AI Media</h3>
+    <ul>
+      <li><strong>AI avatar integration</strong> — talking heads, lip-synced to script</li>
+      <li><strong>Product placement</strong> — avatar holding product in AI scenes</li>
+      <li><strong>B-roll generation</strong> — lifestyle, product demo, motion graphics</li>
+      <li><strong>Multi-avatar support</strong> — 3 actors per video</li>
+      <li>Output: Full UGC-style and promo videos</li>
+    </ul>
+  </div>
 
-  <h3>Phase 3: Scale & Polish (Weeks 9-12)</h3>
-  <ul>
-    <li>📋 Batch generation (10-50 variations per run)</li>
-    <li>📋 Speech-to-speech voice cloning</li>
-    <li>📋 Reference video cloning (paste viral video URL → generate similar)</li>
-    <li>📋 Auto-captions with styled templates</li>
-    <li><strong>Output:</strong> Production-ready SELL videos at scale</li>
-  </ul>
+  <div class="phase">
+    <h3><span class="phase-badge later">WEEKS 9-12</span> Phase 3: Scale & Polish</h3>
+    <ul>
+      <li><strong>Batch generation</strong> — 10-50 variations per run</li>
+      <li><strong>Speech-to-speech</strong> voice cloning</li>
+      <li><strong>Reference video cloning</strong> — paste viral video URL → generate similar</li>
+      <li><strong>Auto-captions</strong> with styled templates</li>
+      <li>Output: Production-ready SELL videos at scale</li>
+    </ul>
+  </div>
 
-  <h3>Phase 4: Intelligence (Weeks 13-16)</h3>
-  <ul>
-    <li>🔮 Competitor ad intelligence (what's working in your niche)</li>
-    <li>🔮 A/B testing pipeline (generate → launch → analyze → optimize)</li>
-    <li>🔮 Performance-driven script optimization</li>
-    <li>🔮 Multi-language generation</li>
-    <li><strong>Output:</strong> Self-improving SELL video engine</li>
-  </ul>
+  <div class="phase">
+    <h3><span class="phase-badge future">WEEKS 13-16</span> Phase 4: Intelligence</h3>
+    <ul>
+      <li><strong>Competitor ad intelligence</strong> — what's working in your niche</li>
+      <li><strong>A/B testing pipeline</strong> — generate → launch → analyze → optimize</li>
+      <li><strong>Performance-driven script optimization</strong></li>
+      <li><strong>Multi-language generation</strong></li>
+      <li>Output: Self-improving SELL video engine</li>
+    </ul>
+  </div>
+
+  <div class="timing-box">
+    <h2>🏆 The Prize</h2>
+    <p>Users go from <strong>"I have a product"</strong> to <strong>"I have 16 ready-to-run SELL video ads"</strong> in under 5 minutes, with zero video editing skills. No competitor currently offers this for the full spectrum of 13 SELL video types.</p>
+  </div>
 </div>
 
-<div class="highlight-green" style="margin-top: 24px;">
-  <strong>🏆 The Prize:</strong> If Craftit nails this pipeline, users go from "I have a product" to "I have 16 ready-to-run SELL video ads" in under 5 minutes, with zero video editing skills. No competitor currently offers this for the full spectrum of 13 SELL video types.
-</div>
+</div><!-- /main-content -->
 
-<!-- Footer -->
-<div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 13px;">
-  <p>🐙 Generated by Pixel (Pix) — Craftit Product & Design Partner</p>
-  <p>Research date: February 2026 | 20 YouTube videos analyzed | 25+ AI tools mapped</p>
-  <p>Source data: <a href="https://github.com/lasithalokuge/Craftit-Ai-Research" style="color: var(--accent);">GitHub Repository</a></p>
+<!-- FOOTER -->
+<div class="footer" style="margin-left: 240px;">
+  <p>🐙 Compiled by Pixel — Craftit Product & Design Partner</p>
+  <p style="margin-top: 4px;">February 2026 · 20 YouTube Videos · 25+ AI Tools · <a href="https://github.com/lasithalokuge/Craftit-Ai-Research" style="color: var(--accent); text-decoration: none;">GitHub Repository</a></p>
 </div>
-
-</main>
 
 <script>
-// Active nav highlighting
-const sections = document.querySelectorAll('h2[id]');
-const navLinks = document.querySelectorAll('.nav-link');
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
 
+// Active nav
+const sections = document.querySelectorAll('.section[id]');
+const navLinks = document.querySelectorAll('.sidebar a[href^="#"]');
 window.addEventListener('scroll', () => {
   let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
-  });
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
   navLinks.forEach(l => {
     l.classList.remove('active');
     if (l.getAttribute('href') === '#' + current) l.classList.add('active');
