@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Craftit AI — SELL Video Auto-Generation Research</title>
+<title>Craftit AI — Video Auto-Generation Research</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -573,6 +573,52 @@
     .pipeline-step::after { display: none; }
   }
   html { scroll-behavior: smooth; }
+
+  /* Category Tabs */
+  .category-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 150;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0;
+    padding: 0;
+  }
+  .cat-tab {
+    flex: 1;
+    padding: 16px 20px;
+    text-align: center;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .cat-tab:hover { color: var(--text); background: var(--surface-hover); }
+  .cat-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--accent-light); }
+  .cat-tab .cat-emoji { font-size: 1.1em; }
+  .cat-tab .cat-count { 
+    font-size: 0.7em; 
+    background: var(--border); 
+    padding: 2px 6px; 
+    border-radius: 4px; 
+    color: var(--text-muted);
+  }
+  .cat-tab.active .cat-count { background: rgba(129,140,248,0.2); color: var(--accent); }
+  .cat-content { display: none; }
+  .cat-content.active { display: block; }
+  @media (max-width: 900px) {
+    .category-tabs { overflow-x: auto; }
+    .cat-tab { min-width: 120px; padding: 12px 14px; font-size: 0.78em; }
+    .category-tabs { top: 56px; }
+  }
 </style>
 </head>
 <body>
@@ -637,6 +683,17 @@
 
 <!-- MAIN CONTENT -->
 <div class="main-content">
+
+<!-- CATEGORY TABS -->
+<div class="category-tabs">
+  <div class="cat-tab active" onclick="switchCategory('sell')"><span class="cat-emoji">💰</span> SELL <span class="cat-count">13 types</span></div>
+  <div class="cat-tab" onclick="switchCategory('educate')"><span class="cat-emoji">🎓</span> EDUCATE <span class="cat-count">9 types</span></div>
+  <div class="cat-tab disabled" style="opacity:0.4; cursor:default;"><span class="cat-emoji">🤝</span> BUILD TRUST <span class="cat-count">Soon</span></div>
+  <div class="cat-tab disabled" style="opacity:0.4; cursor:default;"><span class="cat-emoji">🎬</span> ENTERTAIN <span class="cat-count">Soon</span></div>
+</div>
+
+<!-- ============ SELL CATEGORY ============ -->
+<div class="cat-content active" id="cat-sell">
 
 <!-- HEADER -->
 <div class="header">
@@ -1978,10 +2035,546 @@
   </div>
 </div>
 
+</div><!-- /cat-sell -->
+
+<!-- ============ EDUCATE CATEGORY ============ -->
+<div class="cat-content" id="cat-educate">
+
+<!-- EDUCATE HEADER -->
+<div class="header">
+  <div class="header-badge">🎓 Pixel · EDUCATE Video Research</div>
+  <h1>EDUCATE Video Auto-Generation</h1>
+  <p>YouTube Analysis · AI Tools Mapping · Workflow Design · System Architecture</p>
+  <p class="date">February–March 2026 · 20 Videos Analyzed · Category 2 of 4</p>
+</div>
+
+<!-- BIG INSIGHT -->
+<div class="section">
+  <div class="insight-box">
+    <div class="icon">🎓</div>
+    <h2>The One Big Insight</h2>
+    <p>Educational video creation has split into <strong>three tiers</strong>: one-click generation (paste a URL, get a video), prompt-driven orchestration (describe your goal, AI builds it), and document-to-video (upload a PDF/PPT, get a training video). <strong>No tool covers all three well.</strong> Craftit can own the full EDUCATE pipeline.</p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="section">
+  <div class="section-label">📊 Research</div>
+  <div class="section-title">Research at a Glance</div>
+  <div class="section-desc">Deep analysis of the AI educational video creation landscape.</div>
+
+  <div class="card-grid cols-6">
+    <div class="stat-card"><div class="number">20</div><div class="label">YouTube Videos Analyzed</div></div>
+    <div class="stat-card"><div class="number">9</div><div class="label">EDUCATE Video Types</div></div>
+    <div class="stat-card"><div class="number">20+</div><div class="label">AI Tools Discovered</div></div>
+    <div class="stat-card"><div class="number">3</div><div class="label">Creation Tiers</div></div>
+    <div class="stat-card"><div class="number">175+</div><div class="label">Languages Supported</div></div>
+    <div class="stat-card"><div class="number">&lt;$1</div><div class="label">Cost Per Review Video</div></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card themed-green">
+      <div class="card-icon">📎</div>
+      <h3>URL-to-Video Is Mature for Reviews</h3>
+      <p>TopView AI and Fliki already auto-generate product review videos from just a URL. Craftit needs to match this and add structure — not just hype scripts.</p>
+    </div>
+    <div class="card themed-purple">
+      <div class="card-icon">📄</div>
+      <h3>Document-to-Video Is the Corporate Killer Feature</h3>
+      <p>HeyGen converts PDFs and PowerPoints into avatar-presented training videos. This alone could drive enterprise adoption for Craftit.</p>
+    </div>
+    <div class="card themed-yellow">
+      <div class="card-icon">🎯</div>
+      <h3>Visual-to-Script Matching Is the Bottleneck</h3>
+      <p>For explainer videos, finding the right image/clip for each script line is the most tedious step. Automating this is the highest-value feature.</p>
+    </div>
+    <div class="card themed-blue">
+      <div class="card-icon">🖥️</div>
+      <h3>Zero-Edit Tutorials via Screen Recording</h3>
+      <p>Tools like Guidde auto-detect clicks and build step-by-step videos from screen recordings — no editing required. The future of how-to content.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 9 VIDEO TYPES -->
+<div class="section">
+  <div class="section-label">🎬 Category</div>
+  <div class="section-title">The 9 EDUCATE Video Types</div>
+  <div class="section-desc">Videos that explain, teach, or clarify. Each has a distinct structure and purpose.</div>
+
+  <div class="card-grid cols-3">
+    <div class="vtype" style="border-left-color: var(--green);">
+      <h3>1. Explainer</h3>
+      <p>Clear, structured video that simplifies a concept, product, or service so viewers quickly understand it.</p>
+      <div class="structure">Hook → Problem → Solution → CTA</div>
+      <span class="tag green">60-180s</span> <span class="tag accent">Most Common</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--blue);">
+      <h3>2. Tutorial / How-To</h3>
+      <p>Step-by-step instructional video teaching viewers how to use a product or complete a task.</p>
+      <div class="structure">Goal → Prerequisites → Steps → Result</div>
+      <span class="tag blue">2-10 min</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--orange);">
+      <h3>3. Review</h3>
+      <p>Informative evaluation sharing honest opinions, pros/cons, and recommendations.</p>
+      <div class="structure">Intro → Features → Pros/Cons → Verdict</div>
+      <span class="tag orange">30s-5min</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--purple);">
+      <h3>4. Feature Walkthrough</h3>
+      <p>Guided tour through a product's features, showing exactly how they work.</p>
+      <div class="structure">Overview → Feature 1 → 2 → 3 → Summary</div>
+      <span class="tag purple">2-5 min</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--cyan);">
+      <h3>5. Behind the Scenes</h3>
+      <p>Process-focused video revealing how something is made, built, or executed.</p>
+      <div class="structure">Context → Process → Challenges → Result</div>
+      <span class="tag cyan">2-5 min</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--yellow);">
+      <h3>6. Demo Video</h3>
+      <p>Practical demonstration showing the product in action.</p>
+      <div class="structure">Problem → Product intro → Live demo → CTA</div>
+      <span class="tag yellow">1-3 min</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--red);">
+      <h3>7. Process Breakdown</h3>
+      <p>Structured explanation of how something works from start to finish.</p>
+      <div class="structure">Overview → Step 1 → 2 → 3 → Outcome</div>
+      <span class="tag red">2-5 min</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--pink);">
+      <h3>8. FAQ Video</h3>
+      <p>Video answering common questions to reduce confusion and hesitation.</p>
+      <div class="structure">Q1 → A1 → Q2 → A2 → Q3 → A3 → CTA</div>
+      <span class="tag pink">1-3 min</span>
+    </div>
+    <div class="vtype" style="border-left-color: var(--accent);">
+      <h3>9. Industry Insight</h3>
+      <p>Authority-driven video sharing knowledge, trends, or expert perspectives.</p>
+      <div class="structure">Trend → Analysis → Implications → Takeaway</div>
+      <span class="tag accent">3-10 min</span>
+    </div>
+  </div>
+</div>
+
+<!-- YOUTUBE ANALYSIS BATCHES -->
+<div class="section">
+  <div class="section-label">🎯 YouTube Analysis</div>
+  <div class="section-title">20 Videos Across 4 Batches</div>
+  <div class="section-desc">In-depth analysis of how creators make EDUCATE videos with AI tools today.</div>
+
+  <!-- BATCH 1 -->
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 12px; color: var(--green);">Batch 1: Explainer Videos</h3>
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Video</th><th>Tool</th><th>Approach</th><th>Key Insight</th></tr></thead>
+      <tbody>
+        <tr><td>AI Explainer PRO Tutorial</td><td>CreateStudio</td><td>Template-based</td><td>Hook→Problem→Solution→CTA is THE formula</td></tr>
+        <tr><td>FREE Explainer in 1 Click</td><td>NotebookLM</td><td>One-click</td><td>Source quality = output quality. Zero customization</td></tr>
+        <tr><td>Viral Explainers in 2026</td><td>ChatGPT + Editor</td><td>Manual assembly</td><td>"Every X Explained" is a proven viral format</td></tr>
+        <tr><td>Viral Explainers ONLY AI</td><td>ChatGPT + CapCut</td><td>Manual assembly</td><td>Visual sourcing per script line is the biggest bottleneck</td></tr>
+        <tr><td>Explainer in 5 Min</td><td>NotebookLM</td><td>One-click</td><td>AI reorganized content better than the human creator</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BATCH 2 -->
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 12px; color: var(--blue);">Batch 2: Tutorial & Demo Videos</h3>
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Video</th><th>Tool</th><th>Approach</th><th>Key Insight</th></tr></thead>
+      <tbody>
+        <tr><td>Product Demo Tutorial</td><td>DemoCreator</td><td>Screen record + edit</td><td>Cursor effects + annotations are essential for demos</td></tr>
+        <tr><td>Interactive Demos with AI</td><td>Arcade</td><td>Auto-interactive</td><td>Interactive demos > passive video for conversion</td></tr>
+        <tr><td>AI Walkthrough Tools</td><td>5 tools compared</td><td>Comparison</td><td>Guidde = fastest workflow-to-polished-video pipeline</td></tr>
+        <tr><td>Guidde AI Screen Recorder</td><td>Guidde</td><td>Zero-edit auto</td><td>Zero editing — AI eliminates the editing phase entirely</td></tr>
+        <tr><td>Step By Step Video Guides</td><td>Guidde</td><td>Zero-edit auto</td><td>Makes tutorial creation ~7x faster. 25 free/month</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BATCH 3 -->
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 12px; color: var(--purple);">Batch 3: Avatar-Based Educational Videos</h3>
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Video</th><th>Tool</th><th>Approach</th><th>Key Insight</th></tr></thead>
+      <tbody>
+        <tr><td>HeyGen Full Tutorial 2026</td><td>HeyGen</td><td>Avatar + prompt</td><td>175+ languages, voice cloning, custom avatars from text</td></tr>
+        <tr><td>Professional Training Videos</td><td>HeyGen</td><td>PDF/PPT → video</td><td>PDF-to-Video is a killer feature for corporate training</td></tr>
+        <tr><td>Synthesia Tutorial 2026</td><td>Synthesia</td><td>Avatar + script</td><td>Post-production polish separates good from great</td></tr>
+        <tr><td>HeyGen Explainer Videos</td><td>HeyGen</td><td>Prompt → plan → video</td><td>"Review like a creator, not edit like an editor"</td></tr>
+        <tr><td>AI Workflow for Business</td><td>Multiple</td><td>5-workflow pipeline</td><td>Custom GPT/Claude as reusable scripting agent</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BATCH 4 -->
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 12px; color: var(--orange);">Batch 4: Review & Walkthrough Videos</h3>
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Video</th><th>Tool</th><th>Approach</th><th>Key Insight</th></tr></thead>
+      <tbody>
+        <tr><td>Viral Product Reviews AI</td><td>TopView AI</td><td>URL-to-video</td><td>Paste URL → complete review video in minutes</td></tr>
+        <tr><td>Amazon Review with AI</td><td>Fliki AI</td><td>URL + SEO workflow</td><td>Keyword research THEN video = most strategic approach</td></tr>
+        <tr><td>1-Click Review Videos</td><td>TopView AI</td><td>URL-to-video + extension</td><td>Chrome extension extends to any e-commerce platform</td></tr>
+        <tr><td>InVideo Full Tutorial 2026</td><td>InVideo AI</td><td>Prompt → full video</td><td>Chat-based editing: type "change to Spanish" → done</td></tr>
+        <tr><td>Behind the Scenes AI Videos</td><td>Multi-tool</td><td>Manual assembly</td><td>Fully free workflow possible (Gemini + Grok + ClipChamp)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TOOLS ECOSYSTEM -->
+<div class="section">
+  <div class="section-label">🧰 Synthesis</div>
+  <div class="section-title">AI Tools Ecosystem for EDUCATE Videos</div>
+  <div class="section-desc">The complete landscape of tools creators use for educational video content.</div>
+
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Category</th><th>Top Tools</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><strong>URL-to-Video</strong></td><td>TopView AI · Fliki AI · Creatify</td><td>Paste product URL → complete review/explainer video</td></tr>
+        <tr><td><strong>Prompt-to-Video</strong></td><td>InVideo AI · HeyGen · Synthesia</td><td>Describe topic → AI builds full video with scenes</td></tr>
+        <tr><td><strong>Document-to-Video</strong></td><td>HeyGen (PDF/PPT) · NotebookLM</td><td>Upload existing materials → auto-generate videos</td></tr>
+        <tr><td><strong>Screen Recording + AI</strong></td><td>Guidde · Arcade · Tango AI · Scribe</td><td>Record workflow → AI auto-generates tutorial</td></tr>
+        <tr><td><strong>AI Avatars</strong></td><td>HeyGen · Synthesia · Jog AI</td><td>HeyGen = training; Synthesia = corporate; Jog = UGC</td></tr>
+        <tr><td><strong>Script Writing</strong></td><td>Claude · ChatGPT · Custom GPTs</td><td>Claude slightly better at human-sounding scripts</td></tr>
+        <tr><td><strong>Image Generation</strong></td><td>Nano Banana Pro · ChatGPT · Midjourney</td><td>For thumbnails, visual assets, scene images</td></tr>
+        <tr><td><strong>Video Generation</strong></td><td>Google Veo 3.1 · Sora 2 · Kling · Grok</td><td>InVideo aggregates multiple models in one platform</td></tr>
+        <tr><td><strong>Voice</strong></td><td>ElevenLabs · Google AI Studio · Fliki voices</td><td>ElevenLabs = premium; Google AI Studio = free</td></tr>
+        <tr><td><strong>Editing</strong></td><td>CapCut · DaVinci Resolve · ClipChamp</td><td>CapCut = free/simple; DaVinci = free/professional</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- THREE CREATION TIERS -->
+<div class="section">
+  <div class="section-label">🏗️ Synthesis</div>
+  <div class="section-title">Three Tiers of Educational Video Creation</div>
+  <div class="section-desc">The EDUCATE landscape has three distinct approaches — Craftit needs to support all three.</div>
+
+  <div class="card-grid cols-3">
+    <div class="card" style="border-top: 3px solid var(--green); padding: 24px;">
+      <div class="card-icon">⚡</div>
+      <h3 style="color: var(--green);">Tier 1: One-Click</h3>
+      <p><strong>Input:</strong> Product URL or source materials</p>
+      <p><strong>Output:</strong> Complete video in minutes</p>
+      <p><strong>Tools:</strong> NotebookLM, TopView AI, Fliki</p>
+      <p><strong>Quality:</strong> Good enough for reviews, internal use</p>
+      <p><strong>Control:</strong> Minimal customization</p>
+      <p style="margin-top: 12px;"><span class="tag green">Best for: Product reviews, quick explainers</span></p>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--accent); padding: 24px;">
+      <div class="card-icon">🎯</div>
+      <h3 style="color: var(--accent);">Tier 2: Prompt-Driven</h3>
+      <p><strong>Input:</strong> Topic + goal + audience description</p>
+      <p><strong>Output:</strong> Structured video with scenes</p>
+      <p><strong>Tools:</strong> HeyGen, InVideo AI, CreateStudio</p>
+      <p><strong>Quality:</strong> Professional, branded</p>
+      <p><strong>Control:</strong> Review & adjust scenes/script</p>
+      <p style="margin-top: 12px;"><span class="tag accent">Best for: Training, explainers, FAQs</span></p>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--purple); padding: 24px;">
+      <div class="card-icon">📄</div>
+      <h3 style="color: var(--purple);">Tier 3: Document-to-Video</h3>
+      <p><strong>Input:</strong> PDF, PPT, training manuals</p>
+      <p><strong>Output:</strong> Avatar-presented training videos</p>
+      <p><strong>Tools:</strong> HeyGen, Synthesia</p>
+      <p><strong>Quality:</strong> Corporate-grade</p>
+      <p><strong>Control:</strong> Brand kit, avatar, voice</p>
+      <p style="margin-top: 12px;"><span class="tag purple">Best for: Corporate training, onboarding</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- KEY PATTERNS -->
+<div class="section">
+  <div class="section-label">🔑 Synthesis</div>
+  <div class="section-title">Top 10 Insights for EDUCATE Videos</div>
+
+  <div class="opp-card">
+    <div class="opp-badge critical">CRITICAL</div>
+    <h3>1. Cognitive Load Matters — Keep Videos Under 6 Minutes</h3>
+    <p>Research from Guo et al. (2014) shows students disengage after 6 minutes. Segment longer content into chapters. Use signaling (key words on screen) to guide attention.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge critical">CRITICAL</div>
+    <h3>2. Visual-to-Script Matching Is the #1 Bottleneck</h3>
+    <p>For explainer/tutorial videos, finding the right image or clip for each script line is the most time-consuming step. Automating this is the single highest-value feature Craftit can offer.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge critical">CRITICAL</div>
+    <h3>3. "Review Like a Creator, Not Edit Like an Editor"</h3>
+    <p>The mental model shift: users should review a plan for clarity and message flow, not manage timelines or scrub audio. Step-level editing > timeline editing.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>4. Document-to-Video Is the Corporate Killer Feature</h3>
+    <p>HeyGen converts PDFs/PPTs into avatar-presented videos. Existing training materials → video is the #1 use case for enterprise. Craftit should replicate this.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>5. Conversational Tone > Formal Tone</h3>
+    <p>Academic research confirms: speaking at 185-254 wpm with enthusiasm + using "you" and "I" increases engagement and retention. Educational ≠ boring.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>6. Multi-Language Is a Massive Multiplier</h3>
+    <p>Create once → deploy in 175+ languages. HeyGen's one-click translation with lip-sync adjustment. Critical for global training programs.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>7. Zero-Edit Screen Recording Is the Future of Tutorials</h3>
+    <p>Guidde auto-detects clicks → builds step-by-step videos → adds voiceover + annotations. No editing. "Do the thing, pick a voice, publish."</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>8. Chat-Based Editing Is a UX Breakthrough</h3>
+    <p>InVideo AI lets you type "remove subtitles" or "change to Spanish" to edit. No timeline. Natural language editing is the next paradigm.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>9. Avatar Consistency Builds Trust</h3>
+    <p>Same avatar across all content = brand recognition. Don't randomize — recommend one consistent presenter per brand/channel.</p>
+  </div>
+  <div class="opp-card">
+    <div class="opp-badge high">HIGH</div>
+    <h3>10. Brand Kit with Auto-Detection Is Table Stakes</h3>
+    <p>Paste company URL → auto-extract logo, colors, fonts. HeyGen does this. Removes friction for corporate users. Brand Voice settings preserve terminology across translations.</p>
+  </div>
+</div>
+
+<!-- 3 EXAMPLES -->
+<div class="section">
+  <div class="section-label">🎯 Product Design</div>
+  <div class="section-title">3 Real-World EDUCATE Video Examples</div>
+  <div class="section-desc">How Craftit would handle three different educational video needs — same minimal inputs, different outputs.</div>
+
+  <!-- EXAMPLE 1: SaaS Tutorial -->
+  <div class="opp-card" style="border-left: 3px solid var(--blue);">
+    <div class="opp-badge" style="background: var(--blue-light); color: var(--blue);">EXAMPLE 1 · Tutorial</div>
+    <h3>💻 Notion Workspace Setup Tutorial</h3>
+    <div class="card-grid cols-3" style="margin-top: 16px; margin-bottom: 0;">
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--green);"><h3 style="color: var(--green);">📎 Input 1: Topic</h3><p style="font-style: italic; color: var(--text-muted);">"How to set up a Notion workspace for a small team"</p></div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--accent);"><h3 style="color: var(--accent);">💬 Input 2: Key Points</h3><p style="font-style: italic; color: var(--text-muted);">"Create team space, set up task database, add views (kanban, calendar), invite members, set permissions"</p></div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--purple);"><h3 style="color: var(--purple);">👤 Input 3: Audience</h3><p style="font-style: italic; color: var(--text-muted);">"Non-technical small team owners, beginners to Notion"</p></div>
+    </div>
+    <div style="margin-top: 16px; padding: 20px; background: var(--bg); border: 1px solid var(--border-light); border-radius: 10px;">
+      <h3 style="font-size: 0.88em; margin-bottom: 12px; color: var(--blue);">🤖 Craftit Auto-Generates</h3>
+      <table class="comp-table" style="font-size: 0.78em;">
+        <tr><td style="width: 80px;"><span class="tag blue" style="margin:0;">INTRO</span></td><td>15s</td><td>"Setting up Notion for your team doesn't have to be complicated"</td><td style="color: var(--text-muted);">Avatar presenter + Notion logo</td></tr>
+        <tr><td><span class="tag green" style="margin:0;">STEP 1</span></td><td>45s</td><td>"First, create a team space..." + screen walkthrough</td><td style="color: var(--text-muted);">Screen recording with annotations</td></tr>
+        <tr><td><span class="tag green" style="margin:0;">STEP 2</span></td><td>60s</td><td>"Now set up your task database with views..."</td><td style="color: var(--text-muted);">Kanban + calendar view demos</td></tr>
+        <tr><td><span class="tag green" style="margin:0;">STEP 3</span></td><td>30s</td><td>"Invite your team and set permissions"</td><td style="color: var(--text-muted);">Member invite + permission UI</td></tr>
+        <tr><td><span class="tag accent" style="margin:0;">RECAP</span></td><td>15s</td><td>"You now have a fully set up team workspace"</td><td style="color: var(--text-muted);">Avatar + summary overlay</td></tr>
+      </table>
+      <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag blue">Tone: Friendly / Educational</span>
+        <span class="tag accent">Format: Screen + Avatar PiP</span>
+        <span class="tag green">Length: 2:45</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 2: Product Explainer -->
+  <div class="opp-card" style="border-left: 3px solid var(--green);">
+    <div class="opp-badge" style="background: var(--green-light); color: var(--green);">EXAMPLE 2 · Explainer</div>
+    <h3>🧪 Creatine Supplement Explainer</h3>
+    <div class="card-grid cols-3" style="margin-top: 16px; margin-bottom: 0;">
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--green);"><h3 style="color: var(--green);">📎 Input 1: Topic</h3><p style="font-style: italic; color: var(--text-muted);">"What creatine does and how to take it properly"</p></div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--accent);"><h3 style="color: var(--accent);">💬 Input 2: Key Points</h3><p style="font-style: italic; color: var(--text-muted);">"Backed by 500+ studies, increases strength, 5g daily, mix with water, safe for long-term use, no loading phase needed"</p></div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--purple);"><h3 style="color: var(--purple);">👤 Input 3: Audience</h3><p style="font-style: italic; color: var(--text-muted);">"Gym beginners who are confused about supplements"</p></div>
+    </div>
+    <div style="margin-top: 16px; padding: 20px; background: var(--bg); border: 1px solid var(--border-light); border-radius: 10px;">
+      <h3 style="font-size: 0.88em; margin-bottom: 12px; color: var(--green);">🤖 Craftit Auto-Generates</h3>
+      <table class="comp-table" style="font-size: 0.78em;">
+        <tr><td style="width: 80px;"><span class="tag red" style="margin:0;">HOOK</span></td><td>3s</td><td>"Creatine is the most studied supplement in history — here's what you need to know"</td><td style="color: var(--text-muted);">Bold text + gym B-roll</td></tr>
+        <tr><td><span class="tag orange" style="margin:0;">PROBLEM</span></td><td>8s</td><td>"There's so much misinformation about creatine..."</td><td style="color: var(--text-muted);">Confused person + supplement shelf</td></tr>
+        <tr><td><span class="tag accent" style="margin:0;">EXPLAIN</span></td><td>40s</td><td>"Here's what 500+ studies actually show..."</td><td style="color: var(--text-muted);">Animated diagram, muscle cell illustration</td></tr>
+        <tr><td><span class="tag green" style="margin:0;">HOW-TO</span></td><td>20s</td><td>"Take 5g daily, mix with water, no loading needed"</td><td style="color: var(--text-muted);">Scoop + water glass, simple visual</td></tr>
+        <tr><td><span class="tag purple" style="margin:0;">CTA</span></td><td>5s</td><td>"Start with 5g a day and see the difference"</td><td style="color: var(--text-muted);">Product shot + link overlay</td></tr>
+      </table>
+      <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag green">Tone: Educational / Trustworthy</span>
+        <span class="tag accent">Format: Narrated Visuals</span>
+        <span class="tag yellow">Length: 76s</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 3: Corporate Training -->
+  <div class="opp-card" style="border-left: 3px solid var(--purple);">
+    <div class="opp-badge" style="background: var(--purple-light); color: var(--purple);">EXAMPLE 3 · Training</div>
+    <h3>🏢 Employee Onboarding: CRM System Training</h3>
+    <div class="card-grid cols-3" style="margin-top: 16px; margin-bottom: 0;">
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--green);"><h3 style="color: var(--green);">📎 Input 1: Document</h3><p style="font-style: italic; color: var(--text-muted);">Uploads 15-page PDF: "CRM User Guide for New Hires"</p></div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--accent);"><h3 style="color: var(--accent);">💬 Input 2: Goal</h3><p style="font-style: italic; color: var(--text-muted);">"New employees should be able to log leads, track deals, and run reports after watching"</p></div>
+      <div class="card" style="padding: 16px; border-top: 3px solid var(--purple);"><h3 style="color: var(--purple);">👤 Input 3: Audience</h3><p style="font-style: italic; color: var(--text-muted);">"Non-technical sales team, first week on the job"</p></div>
+    </div>
+    <div style="margin-top: 16px; padding: 20px; background: var(--bg); border: 1px solid var(--border-light); border-radius: 10px;">
+      <h3 style="font-size: 0.88em; margin-bottom: 12px; color: var(--purple);">🤖 Craftit Auto-Generates</h3>
+      <table class="comp-table" style="font-size: 0.78em;">
+        <tr><td style="width: 80px;"><span class="tag accent" style="margin:0;">INTRO</span></td><td>30s</td><td>"Welcome! This video will get you up and running with our CRM"</td><td style="color: var(--text-muted);">Avatar presenter + company logo + brand colors</td></tr>
+        <tr><td><span class="tag blue" style="margin:0;">MODULE 1</span></td><td>3 min</td><td>"Logging and managing leads" — extracted from PDF Ch.1-3</td><td style="color: var(--text-muted);">Avatar over slides auto-generated from PDF</td></tr>
+        <tr><td><span class="tag blue" style="margin:0;">MODULE 2</span></td><td>3 min</td><td>"Tracking deals through the pipeline" — from PDF Ch.4-6</td><td style="color: var(--text-muted);">Process diagrams + screen mockups</td></tr>
+        <tr><td><span class="tag blue" style="margin:0;">MODULE 3</span></td><td>2 min</td><td>"Running reports and dashboards" — from PDF Ch.7-8</td><td style="color: var(--text-muted);">Report screenshots + annotations</td></tr>
+        <tr><td><span class="tag green" style="margin:0;">SUMMARY</span></td><td>30s</td><td>"You're ready to start using the CRM. Here's your cheat sheet"</td><td style="color: var(--text-muted);">Key actions recap + support contact</td></tr>
+      </table>
+      <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <span class="tag purple">Tone: Professional / Welcoming</span>
+        <span class="tag accent">Format: Avatar + Slides</span>
+        <span class="tag green">Length: 9 min (3 chapters)</span>
+        <span class="tag blue">Auto-translated: 10 languages</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- USER vs AI SPLIT -->
+<div class="section">
+  <div class="section-label">⚡ Product Design</div>
+  <div class="section-title">User Input vs. AI Automation — EDUCATE</div>
+  <div class="section-desc">What the user provides vs. what Craftit handles for each creation tier.</div>
+
+  <div class="card-grid cols-3" style="margin-bottom: 24px;">
+    <div class="card" style="border-top: 3px solid var(--green); padding: 24px;">
+      <h3 style="color: var(--green); font-size: 0.95em; margin-bottom: 16px;">📎 Tier 1: URL-to-Video</h3>
+      <p style="font-size: 0.82em; color: var(--text-secondary); margin-bottom: 12px;"><strong>User provides:</strong></p>
+      <div style="padding: 10px; background: var(--bg); border-radius: 8px; margin-bottom: 12px; font-size: 0.82em;">1. Product URL</div>
+      <p style="font-size: 0.82em; color: var(--text-secondary); margin-bottom: 12px;"><strong>AI handles:</strong></p>
+      <p style="font-size: 0.78em; color: var(--text-muted);">Product data extraction · Script generation · Scene creation · Avatar/voiceover · Music · Assembly · Captions · Export</p>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--accent); padding: 24px;">
+      <h3 style="color: var(--accent); font-size: 0.95em; margin-bottom: 16px;">🎯 Tier 2: Prompt-Driven</h3>
+      <p style="font-size: 0.82em; color: var(--text-secondary); margin-bottom: 12px;"><strong>User provides:</strong></p>
+      <div style="padding: 10px; background: var(--bg); border-radius: 8px; margin-bottom: 4px; font-size: 0.82em;">1. Topic / what to explain</div>
+      <div style="padding: 10px; background: var(--bg); border-radius: 8px; margin-bottom: 4px; font-size: 0.82em;">2. Key points to cover</div>
+      <div style="padding: 10px; background: var(--bg); border-radius: 8px; margin-bottom: 12px; font-size: 0.82em;">3. Who it's for</div>
+      <p style="font-size: 0.82em; color: var(--text-secondary); margin-bottom: 12px;"><strong>AI handles:</strong></p>
+      <p style="font-size: 0.78em; color: var(--text-muted);">Script structuring · Visual matching · Scenes · Avatar · Voice · Music · Brand application · Assembly</p>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--purple); padding: 24px;">
+      <h3 style="color: var(--purple); font-size: 0.95em; margin-bottom: 16px;">📄 Tier 3: Document-to-Video</h3>
+      <p style="font-size: 0.82em; color: var(--text-secondary); margin-bottom: 12px;"><strong>User provides:</strong></p>
+      <div style="padding: 10px; background: var(--bg); border-radius: 8px; margin-bottom: 4px; font-size: 0.82em;">1. PDF / PPT / document</div>
+      <div style="padding: 10px; background: var(--bg); border-radius: 8px; margin-bottom: 4px; font-size: 0.82em;">2. Training goal</div>
+      <div style="padding: 10px; background: var(--bg); border-radius: 8px; margin-bottom: 12px; font-size: 0.82em;">3. Audience level</div>
+      <p style="font-size: 0.82em; color: var(--text-secondary); margin-bottom: 12px;"><strong>AI handles:</strong></p>
+      <p style="font-size: 0.78em; color: var(--text-muted);">Content extraction · Script from document · Slide-to-scene conversion · Avatar presenter · Brand kit · Multi-language · Chapters · Assembly</p>
+    </div>
+  </div>
+
+  <div class="insight-box" style="text-align: left; max-width: 100%;">
+    <div style="font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.78em; line-height: 2; color: var(--text-secondary);">
+      <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 220px;">
+          <div style="color: var(--green); font-weight: 700; margin-bottom: 8px; font-size: 0.9em;">USER DOES</div>
+          <div>Tier 1: Paste URL ────────────→</div>
+          <div>Tier 2: Topic + Points + Audience →</div>
+          <div>Tier 3: Upload document ──────→</div>
+          <div style="margin-top: 8px; color: var(--green);">✅ 30 seconds – 2 minutes</div>
+        </div>
+        <div style="flex: 2; min-width: 340px;">
+          <div style="color: var(--accent); font-weight: 700; margin-bottom: 8px; font-size: 0.9em;">CRAFTIT DOES</div>
+          <div>Extract data · Detect category · Structure content</div>
+          <div>Generate script with pedagogical framework</div>
+          <div>Match visuals to each script section</div>
+          <div>Create/select avatar + voice</div>
+          <div>Generate scenes (slides, screen demos, B-roll)</div>
+          <div>Apply brand kit (auto from URL)</div>
+          <div>Assemble + captions + music</div>
+          <div>Translate to additional languages</div>
+          <div>Produce <strong style="color: var(--accent);">5-10 draft variations</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PER-TYPE SPECS -->
+<div class="section">
+  <div class="section-label">📋 Architecture</div>
+  <div class="section-title">Per-Type Generation Specifications</div>
+
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Type</th><th>Duration</th><th>Primary Input</th><th>Structure</th><th>Key Elements</th></tr></thead>
+      <tbody>
+        <tr><td>Explainer</td><td>60-180s</td><td>Topic + key points</td><td>Hook → Problem → Solution → CTA</td><td>Animated diagrams, clean visuals, signaling</td></tr>
+        <tr><td>Tutorial / How-To</td><td>2-10 min</td><td>Topic + steps or screen recording</td><td>Goal → Prerequisites → Steps → Result</td><td>Screen captures, annotations, numbered steps</td></tr>
+        <tr><td>Review</td><td>30s-5min</td><td>Product URL</td><td>Intro → Features → Pros/Cons → Verdict</td><td>Product images, comparison, rating</td></tr>
+        <tr><td>Feature Walkthrough</td><td>2-5 min</td><td>Product URL or screen recording</td><td>Overview → Feature 1 → 2 → 3 → Summary</td><td>Screen demos, UI highlights, hotspots</td></tr>
+        <tr><td>Behind the Scenes</td><td>2-5 min</td><td>Process description + assets</td><td>Context → Process → Challenges → Result</td><td>Raw footage feel, process visuals, candid tone</td></tr>
+        <tr><td>Demo Video</td><td>1-3 min</td><td>Product URL or screen recording</td><td>Problem → Product → Live demo → CTA</td><td>Product in action, cursor effects, annotations</td></tr>
+        <tr><td>Process Breakdown</td><td>2-5 min</td><td>Topic + steps</td><td>Overview → Step 1 → 2 → 3 → Outcome</td><td>Flowcharts, diagrams, numbered stages</td></tr>
+        <tr><td>FAQ Video</td><td>1-3 min</td><td>Common questions list</td><td>Q1→A1 → Q2→A2 → Q3→A3 → CTA</td><td>Question on screen, avatar answers, text overlay</td></tr>
+        <tr><td>Industry Insight</td><td>3-10 min</td><td>Topic + data/trends</td><td>Trend → Analysis → Implications → Takeaway</td><td>Charts, data viz, expert tone, sources cited</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- EDUCATE VIDEOS LIST -->
+<div class="section">
+  <div class="section-label">🎞️ Reference</div>
+  <div class="section-title">All 20 YouTube Videos Analyzed</div>
+
+  <div class="card" style="margin-bottom: 16px;">
+    <h3 style="color: var(--green); margin-bottom: 12px;">🎓 Batch 1: Explainer Videos</h3>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <a href="https://www.youtube.com/watch?v=zFyilebNgMQ" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--green); font-weight: 700; font-size: 0.78em; min-width: 20px;">1</span><span style="flex: 1; font-size: 0.85em;">Create AI Explainer Videos Like a PRO</span><span class="tag green" style="margin: 0;">CreateStudio</span></a>
+      <a href="https://www.youtube.com/watch?v=05fX2rDQbFU" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--green); font-weight: 700; font-size: 0.78em; min-width: 20px;">2</span><span style="flex: 1; font-size: 0.85em;">FREE AI Tool Makes Explainer Videos in 1 Click</span><span class="tag accent" style="margin: 0;">NotebookLM</span></a>
+      <a href="https://www.youtube.com/watch?v=LkC0rkA0sxo" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--green); font-weight: 700; font-size: 0.78em; min-width: 20px;">3</span><span style="flex: 1; font-size: 0.85em;">How To Make Explainer Videos That Go Viral in 2026</span><span class="tag orange" style="margin: 0;">ChatGPT + Editor</span></a>
+      <a href="https://www.youtube.com/watch?v=iyjxbr04Ogs" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--green); font-weight: 700; font-size: 0.78em; min-width: 20px;">4</span><span style="flex: 1; font-size: 0.85em;">Viral Explainer Videos Using ONLY AI</span><span class="tag orange" style="margin: 0;">ChatGPT + CapCut</span></a>
+      <a href="https://www.youtube.com/watch?v=xK5o_A80QVU" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--green); font-weight: 700; font-size: 0.78em; min-width: 20px;">5</span><span style="flex: 1; font-size: 0.85em;">AI Explainer Video in 5 Minutes with NotebookLM</span><span class="tag accent" style="margin: 0;">NotebookLM</span></a>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 16px;">
+    <h3 style="color: var(--blue); margin-bottom: 12px;">🖥️ Batch 2: Tutorial & Demo Videos</h3>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <a href="https://www.youtube.com/watch?v=ozqppja65Jg" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--blue); font-weight: 700; font-size: 0.78em; min-width: 20px;">6</span><span style="flex: 1; font-size: 0.85em;">How To Make a Product Demo Video (Step by Step)</span><span class="tag blue" style="margin: 0;">DemoCreator</span></a>
+      <a href="https://www.youtube.com/watch?v=Tvd0pA3q9Cw" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--blue); font-weight: 700; font-size: 0.78em; min-width: 20px;">7</span><span style="flex: 1; font-size: 0.85em;">Interactive Product Demos with AI — Arcade</span><span class="tag purple" style="margin: 0;">Arcade</span></a>
+      <a href="https://www.youtube.com/watch?v=X5ypWnVFTrY" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--blue); font-weight: 700; font-size: 0.78em; min-width: 20px;">8</span><span style="flex: 1; font-size: 0.85em;">Best AI Video Walkthrough Tools — Full Breakdown</span><span class="tag cyan" style="margin: 0;">5 Tools</span></a>
+      <a href="https://www.youtube.com/watch?v=Dh8BiLgrkTQ" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--blue); font-weight: 700; font-size: 0.78em; min-width: 20px;">9</span><span style="flex: 1; font-size: 0.85em;">Guidde's AI Screen Recorder — It is CRAZY!</span><span class="tag green" style="margin: 0;">Guidde</span></a>
+      <a href="https://www.youtube.com/watch?v=rh7nNkJ2HFU" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--blue); font-weight: 700; font-size: 0.78em; min-width: 20px;">10</span><span style="flex: 1; font-size: 0.85em;">Make Step By Step Video Guides in Minutes (AI Tool)</span><span class="tag green" style="margin: 0;">Guidde</span></a>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom: 16px;">
+    <h3 style="color: var(--purple); margin-bottom: 12px;">🧑‍🏫 Batch 3: Avatar-Based Educational</h3>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <a href="https://www.youtube.com/watch?v=eFwx6fyDOmU" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--purple); font-weight: 700; font-size: 0.78em; min-width: 20px;">11</span><span style="flex: 1; font-size: 0.85em;">HeyGen AI — Full Tutorial 2026</span><span class="tag purple" style="margin: 0;">HeyGen</span></a>
+      <a href="https://www.youtube.com/watch?v=4wipp4TstvI" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--purple); font-weight: 700; font-size: 0.78em; min-width: 20px;">12</span><span style="flex: 1; font-size: 0.85em;">Professional Training Videos in Minutes — HeyGen</span><span class="tag purple" style="margin: 0;">HeyGen</span></a>
+      <a href="https://www.youtube.com/watch?v=MOywaKSB6xw" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--purple); font-weight: 700; font-size: 0.78em; min-width: 20px;">13</span><span style="flex: 1; font-size: 0.85em;">AI Avatar Videos — Synthesia Tutorial 2026</span><span class="tag orange" style="margin: 0;">Synthesia</span></a>
+      <a href="https://www.youtube.com/watch?v=WcwYRfqLuTY" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--purple); font-weight: 700; font-size: 0.78em; min-width: 20px;">14</span><span style="flex: 1; font-size: 0.85em;">HeyGen Explainer Videos in Minutes 2026</span><span class="tag purple" style="margin: 0;">HeyGen</span></a>
+      <a href="https://www.youtube.com/watch?v=bzoTOgqD15I" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--purple); font-weight: 700; font-size: 0.78em; min-width: 20px;">15</span><span style="flex: 1; font-size: 0.85em;">The AI Video Workflow BLOWING UP Businesses in 2026</span><span class="tag accent" style="margin: 0;">Multi-tool</span></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color: var(--orange); margin-bottom: 12px;">📝 Batch 4: Review & Walkthrough Videos</h3>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <a href="https://www.youtube.com/watch?v=ZfhVAp_kExo" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--orange); font-weight: 700; font-size: 0.78em; min-width: 20px;">16</span><span style="flex: 1; font-size: 0.85em;">How to Make Viral Product Review Videos Using AI</span><span class="tag red" style="margin: 0;">TopView AI</span></a>
+      <a href="https://www.youtube.com/watch?v=N-UuvqhmzNA" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--orange); font-weight: 700; font-size: 0.78em; min-width: 20px;">17</span><span style="flex: 1; font-size: 0.85em;">Amazon Product Review with AI — URL to Video</span><span class="tag orange" style="margin: 0;">Fliki AI</span></a>
+      <a href="https://www.youtube.com/watch?v=kWqkl1gglJU" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--orange); font-weight: 700; font-size: 0.78em; min-width: 20px;">18</span><span style="flex: 1; font-size: 0.85em;">1-Click Product Review Videos!</span><span class="tag red" style="margin: 0;">TopView AI</span></a>
+      <a href="https://www.youtube.com/watch?v=9rpOO0Bh7i0" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--orange); font-weight: 700; font-size: 0.78em; min-width: 20px;">19</span><span style="flex: 1; font-size: 0.85em;">InVideo AI — Full Tutorial 2026</span><span class="tag yellow" style="margin: 0;">InVideo AI</span></a>
+      <a href="https://www.youtube.com/watch?v=RicmUTadWoI" target="_blank" style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; text-decoration: none; color: var(--text); border: 1px solid var(--border-light);"><span style="color: var(--orange); font-weight: 700; font-size: 0.78em; min-width: 20px;">20</span><span style="flex: 1; font-size: 0.85em;">How AI Videos are Made (Behind the Scenes)</span><span class="tag cyan" style="margin: 0;">Multi-tool</span></a>
+    </div>
+  </div>
+</div>
+
+</div><!-- /cat-educate -->
+
 <!-- FOOTER -->
 <div class="footer" style="margin-left: 240px;">
   <p>🐙 Compiled by Pixel — Craftit Product & Design Partner</p>
-  <p style="margin-top: 4px;">February 2026 · 20 YouTube Videos · 25+ AI Tools · <a href="https://github.com/lasithalokuge/Craftit-Ai-Research" style="color: var(--accent); text-decoration: none;">GitHub Repository</a></p>
+  <p style="margin-top: 4px;">February–March 2026 · 40 YouTube Videos · 40+ AI Tools · <a href="https://github.com/lasithalokuge/Craftit-Ai-Research" style="color: var(--accent); text-decoration: none;">GitHub Repository</a></p>
 </div>
 
 <script>
@@ -1992,6 +2585,15 @@ function toggleSidebar() {
 function closeSidebar() {
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('overlay').classList.remove('open');
+}
+
+// Category switching
+function switchCategory(cat) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.cat-content').forEach(c => c.classList.remove('active'));
+  document.querySelector(`.cat-tab[onclick*="${cat}"]`).classList.add('active');
+  document.getElementById('cat-' + cat).classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 // Active nav
