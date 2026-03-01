@@ -2349,6 +2349,369 @@
   </div>
 </div>
 
+<!-- REQUIRED INPUTS -->
+<div class="section">
+  <div class="section-label">📥 Synthesis</div>
+  <div class="section-title">Required User Inputs — EDUCATE</div>
+  <div class="section-desc">What Craftit needs to collect varies by creation tier. The golden rule: smart defaults for everything optional.</div>
+
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Tier</th><th>Input</th><th>Required?</th><th>How It's Used</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="2"><strong>Tier 1 — Essential</strong></td><td>Product URL <em>or</em> Topic + Key Points <em>or</em> Document Upload</td><td>✅ Required (one of three)</td><td>Core content source — everything generates from this</td></tr>
+        <tr><td>Video Type Selection (1 of 9)</td><td>✅ Required</td><td>Determines structure, pacing, visual style</td></tr>
+        <tr><td rowspan="3"><strong>Tier 2 — Recommended</strong></td><td>Target Audience / Skill Level</td><td>⭐ Recommended</td><td>Script complexity, tone, examples used, terminology</td></tr>
+        <tr><td>Learning Goal / What Viewer Should Know After</td><td>⭐ Recommended</td><td>Structures the content arc, determines depth</td></tr>
+        <tr><td>Key Points / Steps to Cover</td><td>⭐ For tutorials/how-tos</td><td>Ensures critical content isn't missed</td></tr>
+        <tr><td rowspan="5"><strong>Tier 3 — Optional</strong></td><td>Brand Assets (logo, colors, fonts)</td><td>Optional</td><td>Brand consistency — auto-detect from URL if available</td></tr>
+        <tr><td>Avatar Preference</td><td>Optional</td><td>Presenter style — auto-matched to content type</td></tr>
+        <tr><td>Screen Recording</td><td>Optional</td><td>For software tutorials — AI auto-annotates</td></tr>
+        <tr><td>Custom Script</td><td>Optional</td><td>Override AI-generated script</td></tr>
+        <tr><td>Languages for Translation</td><td>Optional</td><td>Auto-translate + lip-sync to additional languages</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="quote-block">
+    <p><strong>The minimum viable input per tier:</strong> Tier 1 = just a product URL. Tier 2 = topic + "who is this for?" Tier 3 = upload a document. Everything else should be AI-inferred with smart defaults.</p>
+  </div>
+</div>
+
+<!-- VIDEO STRUCTURE FRAMEWORK -->
+<div class="section">
+  <div class="section-label">🏗️ Synthesis</div>
+  <div class="section-title">Universal EDUCATE Video Structure</div>
+  <div class="section-desc">Four proven frameworks based on video type. The AI selects the right one automatically.</div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Framework 1: Explainer / FAQ / Industry Insight</h3>
+  <div class="pipeline" style="margin-bottom: 24px;">
+    <div class="pipeline-step" style="border-top: 3px solid var(--red);"><span class="step-num" style="background: var(--red);">H</span><span class="step-title">Hook (3-5s)</span><span class="step-detail">Curiosity question or surprising fact</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--orange);"><span class="step-num" style="background: var(--orange);">P</span><span class="step-title">Problem (5-10s)</span><span class="step-detail">Why this matters, common confusion</span></div>
+    <div class="pipeline-step"><span class="step-num">E</span><span class="step-title">Explain (30-90s)</span><span class="step-detail">Core content, visual diagrams, step-by-step</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--purple);"><span class="step-num" style="background: var(--purple);">P</span><span class="step-title">Proof (10-20s)</span><span class="step-detail">Data, examples, before/after</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">C</span><span class="step-title">CTA (5s)</span><span class="step-detail">Next step, link, subscribe</span></div>
+  </div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Framework 2: Tutorial / How-To / Process Breakdown</h3>
+  <div class="pipeline" style="margin-bottom: 24px;">
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">G</span><span class="step-title">Goal (5-10s)</span><span class="step-detail">"By the end, you'll be able to..."</span></div>
+    <div class="pipeline-step"><span class="step-num">P</span><span class="step-title">Prerequisites (5s)</span><span class="step-detail">What you need before starting</span></div>
+    <div class="pipeline-step"><span class="step-num">1</span><span class="step-title">Step 1</span><span class="step-detail">Clear instruction + demo</span></div>
+    <div class="pipeline-step"><span class="step-num">2</span><span class="step-title">Step 2</span><span class="step-detail">Clear instruction + demo</span></div>
+    <div class="pipeline-step"><span class="step-num">3</span><span class="step-title">Step 3</span><span class="step-detail">Clear instruction + demo</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">R</span><span class="step-title">Result (10s)</span><span class="step-detail">Show finished outcome + CTA</span></div>
+  </div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Framework 3: Review / Feature Walkthrough / Demo</h3>
+  <div class="pipeline" style="margin-bottom: 24px;">
+    <div class="pipeline-step" style="border-top: 3px solid var(--red);"><span class="step-num" style="background: var(--red);">H</span><span class="step-title">Hook (3s)</span><span class="step-detail">Bold verdict upfront</span></div>
+    <div class="pipeline-step"><span class="step-num">I</span><span class="step-title">Intro (10s)</span><span class="step-detail">What this is, who it's for</span></div>
+    <div class="pipeline-step"><span class="step-num">F</span><span class="step-title">Features (60s+)</span><span class="step-detail">Feature-by-feature with demos</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">+</span><span class="step-title">Pros (15s)</span><span class="step-detail">What's great</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--red);"><span class="step-num" style="background: var(--red);">-</span><span class="step-title">Cons (15s)</span><span class="step-detail">What could improve</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--accent);"><span class="step-num">V</span><span class="step-title">Verdict + CTA</span><span class="step-detail">Rating, recommendation, link</span></div>
+  </div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Framework 4: Training / Onboarding (Document-Based)</h3>
+  <div class="pipeline" style="margin-bottom: 24px;">
+    <div class="pipeline-step" style="border-top: 3px solid var(--accent);"><span class="step-num">W</span><span class="step-title">Welcome (15s)</span><span class="step-detail">Context + what you'll learn</span></div>
+    <div class="pipeline-step"><span class="step-num">M1</span><span class="step-title">Module 1</span><span class="step-detail">Chapter from document</span></div>
+    <div class="pipeline-step"><span class="step-num">M2</span><span class="step-title">Module 2</span><span class="step-detail">Chapter from document</span></div>
+    <div class="pipeline-step"><span class="step-num">M3</span><span class="step-title">Module 3</span><span class="step-detail">Chapter from document</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">S</span><span class="step-title">Summary (15s)</span><span class="step-detail">Key takeaways + next steps</span></div>
+  </div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Hook Formulas for EDUCATE Videos</h3>
+  <div class="card-grid cols-4">
+    <div class="card"><div class="card-icon">❓</div><h3>Curiosity Question</h3><p>"Have you ever wondered why [X]?"<br>"What if everything you know about [X] is wrong?"</p></div>
+    <div class="card"><div class="card-icon">📊</div><h3>Surprising Stat</h3><p>"95% of people do [X] wrong"<br>"Only 3% know about this feature"</p></div>
+    <div class="card"><div class="card-icon">🎯</div><h3>Promise of Outcome</h3><p>"By the end of this video, you'll be able to..."<br>"In 2 minutes, you'll understand..."</p></div>
+    <div class="card"><div class="card-icon">🚫</div><h3>Common Mistake</h3><p>"Stop doing [X] — here's why"<br>"The #1 mistake beginners make with [X]"</p></div>
+  </div>
+</div>
+
+<!-- PROPOSED CRAFTIT WORKFLOW -->
+<div class="section">
+  <div class="section-label">⚡ Architecture</div>
+  <div class="section-title">Proposed Craftit EDUCATE Workflow</div>
+  <div class="section-desc">The "Minimal Input, Maximum Output" pipeline for educational video generation.</div>
+
+  <div class="pipeline">
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">1</span><span class="step-title">Input</span><span class="step-detail">URL / Topic / Document</span></div>
+    <div class="pipeline-step"><span class="step-num">2</span><span class="step-title">Extract</span><span class="step-detail">Parse content, detect category</span></div>
+    <div class="pipeline-step"><span class="step-num">3</span><span class="step-title">Structure</span><span class="step-detail">Apply pedagogical framework</span></div>
+    <div class="pipeline-step"><span class="step-num">4</span><span class="step-title">Script</span><span class="step-detail">AI generates 5+ scripts</span></div>
+    <div class="pipeline-step"><span class="step-num">5</span><span class="step-title">Visuals</span><span class="step-detail">Match media to each scene</span></div>
+    <div class="pipeline-step"><span class="step-num">6</span><span class="step-title">Audio</span><span class="step-detail">Voice, music, SFX</span></div>
+    <div class="pipeline-step" style="border-top: 3px solid var(--green);"><span class="step-num" style="background: var(--green);">7</span><span class="step-title">Assemble</span><span class="step-detail">Auto-edit + captions + brand</span></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">User Journey — 3 Steps per Tier</h3>
+  <div class="card-grid cols-3">
+    <div class="card" style="border-top: 3px solid var(--green);">
+      <div class="card-icon">📎</div>
+      <h3>Tier 1: URL Review</h3>
+      <p>1. Paste product URL<br>2. Select "Review" type<br>3. Pick favorites from 10+ drafts</p>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--accent);">
+      <div class="card-icon">💬</div>
+      <h3>Tier 2: Topic Explainer</h3>
+      <p>1. Type topic + key points<br>2. Say who it's for<br>3. Review AI-generated plan → generate</p>
+    </div>
+    <div class="card" style="border-top: 3px solid var(--purple);">
+      <div class="card-icon">📄</div>
+      <h3>Tier 3: Document Training</h3>
+      <p>1. Upload PDF/PPT<br>2. Set training goal<br>3. Review chapters → generate</p>
+    </div>
+  </div>
+</div>
+
+<!-- SYSTEM ARCHITECTURE -->
+<div class="section">
+  <div class="section-label">🏛️ Architecture</div>
+  <div class="section-title">System Architecture — EDUCATE</div>
+  <div class="section-desc">The complete technical pipeline for Craftit's educational video engine.</div>
+
+  <div class="arch-box">┌─────────────────────────────────────────────────────────────────────┐
+│                      USER INPUT LAYER                                │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────────┐  │
+│  │ Product URL   │  │ Topic +      │  │ Document Upload           │  │
+│  │ (Tier 1)      │  │ Key Points   │  │ PDF / PPT / Manual        │  │
+│  │               │  │ (Tier 2)     │  │ (Tier 3)                  │  │
+│  └──────┬───────┘  └──────┬───────┘  └────────────┬─────────────┘  │
+└─────────┼─────────────────┼──────────────────────┼──────────────────┘
+          │                 │                      │
+          ▼                 ▼                      ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                   CONTENT INTELLIGENCE ENGINE                        │
+│  • URL Scraper (product info, images, features, price)              │
+│  • Document Parser (PDF/PPT → structured sections/chapters)         │
+│  • Topic Analyzer (detect category, complexity, key concepts)       │
+│  • Audience Matcher (skill level → vocabulary, examples, depth)     │
+│  • Learning Goal Structurer (goal → measurable outcomes)            │
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                   PEDAGOGICAL FRAMEWORK ENGINE                       │
+│  ┌────────────────────┐  ┌─────────────────────────────────────┐   │
+│  │ Framework Selection │  │ Script Generation                   │   │
+│  │ (auto from type)    │  │ • Cognitive load management (<6min) │   │
+│  │                     │  │ • Signaling (key terms on screen)   │   │
+│  │ 1. Explainer/FAQ    │  │ • Segmenting (chapters)             │   │
+│  │ 2. Tutorial/How-To  │  │ • Conversational tone (185-254 wpm) │   │
+│  │ 3. Review/Demo      │  │ • 5+ script variations              │   │
+│  │ 4. Training/Onboard │  │ • Auto shot list per section        │   │
+│  └────────────────────┘  └─────────────────────────────────────┘   │
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                    MEDIA GENERATION ENGINE                            │
+│  ┌─────────────┐  ┌──────────────┐  ┌──────────────────────────┐  │
+│  │ Presenter    │  │ Visual       │  │ Screen Demos              │  │
+│  │ (Avatar)     │  │ Matching     │  │ (Auto-annotated)          │  │
+│  │              │  │              │  │                            │  │
+│  │ AI Avatar    │  │ Diagrams     │  │ Click detection            │  │
+│  │ or Faceless  │  │ Charts/data  │  │ Step numbering            │  │
+│  │ Consistent   │  │ Product imgs │  │ Cursor highlights         │  │
+│  │ per brand    │  │ Animations   │  │ UI annotations            │  │
+│  └─────────────┘  └──────────────┘  └──────────────────────────┘  │
+│                                                                      │
+│  Models: HeyGen Avatars | Veo 3.x | Nano Banana | Guidde-style AI   │
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                      AUDIO ENGINE                                    │
+│  ┌────────────┐  ┌─────────────────┐  ┌────────────────────────┐  │
+│  │ Voiceover   │  │ Background      │  │ Sound Effects           │  │
+│  │ TTS / Clone │  │ Music           │  │ UI clicks, transitions  │  │
+│  │ Multi-lang  │  │ Calm/educational│  │ Emphasis sounds         │  │
+│  │ 175+ langs  │  │ Low volume      │  │                          │  │
+│  └────────────┘  └─────────────────┘  └────────────────────────┘  │
+│                                                                      │
+│  Models: ElevenLabs | Google AI Studio | Suno                        │
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                    AUTO-ASSEMBLY ENGINE                               │
+│  • Arrange scenes per pedagogical framework                          │
+│  • Apply signaling (key terms highlighted on screen)                 │
+│  • Segment into chapters (<6 min each)                               │
+│  • Sync avatar/voiceover with visuals                                │
+│  • Add styled captions (accessibility)                               │
+│  • Apply brand kit (auto from URL or manual)                         │
+│  • Auto-resize for platform (16:9 YouTube, 9:16 Shorts)             │
+│  • Generate 5-10 draft variations                                    │
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                     OUTPUT & DISTRIBUTION                             │
+│  • Preview 5-10 drafts → select favorites → render HD               │
+│  • One-click translation (175+ languages with lip-sync)              │
+│  • Export per platform (YouTube, Shorts, Reels, LMS embed)           │
+│  • Auto-generated chapters, SEO metadata, description                │
+│  • Interactive quiz integration (optional)                           │
+│  • Analytics: completion rate, drop-off points, engagement           │
+└─────────────────────────────────────────────────────────────────────┘</div>
+</div>
+
+<!-- IMPLEMENTATION ROADMAP -->
+<div class="section">
+  <div class="section-label">🗺️ Architecture</div>
+  <div class="section-title">Implementation Roadmap — EDUCATE</div>
+  <div class="section-desc">Four phases to build Craftit's educational video engine.</div>
+
+  <div class="phase">
+    <h3><span class="phase-badge now">WEEKS 1-4</span> Phase 1: Foundation</h3>
+    <ul>
+      <li><strong>URL-to-review pipeline</strong> — paste product URL → auto-generate review video with features/pros/cons/verdict</li>
+      <li><strong>Topic-to-explainer pipeline</strong> — type topic + key points → Hook→Explain→CTA video</li>
+      <li><strong>4 pedagogical frameworks</strong> — auto-select based on video type</li>
+      <li><strong>Visual matching engine</strong> — auto-find/generate images per script line</li>
+      <li>MVP output: Simple explainer and review videos from URL or topic</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <h3><span class="phase-badge next">WEEKS 5-8</span> Phase 2: Document & Avatar</h3>
+    <ul>
+      <li><strong>Document-to-video</strong> — PDF/PPT upload → structured training video with chapters</li>
+      <li><strong>AI avatar presenter</strong> — consistent avatar per brand, lip-synced</li>
+      <li><strong>Brand kit auto-detection</strong> — paste company URL → extract logo, colors, fonts</li>
+      <li><strong>Screen recording integration</strong> — record workflow → auto-annotated tutorial</li>
+      <li>Output: Corporate training videos and branded tutorials</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <h3><span class="phase-badge later">WEEKS 9-12</span> Phase 3: Scale & Intelligence</h3>
+    <ul>
+      <li><strong>Multi-scenario generation</strong> — 5-10 script angles per topic</li>
+      <li><strong>Chat-based editing</strong> — "change to Spanish", "remove subtitles", "make it shorter"</li>
+      <li><strong>One-click translation</strong> — 175+ languages with lip-sync</li>
+      <li><strong>Interactive elements</strong> — quizzes, click-forward pauses, knowledge checks</li>
+      <li>Output: Multi-language educational content at scale</li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <h3><span class="phase-badge future">WEEKS 13-16</span> Phase 4: Learning Platform</h3>
+    <ul>
+      <li><strong>LMS integration</strong> — embed in learning management systems</li>
+      <li><strong>Analytics dashboard</strong> — completion rates, drop-off, engagement heatmaps</li>
+      <li><strong>SEO optimization</strong> — auto-generated metadata, chapters, descriptions</li>
+      <li><strong>Content series</strong> — auto-plan multi-video courses from one document</li>
+      <li>Output: Full educational content platform integration</li>
+    </ul>
+  </div>
+
+  <div class="timing-box">
+    <h2>🏆 The Prize</h2>
+    <p>Users go from <strong>"I have a product URL / topic / training manual"</strong> to <strong>"I have a professional educational video in 10 languages"</strong> in under 5 minutes. No camera, no editing, no design skills needed.</p>
+  </div>
+</div>
+
+<!-- UNIVERSAL TEMPLATE -->
+<div class="section">
+  <div class="section-label">📐 Product Design</div>
+  <div class="section-title">Universal EDUCATE Template</div>
+  <div class="section-desc">One template adapted by content type. Structure stays the same — visuals, tone, and depth change automatically.</div>
+
+  <div class="table-wrap" style="margin-bottom: 24px;">
+    <table class="comp-table">
+      <thead><tr><th>Section</th><th>Duration</th><th>Purpose</th><th>💻 Tutorial</th><th>🧪 Explainer</th><th>🏢 Training</th></tr></thead>
+      <tbody>
+        <tr><td><strong style="color: var(--red);">HOOK</strong></td><td>3-5s</td><td>Grab attention, state value</td><td>"Setting up Notion is easier than you think"</td><td>"Here's what 500 studies say about creatine"</td><td>"Welcome! You'll be CRM-ready in 9 minutes"</td></tr>
+        <tr><td><strong style="color: var(--orange);">CONTEXT</strong></td><td>5-10s</td><td>Why this matters, who it's for</td><td>"Perfect for small teams new to Notion"</td><td>"So much misinformation out there..."</td><td>"This covers leads, deals, and reports"</td></tr>
+        <tr><td><strong style="color: var(--accent);">CORE</strong></td><td>60-300s</td><td>Main content delivery</td><td>Step 1 → Step 2 → Step 3 with demos</td><td>Explain mechanism → how to use → dosage</td><td>Module 1 → Module 2 → Module 3</td></tr>
+        <tr><td><strong style="color: var(--purple);">PROOF</strong></td><td>10-20s</td><td>Validate with evidence</td><td>Show finished workspace result</td><td>Studies, before/after data</td><td>"You're now ready to handle real leads"</td></tr>
+        <tr><td><strong style="color: var(--green);">CTA</strong></td><td>5-10s</td><td>Next action</td><td>"Try it yourself — link below"</td><td>"Start with 5g a day"</td><td>"Here's your cheat sheet + support contact"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size: 1em; font-weight: 700; margin-bottom: 16px;">Scene Templates by Content Type</h3>
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead><tr><th>Scene Type</th><th>💻 Software</th><th>🧪 Science/Health</th><th>🏢 Corporate</th><th>📦 Product</th><th>📊 Industry</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Opening</strong></td><td>App logo + goal text</td><td>Bold stat on screen</td><td>Company logo + welcome</td><td>Product hero shot</td><td>Trend graph or headline</td></tr>
+        <tr><td><strong>Demo/Explain</strong></td><td>Screen recording + annotations</td><td>Animated diagram</td><td>Slide + avatar presenter</td><td>Product in use</td><td>Charts + data viz</td></tr>
+        <tr><td><strong>Detail</strong></td><td>UI close-up + cursor highlight</td><td>Molecular/cell animation</td><td>Process flowchart</td><td>Feature close-up</td><td>Expert quote overlay</td></tr>
+        <tr><td><strong>Transition</strong></td><td>"Next, let's..." text card</td><td>Section title + icon</td><td>Chapter marker</td><td>Before → After split</td><td>Key number callout</td></tr>
+        <tr><td><strong>Proof</strong></td><td>Finished workspace/result</td><td>Study citation, data</td><td>Achievement badge</td><td>User rating/review</td><td>Industry report source</td></tr>
+        <tr><td><strong>Closing</strong></td><td>Summary + try-it CTA</td><td>Takeaway + dosage card</td><td>Cheat sheet + support</td><td>Where to buy + price</td><td>Subscribe + next topic</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- STEP-BY-STEP GUIDE -->
+<div class="section">
+  <div class="section-label">📖 Deep Dive</div>
+  <div class="section-title">How to Create AI Educational Videos — Step-by-Step Guide</div>
+  <div class="section-desc">A practical guide synthesized from all 20 videos. Covers the three main approaches.</div>
+
+  <div class="phase" style="border-left: 3px solid var(--green);">
+    <h3><span class="phase-badge" style="background: var(--green-light); color: var(--green);">APPROACH 1</span> URL-to-Video (Product Reviews, 5 min)</h3>
+    <ul>
+      <li><strong>Step 1:</strong> Copy any product URL (Amazon, Shopify, etc.)</li>
+      <li><strong>Step 2:</strong> Paste into Craftit → AI scrapes product name, images, features, price</li>
+      <li><strong>Step 3:</strong> Select video type (Review, Feature Walkthrough, Demo)</li>
+      <li><strong>Step 4:</strong> Choose avatar + voice (or go faceless)</li>
+      <li><strong>Step 5:</strong> AI generates 5+ script scenarios (different angles)</li>
+      <li><strong>Step 6:</strong> Pick favorites → render → export per platform</li>
+    </ul>
+    <p style="font-size: 0.82em; color: var(--text-muted); margin-top: 12px;"><strong>Tools today:</strong> TopView AI ($49/mo, 600 videos) · Fliki (free tier) · Creatify</p>
+  </div>
+
+  <div class="phase" style="border-left: 3px solid var(--accent);">
+    <h3><span class="phase-badge" style="background: var(--accent-light); color: var(--accent);">APPROACH 2</span> Topic-to-Video (Explainers, 10 min)</h3>
+    <ul>
+      <li><strong>Step 1:</strong> Type your topic + 2-3 key points to cover</li>
+      <li><strong>Step 2:</strong> Specify audience ("beginners", "gym-goers", "developers")</li>
+      <li><strong>Step 3:</strong> AI generates structured script using Hook→Problem→Explain→Proof→CTA</li>
+      <li><strong>Step 4:</strong> AI auto-matches visuals (diagrams, images, animations) to each script line</li>
+      <li><strong>Step 5:</strong> Review the plan — adjust for clarity, not technical editing</li>
+      <li><strong>Step 6:</strong> Generate → pick from 5+ variations → render</li>
+    </ul>
+    <p style="font-size: 0.82em; color: var(--text-muted); margin-top: 12px;"><strong>Tools today:</strong> InVideo AI ($100/mo) · HeyGen ($24/mo) · CreateStudio</p>
+  </div>
+
+  <div class="phase" style="border-left: 3px solid var(--purple);">
+    <h3><span class="phase-badge" style="background: var(--purple-light); color: var(--purple);">APPROACH 3</span> Document-to-Video (Training, 15 min)</h3>
+    <ul>
+      <li><strong>Step 1:</strong> Upload PDF, PPT, or training manual</li>
+      <li><strong>Step 2:</strong> Set training goal + audience level</li>
+      <li><strong>Step 3:</strong> AI parses document → creates chapter structure</li>
+      <li><strong>Step 4:</strong> AI generates avatar presenter + slides from document content</li>
+      <li><strong>Step 5:</strong> Apply brand kit (auto from company URL or manual)</li>
+      <li><strong>Step 6:</strong> Review chapters → generate → translate to additional languages</li>
+    </ul>
+    <p style="font-size: 0.82em; color: var(--text-muted); margin-top: 12px;"><strong>Tools today:</strong> HeyGen (PDF/PPT to video) · Synthesia ($22/mo)</p>
+  </div>
+
+  <div class="card" style="margin-top: 24px; border: 1px solid var(--accent); border-radius: var(--radius-lg); padding: 28px;">
+    <h3 style="color: var(--accent); font-size: 1.05em; margin-bottom: 16px;">⚡ Quick Reference — Tool Stack for EDUCATE</h3>
+    <table class="comp-table" style="font-size: 0.82em;">
+      <tr><th>Approach</th><th>Tool</th><th>Cost</th><th>Time</th></tr>
+      <tr><td>URL → Review</td><td>TopView AI / Fliki</td><td>Free–$49/mo</td><td>5 min</td></tr>
+      <tr><td>Topic → Explainer</td><td>InVideo AI / HeyGen</td><td>$24–$100/mo</td><td>10 min</td></tr>
+      <tr><td>Document → Training</td><td>HeyGen / Synthesia</td><td>$22–$67/mo</td><td>15 min</td></tr>
+      <tr><td>Screen → Tutorial</td><td>Guidde / Arcade</td><td>Free–$16/mo</td><td>5 min</td></tr>
+      <tr><td>Script writing</td><td>Claude / ChatGPT</td><td>Free–$20/mo</td><td>5 min</td></tr>
+      <tr><td>Voice</td><td>ElevenLabs / Google AI Studio</td><td>Free–$11/mo</td><td>2 min</td></tr>
+    </table>
+  </div>
+</div>
+
 <!-- 3 EXAMPLES -->
 <div class="section">
   <div class="section-label">🎯 Product Design</div>
